@@ -10,7 +10,7 @@
       --bg: #0b0c0f;
       --text: #eaeef5;
       --muted: #9aa3b2;
-      --accent: #0a84ff; /* iOS blue */
+      --accent: #0a84ff;
       --card: rgba(255,255,255,0.06);
       --border: rgba(255,255,255,0.10);
       --radius: 24px;
@@ -30,11 +30,182 @@
     }
     a{color:inherit; text-decoration:none}
 
-    /* scroll-snap layout */
     .snapper{height:100vh; overflow-y:auto; scroll-snap-type:y mandatory; scroll-behavior:smooth}
     .panel{height:100vh; scroll-snap-align:start; scroll-snap-stop:always; display:flex; align-items:center; justify-content:center; padding:48px; overflow:hidden}
 
     .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); backdrop-filter:blur(var(--blur)); box-shadow:var(--shadow)}
+
+    .container{width:min(1400px,95vw); margin:0 auto}
+
+    .statusbar{position:fixed; top:20px; left:20px; z-index:100; padding:10px 16px; border-radius:24px; background:rgba(255,255,255,.08); display:flex; align-items:center; gap:12px; font-size:15px; font-weight:600}
+
+    .music{position:fixed; top:20px; right:20px; z-index:100;}
+    .music iframe{border-radius:18px; border:0; width:360px; height:96px}
+
+    .hero{display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;}
+    .small{font-size:16px; color:var(--muted); margin-bottom:8px}
+    .title{font-size:clamp(36px,5vw,64px); line-height:1.1; margin:8px 0; font-weight:700}
+    .title b{display:block}
+    .handle{display:inline-flex; padding:8px 16px; background:rgba(255,255,255,.08); border-radius:999px; border:1px solid var(--border); margin:6px 6px 0 0; font-size:14px}
+
+    .phone{width:clamp(260px,28vw,380px); aspect-ratio:9/19.5; border-radius:40px; padding:16px; background:#111; position:relative; border:1px solid rgba(255,255,255,.15); box-shadow:0 20px 60px rgba(0,0,0,.65); margin:auto;}
+    .notch{position:absolute; top:16px; left:50%; transform:translateX(-50%); width:120px; height:28px; background:#000; border-radius:14px}
+    .screen{position:absolute; inset:16px; border-radius:32px; overflow:hidden; background:#000}
+    .screen img{width:100%; height:100%; object-fit:cover; display:block}
+
+    .media iframe{width:100%; max-width:800px; height:clamp(420px,56vh,720px); border-radius:20px; border:0}
+
+    h2{font-size:32px; margin-bottom:16px}
+    .muted{color:var(--muted)}
+
+    .skills-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px}
+    .tile{padding:24px; font-size:18px}
+
+    .apps{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:20px}
+    .app{aspect-ratio:1/1; border-radius:32px; background:rgba(255,255,255,.08); display:flex; align-items:center; justify-content:center; border:1px solid var(--border); font-size:18px}
+
+    .project{display:flex; align-items:flex-start; gap:16px; padding:14px 0; border-top:1px dashed var(--border)}
+    .project:first-child{border-top:none}
+    .thumb{width:100px; height:100px; border-radius:20px; object-fit:cover; background:#222}
+
+    .btn{padding:12px 20px; border-radius:14px; border:none; cursor:pointer; font-weight:600; font-size:16px}
+    .btn.primary{background:#0a84ff; color:#fff}
+    .btn.ghost{background:transparent; border:1px solid var(--border); color:var(--text)}
+
+    .dots{position:fixed; right:20px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:10px;}
+    .dots a{width:12px; height:12px; border-radius:50%; background:rgba(255,255,255,.3); display:block}
+    .dots a.active{background:var(--accent)}
+
+    @media (max-width: 960px){
+      .hero{grid-template-columns:1fr; gap:24px}
+      .media iframe{max-width:100%; height:420px}
+      .phone{margin-top:20px}
+    }
+
+    .form{display:flex; flex-direction:column; gap:12px}
+    .form-row{display:flex; gap:12px; flex-wrap:wrap}
+    .input{flex:1; min-width:220px; padding:12px 14px; border-radius:14px; border:1px solid var(--border); background:rgba(255,255,255,.06); color:var(--text)}
+    textarea.input{min-height:110px; resize:vertical}
+    .comments-wrap{max-width:900px; width:100%}
+    .comments-list{margin-top:14px; max-height:48vh; overflow:auto; display:flex; flex-direction:column; gap:10px}
+    .comment{padding:12px 14px; border-radius:16px; border:1px solid var(--border); background:rgba(255,255,255,.06)}
+    .meta{font-size:13px; color:var(--muted); margin-bottom:4px}
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <div class="statusbar">
+    <div id="clock">00:00</div>
+    <div id="battery">80%</div>
+  </div>
+  <div class="music">
+    <iframe id="spotify" src="https://open.spotify.com/embed/track/7nzsY8vlnKdvGOEE0rjAXZ" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+  </div>
+
+  <nav class="dots" id="dots">
+    <a href="#hero" data-target="hero" class="active"></a>
+    <a href="#skills" data-target="skills"></a>
+    <a href="#shortcuts" data-target="shortcuts"></a>
+    <a href="#projects" data-target="projects"></a>
+    <a href="#contact" data-target="contact"></a>
+    <a href="#experience" data-target="experience"></a>
+    <a href="#comments" data-target="comments"></a>
+  </nav>
+
+  <main class="snapper" tabindex="0">
+    <!-- ... panel lainnya tetap sama ... -->
+
+    <section id="comments" class="panel">
+      <div class="container comments-wrap">
+        <div class="card" style="padding:24px">
+          <h2>Tinggalkan Jejak (Komentar)</h2>
+          <p class="muted" style="margin-bottom:8px">Masukkan <strong>Username</strong> dan <strong>Pesan</strong>. Komentar ini tersimpan di database online, sehingga semua orang bisa melihat.</p>
+          <form id="commentForm" class="form" autocomplete="off">
+            <div class="form-row">
+              <input id="cName" class="input" type="text" placeholder="Username" required maxlength="32" />
+            </div>
+            <textarea id="cMsg" class="input" placeholder="Isi pesanmu di sini..." required maxlength="300"></textarea>
+            <div class="form-row">
+              <button class="btn primary" type="submit">Kirim Komentar</button>
+            </div>
+          </form>
+          <div id="commentsList" class="comments-list"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function updateClock(){
+      const now=new Date();
+      const opts={hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Jakarta'};
+      document.getElementById('clock').textContent=new Intl.DateTimeFormat('id-ID',opts).format(now);
+    }
+    updateClock();setInterval(updateClock,10000);
+
+    const snapper=document.querySelector('.snapper');
+    const dots=Array.from(document.querySelectorAll('#dots a'));
+    const panels=Array.from(document.querySelectorAll('.panel'));
+    const io=new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting){
+          const id=en.target.id;
+          dots.forEach(a=>a.classList.toggle('active',a.dataset.target===id));
+        }
+      });
+    },{root:snapper,threshold:0.5});
+    panels.forEach(p=>io.observe(p));
+
+    dots.forEach(a=>{
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        const target=document.getElementById(a.dataset.target);
+        if(target) snapper.scrollTo({top:target.offsetTop,behavior:'smooth'});
+      });
+    });
+
+    const firebaseConfig={
+      apiKey:"YOUR_API_KEY",
+      authDomain:"YOUR_PROJECT_ID.firebaseapp.com",
+      projectId:"YOUR_PROJECT_ID",
+      storageBucket:"YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId:"YOUR_SENDER_ID",
+      appId:"YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db=firebase.firestore();
+
+    const formEl=document.getElementById('commentForm');
+    const nameEl=document.getElementById('cName');
+    const msgEl=document.getElementById('cMsg');
+    const listEl=document.getElementById('commentsList');
+
+    function renderComment(doc){
+      const data=doc.data();
+      const when=data.ts?.toDate().toLocaleString('id-ID',{hour12:false});
+      const div=document.createElement('div');
+      div.className='comment';
+      div.innerHTML=`<div class="meta">@${data.name} • ${when||''}</div><div>${data.msg}</div>`;
+      listEl.appendChild(div);
+    }
+
+    db.collection('comments').orderBy('ts','asc').onSnapshot(snap=>{
+      listEl.innerHTML='';
+      snap.forEach(doc=>renderComment(doc));
+    });
+
+    formEl.addEventListener('submit',e=>{
+      e.preventDefault();
+      const name=nameEl.value.trim();
+      const msg=msgEl.value.trim();
+      if(!name||!msg)return;
+      db.collection('comments').add({name,msg,ts:firebase.firestore.FieldValue.serverTimestamp()});
+      formEl.reset();
+    });
+  </script>
+</body>
+</html>    .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); backdrop-filter:blur(var(--blur)); box-shadow:var(--shadow)}
 
     /* container width */
     .container{width:min(1400px,95vw); margin:0 auto}
@@ -323,3 +494,4 @@
   </script>
 </body>
 </html>
+
