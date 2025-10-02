@@ -22,22 +22,22 @@
         linear-gradient(180deg, #0b0c0f 0%, #0b0c0f 100%);
       color:var(--text);
       -webkit-font-smoothing:antialiased;
-      overflow:hidden;
+      overflow:hidden; /* biar full-screen snap bener */
       padding-bottom:env(safe-area-inset-bottom);
     }
     a{color:inherit;text-decoration:none}
 
-    /* layout full screen scroll-snap */
+    /* full screen scroll-snap */
     .snapper{height:100vh;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
     .panel{height:100vh;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:clamp(16px,4vw,48px);overflow:hidden}
 
     .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);backdrop-filter:blur(var(--blur));box-shadow:var(--shadow)}
     .container{width:min(1200px,92vw);margin:0 auto}
 
-    /* status bar */
+    /* status bar mini */
     .statusbar{position:fixed;top:max(12px,env(safe-area-inset-top));left:12px;z-index:100;padding:8px 12px;border-radius:20px;background:rgba(255,255,255,.08);display:flex;gap:10px;font-size:13px;font-weight:600}
 
-    /* HERO */
+    /* hero */
     .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(16px,3vw,40px);align-items:center}
     .hero .copy{max-width:600px}
     .small{font-size:14px;color:var(--muted);margin-bottom:8px}
@@ -45,31 +45,34 @@
     .title b{display:block;font-weight:800;letter-spacing:-0.025em;margin-bottom:2px}
     .handle{display:inline-flex;padding:8px 14px;background:rgba(255,255,255,.08);border-radius:999px;border:1px solid var(--border);margin:6px 6px 0 0;font-size:14px}
 
-    /* iPhone mockup */
+    /* iPhone mockup (lebih kecil di HP) */
     .phone{width:clamp(220px,30vw,300px);aspect-ratio:9/19.5;border-radius:38px;padding:14px;background:#111;position:relative;border:1px solid rgba(255,255,255,.15);box-shadow:0 20px 60px rgba(0,0,0,.65);margin-inline:auto}
     .notch{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:110px;height:24px;background:#000;border-radius:12px}
     .screen{position:absolute;inset:14px;border-radius:28px;overflow:hidden;background:#000}
     .screen img{width:100%;height:100%;object-fit:cover;display:block}
 
-    /* Instagram embed */
-    .media{margin-top:12px}
-    .media iframe{width:100%;max-width:800px;height:clamp(320px,52vh,640px);border-radius:18px;border:0}
+    /* IG embed */
+    .media iframe{width:100%;max-width:800px;height:clamp(320px,52vh,640px);border-radius:18px;border:0;margin-top:12px}
 
     /* sections */
     h2{font-size:clamp(20px,2.8vw,32px);margin-bottom:12px}
     .muted{color:var(--muted)}
     .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
     .tile{padding:18px;font-size:16px}
+
     .apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px}
     .app{aspect-ratio:1/1;border-radius:26px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;border:1px solid var(--border);font-size:16px}
+
     .project{display:flex;gap:12px;padding:12px 0;border-top:1px dashed var(--border)}
     .project:first-child{border-top:none}
     .thumb{width:80px;height:80px;border-radius:16px;object-fit:cover;background:#222}
+
     .btn{padding:12px 18px;border-radius:14px;border:none;cursor:pointer;font-weight:600;font-size:16px}
     .btn.primary{background:#0a84ff;color:#fff}
+    .btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
 
-    /* dots */
-    .dots{position:fixed;right:12px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px}
+    /* dots nav */
+    .dots{position:fixed;right:12px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:90}
     .dots a{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.3);display:block}
     .dots a.active{background:var(--accent)}
 
@@ -83,7 +86,7 @@
     .comment{padding:12px 14px;border-radius:16px;border:1px solid var(--border);background:rgba(255,255,255,.06)}
     .meta{font-size:13px;color:var(--muted);margin-bottom:4px}
 
-    /* ==== Custom Music Player (iOS-ish) ==== */
+    /* Music Player (tanpa Spotify) */
     .music-wrap{position:fixed;top:max(12px,env(safe-area-inset-top));right:12px;z-index:100}
     .player{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:18px;border:1px solid var(--border);background:rgba(255,255,255,.08);backdrop-filter:blur(16px);box-shadow:var(--shadow);min-width:260px}
     .cover{width:44px;height:44px;border-radius:12px;background:#222;object-fit:cover}
@@ -97,13 +100,13 @@
     .vol{appearance:none;width:80px;height:6px;border-radius:6px;background:rgba(255,255,255,.2)}
     .vol::-webkit-slider-thumb{appearance:none;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid #000}
 
-    /* mobile tweaks */
+    /* responsive tweaks */
     @media (max-width:1024px){
       .hero{grid-template-columns:1fr}
       .hero .copy{order:2}
       .phone{order:1;margin-top:8px}
       .media iframe{height:clamp(280px,48vh,520px)}
-      .music-wrap{left:12px;right:auto} /* pindah ke kiri biar tak nutupi konten */
+      .music-wrap{left:12px;right:auto} /* pindah ke kiri biar gak nutup konten */
     }
     @media (max-width:640px){
       .statusbar{left:8px;font-size:12px}
@@ -120,10 +123,10 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 </head>
 <body>
-  <!-- mini status -->
-  <div class="statusbar"><div id="clock">00:00</div><div id="battery">80%</div></div>
+  <!-- status mini -->
+  <div class="statusbar"><div id="clock">00:00</div></div>
 
-  <!-- Custom Music Player (tanpa Spotify embed) -->
+  <!-- Custom Music Player -->
   <div class="music-wrap">
     <div class="player card" aria-label="pemutar musik">
       <img class="cover" src="image/project.png" alt="Cover"/>
@@ -132,31 +135,31 @@
         <div class="meta-artist">The 1975</div>
         <div class="bar">
           <span class="time" id="cur">0:00</span>
-          <input id="seek" class="seek" type="range" value="0" min="0" max="100" step="0.1" />
+          <input id="seek" class="seek" type="range" value="0" min="0" max="100" step="0.1"/>
           <span class="time" id="dur">0:00</span>
         </div>
       </div>
       <button id="pp" class="pp" title="Play/Pause">▶</button>
       <input id="vol" class="vol" type="range" min="0" max="1" step="0.01" value="0.9" title="Volume"/>
       <audio id="audio" preload="metadata">
-        <!-- GANTI file ini dengan audio legal milikmu -->
-        <source src="audio/about-you.mp3" type="audio/mpeg" />
+        <!-- GANTI dengan audio legal milikmu -->
+        <source src="audio/about-you.mp3" type="audio/mpeg"/>
       </audio>
     </div>
   </div>
 
   <!-- dots -->
-  <nav class="dots" id="dots">
-    <a href="#hero" data-target="hero" class="active"></a>
-    <a href="#skills" data-target="skills"></a>
-    <a href="#shortcuts" data-target="shortcuts"></a>
-    <a href="#projects" data-target="projects"></a>
-    <a href="#contact" data-target="contact"></a>
-    <a href="#experience" data-target="experience"></a>
-    <a href="#comments" data-target="comments"></a>
+  <nav class="dots" id="dots" aria-label="navigasi cepat">
+    <a href="#hero" data-target="hero" class="active" aria-label="Hero"></a>
+    <a href="#skills" data-target="skills" aria-label="Skills"></a>
+    <a href="#shortcuts" data-target="shortcuts" aria-label="Shortcut"></a>
+    <a href="#projects" data-target="projects" aria-label="Project"></a>
+    <a href="#contact" data-target="contact" aria-label="Kontak"></a>
+    <a href="#experience" data-target="experience" aria-label="Pengalaman"></a>
+    <a href="#comments" data-target="comments" aria-label="Komentar"></a>
   </nav>
 
-  <main class="snapper">
+  <main class="snapper" tabindex="0">
     <!-- HERO -->
     <section id="hero" class="panel">
       <div class="hero container">
@@ -165,16 +168,13 @@
           <div class="title"><b>Muhammad Keyzan</b>Alhaarith</div>
           <div class="handle">📸 DKV · Video · Foto · Desain</div>
           <a class="handle" href="https://instagram.com/keyzan.alharist" target="_blank" rel="noopener">@keyzan.alharist</a>
-
           <div class="media card">
-            <!-- IG embed sering “berat” di HP; ini tetap ada tapi tingginya disesuaikan -->
-            <iframe src="https://www.instagram.com/reel/DMFlopQvMil/embed" title="Instagram Reel"></iframe>
+            <iframe src="https://www.instagram.com/reel/DMFlopQvMil/embed" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" title="Instagram Reel"></iframe>
           </div>
         </div>
-
-        <div class="phone">
+        <div class="phone" aria-label="mockup iPhone">
           <div class="notch"></div>
-          <div class="screen"><img src="image/isi%20mockup%20iphone.jpeg" alt="Mockup iPhone"/></div>
+          <div class="screen"><img src="image/isi mockup iphone.jpeg" alt="Mockup iPhone"/></div>
         </div>
       </div>
     </section>
@@ -229,7 +229,7 @@
         <h2>Kontak</h2>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <a class="btn primary" href="https://instagram.com/keyzan.alharist" target="_blank" rel="noopener">Instagram</a>
-          <a class="btn" style="background:transparent;border:1px solid var(--border);color:var(--text)" href="https://tiktok.com/@keyzan.alharist" target="_blank" rel="noopener">TikTok</a>
+          <a class="btn ghost" href="https://tiktok.com/@keyzan.alharist" target="_blank" rel="noopener">TikTok</a>
         </div>
       </div>
     </section>
@@ -256,7 +256,7 @@
       </div>
     </section>
 
-    <!-- COMMENTS (GLOBAL) -->
+    <!-- COMMENTS (Firebase global) -->
     <section id="comments" class="panel">
       <div class="container comments-wrap">
         <div class="card" style="padding:20px">
@@ -277,7 +277,7 @@
   </main>
 
   <script>
-    // Jam (Asia/Jakarta)
+    /* ===== Clock ===== */
     function updateClock(){
       const now=new Date();
       const opts={hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Jakarta'};
@@ -286,19 +286,21 @@
     }
     updateClock(); setInterval(updateClock,10000);
 
-    // Scroll dots (scroll-spy)
+    /* ===== Scroll dots (tanpa animasi ribet) ===== */
     const snapper=document.querySelector('.snapper');
     const dots=[...document.querySelectorAll('#dots a')];
     const panels=[...document.querySelectorAll('.panel')];
-    const io=new IntersectionObserver(entries=>{
+
+    const io=new IntersectionObserver((entries)=>{
       entries.forEach(en=>{
         if(en.isIntersecting){
           const id=en.target.id;
           dots.forEach(a=>a.classList.toggle('active',a.dataset.target===id));
         }
       });
-    },{root:snapper,threshold:0.5});
+    },{root:snapper,threshold:0.55});
     panels.forEach(p=>io.observe(p));
+
     dots.forEach(a=>{
       a.addEventListener('click',e=>{
         e.preventDefault();
@@ -307,7 +309,7 @@
       });
     });
 
-    // ===== Custom Music Player logic =====
+    /* ===== Music Player logic ===== */
     const audio=document.getElementById('audio');
     const pp=document.getElementById('pp');
     const seek=document.getElementById('seek');
@@ -315,26 +317,18 @@
     const cur=document.getElementById('cur');
     const dur=document.getElementById('dur');
 
-    function fmt(s){ if(isNaN(s)) return '0:00'; const m=Math.floor(s/60); const ss=Math.floor(s%60).toString().padStart(2,'0'); return `${m}:${ss}`; }
+    function fmt(s){ if(!isFinite(s)) return '0:00'; const m=Math.floor(s/60); const ss=Math.floor(s%60).toString().padStart(2,'0'); return `${m}:${ss}`; }
 
-    audio.addEventListener('loadedmetadata',()=>{
-      dur.textContent=fmt(audio.duration);
-      seek.max = Math.max(1, audio.duration);
-    });
-    audio.addEventListener('timeupdate',()=>{
-      cur.textContent=fmt(audio.currentTime);
-      if(!seek.dragging) seek.value = audio.currentTime;
-    });
+    audio.addEventListener('loadedmetadata',()=>{ dur.textContent=fmt(audio.duration); seek.max=Math.max(1,audio.duration||1); });
+    audio.addEventListener('timeupdate',()=>{ cur.textContent=fmt(audio.currentTime); if(!seek.dragging) seek.value=audio.currentTime; });
     seek.addEventListener('input',()=>{ seek.dragging=true; });
-    seek.addEventListener('change',()=>{ audio.currentTime = Number(seek.value)||0; seek.dragging=false; });
-    vol.addEventListener('input',()=>{ audio.volume = Number(vol.value); });
-    pp.addEventListener('click',()=>{
-      if(audio.paused){ audio.play(); pp.textContent='⏸'; }
-      else { audio.pause(); pp.textContent='▶'; }
-    });
+    seek.addEventListener('change',()=>{ audio.currentTime=Number(seek.value)||0; seek.dragging=false; });
+    vol.addEventListener('input',()=>{ audio.volume=Number(vol.value); });
+    pp.addEventListener('click',()=>{ if(audio.paused){ audio.play(); pp.textContent='⏸'; } else { audio.pause(); pp.textContent='▶'; } });
 
-    // ===== Firebase (GLOBAL COMMENTS) =====
-    // GANTI config ini dengan kepunyaanmu dari Firebase Console
+    /* ===== Firebase (GLOBAL comments) =====
+       GANTI config ini dengan punyamu dari Firebase Console
+    */
     const firebaseConfig = {
       apiKey: "YOUR_API_KEY",
       authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
@@ -346,39 +340,39 @@
     firebase.initializeApp(firebaseConfig);
     const db=firebase.firestore();
 
-    const formEl=document.getElementById('commentForm');
+    const form=document.getElementById('commentForm');
     const nameEl=document.getElementById('cName');
     const msgEl=document.getElementById('cMsg');
-    const listEl=document.getElementById('commentsList');
+    const list=document.getElementById('commentsList');
 
-    function appendComment({name,msg,ts}){
+    function addCommentEl({name,msg,ts}){
       const wrap=document.createElement('div'); wrap.className='comment';
       const meta=document.createElement('div'); meta.className='meta';
       const body=document.createElement('div');
-
       const when = ts && ts.toDate ? ts.toDate().toLocaleString('id-ID',{hour12:false}) : '';
       meta.textContent = `@${name} • ${when}`;
       body.textContent = msg;
-
       wrap.appendChild(meta); wrap.appendChild(body);
-      listEl.appendChild(wrap);
+      list.appendChild(wrap);
     }
 
+    // realtime list
     db.collection('comments').orderBy('ts','asc').onSnapshot(snap=>{
-      listEl.innerHTML='';
-      snap.forEach(doc=>appendComment(doc.data()));
-      listEl.scrollTop=listEl.scrollHeight;
+      list.innerHTML='';
+      snap.forEach(doc=> addCommentEl(doc.data()));
+      list.scrollTop=list.scrollHeight;
     });
 
-    formEl.addEventListener('submit', async (e)=>{
+    // submit
+    form.addEventListener('submit', async (e)=>{
       e.preventDefault();
-      const name=nameEl.value.trim().slice(0,32);
-      const msg=msgEl.value.trim().slice(0,300);
+      const name=(nameEl.value||'').trim().slice(0,32);
+      const msg =(msgEl.value||'').trim().slice(0,300);
       if(!name || !msg) return;
       await db.collection('comments').add({
         name, msg, ts: firebase.firestore.FieldValue.serverTimestamp()
       });
-      formEl.reset();
+      form.reset();
     });
   </script>
 </body>
