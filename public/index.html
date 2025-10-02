@@ -22,7 +22,7 @@
         linear-gradient(180deg, #0b0c0f 0%, #0b0c0f 100%);
       color:var(--text);
       -webkit-font-smoothing:antialiased;
-      overflow:hidden; /* biar full-screen snap bener */
+      overflow:hidden; /* full-screen snap */
       padding-bottom:env(safe-area-inset-bottom);
     }
     a{color:inherit;text-decoration:none}
@@ -45,7 +45,7 @@
     .title b{display:block;font-weight:800;letter-spacing:-0.025em;margin-bottom:2px}
     .handle{display:inline-flex;padding:8px 14px;background:rgba(255,255,255,.08);border-radius:999px;border:1px solid var(--border);margin:6px 6px 0 0;font-size:14px}
 
-    /* iPhone mockup (lebih kecil di HP) */
+    /* iPhone mockup */
     .phone{width:clamp(220px,30vw,300px);aspect-ratio:9/19.5;border-radius:38px;padding:14px;background:#111;position:relative;border:1px solid rgba(255,255,255,.15);box-shadow:0 20px 60px rgba(0,0,0,.65);margin-inline:auto}
     .notch{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:110px;height:24px;background:#000;border-radius:12px}
     .screen{position:absolute;inset:14px;border-radius:28px;overflow:hidden;background:#000}
@@ -86,8 +86,8 @@
     .comment{padding:12px 14px;border-radius:16px;border:1px solid var(--border);background:rgba(255,255,255,.06)}
     .meta{font-size:13px;color:var(--muted);margin-bottom:4px}
 
-    /* Music Player (tanpa Spotify) */
-    .music-wrap{position:fixed;top:max(12px,env(safe-area-inset-top));right:12px;z-index:100}
+    /* Music Player (dock & minimize) */
+    .music-wrap{position:fixed;top:max(12px,env(safe-area-inset-top));right:12px;z-index:100;transition:transform .25s ease}
     .player{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:18px;border:1px solid var(--border);background:rgba(255,255,255,.08);backdrop-filter:blur(16px);box-shadow:var(--shadow);min-width:260px}
     .cover{width:44px;height:44px;border-radius:12px;background:#222;object-fit:cover}
     .meta-title{font-weight:700;font-size:14px;line-height:1.1}
@@ -99,6 +99,15 @@
     .time{font-size:11px;color:var(--muted);min-width:36px;text-align:center}
     .vol{appearance:none;width:80px;height:6px;border-radius:6px;background:rgba(255,255,255,.2)}
     .vol::-webkit-slider-thumb{appearance:none;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid #000}
+    .dock-toggle{margin-left:6px;width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:#fff1;cursor:pointer;display:grid;place-items:center;font-weight:700}
+
+    /* minimized state: geser hampir keluar kanan, sisakan tombol toggle */
+    .music-wrap.mini{transform:translateX(calc(100% - 44px))}
+    .music-wrap.mini .bar,
+    .music-wrap.mini .meta-title,
+    .music-wrap.mini .meta-artist,
+    .music-wrap.mini .vol{display:none}
+    .music-wrap.mini .player{min-width:auto;padding:8px}
 
     /* responsive tweaks */
     @media (max-width:1024px){
@@ -106,9 +115,11 @@
       .hero .copy{order:2}
       .phone{order:1;margin-top:8px}
       .media iframe{height:clamp(280px,48vh,520px)}
-      .music-wrap{left:12px;right:auto} /* pindah ke kiri biar gak nutup konten */
+      .music-wrap{left:12px;right:auto} /* pindah ke kiri di tablet/HP biar gak nutup konten */
     }
     @media (max-width:640px){
+      /* dorong hero ke bawah supaya mockup tidak ketutup statusbar/music */
+      #hero.panel{align-items:flex-start;padding-top:calc(96px + env(safe-area-inset-top));}
       .statusbar{left:8px;font-size:12px}
       .dots{right:8px}
       .handle{font-size:13px}
@@ -127,9 +138,10 @@
   <div class="statusbar"><div id="clock">00:00</div></div>
 
   <!-- Custom Music Player -->
-  <div class="music-wrap">
+  <div class="music-wrap" id="musicDock">
     <div class="player card" aria-label="pemutar musik">
-      <img class="cover" src="image/project.png" alt="Cover"/>
+      <!-- cover diganti about-you.jpeg -->
+      <img class="cover" src="image/about-you.jpeg" alt="Cover About You"/>
       <div style="display:flex;flex-direction:column;gap:2px;min-width:120px">
         <div class="meta-title">About You</div>
         <div class="meta-artist">The 1975</div>
@@ -141,8 +153,8 @@
       </div>
       <button id="pp" class="pp" title="Play/Pause">▶</button>
       <input id="vol" class="vol" type="range" min="0" max="1" step="0.01" value="0.9" title="Volume"/>
+      <button id="toggleDock" class="dock-toggle" title="Minimize/Restore">◀</button>
       <audio id="audio" preload="metadata">
-        <!-- GANTI dengan audio legal milikmu -->
         <source src="audio/about-you.mp3" type="audio/mpeg"/>
       </audio>
     </div>
@@ -174,7 +186,8 @@
         </div>
         <div class="phone" aria-label="mockup iPhone">
           <div class="notch"></div>
-          <div class="screen"><img src="image/isi mockup iphone.jpeg" alt="Mockup iPhone"/></div>
+          <!-- kalau nama file ada spasi, bisa pakai %20 -->
+          <div class="screen"><img src="image/isi%20mockup%20iphone.jpeg" alt="Mockup iPhone"/></div>
         </div>
       </div>
     </section>
@@ -286,7 +299,7 @@
     }
     updateClock(); setInterval(updateClock,10000);
 
-    /* ===== Scroll dots (tanpa animasi ribet) ===== */
+    /* ===== Scroll dots ===== */
     const snapper=document.querySelector('.snapper');
     const dots=[...document.querySelectorAll('#dots a')];
     const panels=[...document.querySelectorAll('.panel')];
@@ -326,18 +339,24 @@
     vol.addEventListener('input',()=>{ audio.volume=Number(vol.value); });
     pp.addEventListener('click',()=>{ if(audio.paused){ audio.play(); pp.textContent='⏸'; } else { audio.pause(); pp.textContent='▶'; } });
 
-    /* ===== Firebase (GLOBAL comments) =====
-       GANTI config ini dengan punyamu dari Firebase Console
-    */
+    /* ===== Minimize/Restore dock ===== */
+    const dock = document.getElementById('musicDock');
+    const toggleDock = document.getElementById('toggleDock');
+    toggleDock.addEventListener('click',()=>{
+      dock.classList.toggle('mini');
+      toggleDock.textContent = dock.classList.contains('mini') ? '▶' : '◀';
+    });
+
+    /* ===== Firebase (GLOBAL comments) ===== */
     const firebaseConfig = {
-  apiKey: "AIzaSyD_9VpfQdqoTNwwF8fYY37OaQ42Ag6ImEE",
-  authDomain: "call-3de3b.firebaseapp.com",
-  projectId: "call-3de3b",
-  storageBucket: "call-3de3b.firebasestorage.app",
-  messagingSenderId: "540758179959",
-  appId: "1:540758179959:web:b4201c873e3d639a160672",
-  measurementId: "G-J2P0KEWSRT"
-};
+      apiKey: "AIzaSyD_9VpfQdqoTNwwF8fYY37OaQ42Ag6ImEE",
+      authDomain: "call-3de3b.firebaseapp.com",
+      projectId: "call-3de3b",
+      storageBucket: "call-3de3b.firebasestorage.app",
+      messagingSenderId: "540758179959",
+      appId: "1:540758179959:web:b4201c873e3d639a160672",
+      measurementId: "G-J2P0KEWSRT"
+    };
     firebase.initializeApp(firebaseConfig);
     const db=firebase.firestore();
 
