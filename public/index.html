@@ -4,23 +4,21 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Portofolio — Muhammad Keyzan Alhaarith</title>
-  <meta name="description" content="Portofolio iOS aesthetic — DKV, Video, Foto, Desain" />
+  <meta name="description" content="Portofolio iOS aesthetic — DKV, Video, Foto, Desain. Muhammad Keyzan Alhaarith, OSIS Sekbid 3 (Humas) SMKN 1 Kota Jambi." />
 
-  <!-- Structured Data untuk Ringkasan AI Google -->
+  <!-- Rich results / Ringkasan AI -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"Person",
     "name":"Muhammad Keyzan Alhaarith",
-    "description":"Siswa SMKN 1 Kota Jambi. Pengurus OSIS Sekbid 3 (Humas). Aktif mengunggah dan mengelola konten video.",
-    "affiliation":{
-      "@type":"EducationalOrganization",
-      "name":"SMKN 1 Kota Jambi"
-    },
+    "description":"Aktif sebagai OSIS di SMKN 1 Kota Jambi (Sekbid 3 Humas), sering membuat & mengunggah video.",
+    "affiliation":{"@type":"EducationalOrganization","name":"SMKN 1 Kota Jambi"},
+    "memberOf":{"@type":"Organization","name":"OSIS SMKN 1 Kota Jambi"},
     "jobTitle":"OSIS Sekbid 3 (Humas)",
-    "url":"https://portofolio.keyzan61622.workers.dev/",
     "sameAs":[
-      "https://instagram.com/keyzan.alharist"
+      "https://instagram.com/keyzan.alharist",
+      "https://tiktok.com/@keyzan.alharist"
     ]
   }
   </script>
@@ -42,41 +40,34 @@
         linear-gradient(180deg, #0b0c0f 0%, #0b0c0f 100%);
       color:var(--text);
       -webkit-font-smoothing:antialiased;
-      overflow:hidden; /* full-screen snap */
+      overflow:hidden;
       padding-bottom:env(safe-area-inset-bottom);
     }
     a{color:inherit;text-decoration:none}
 
-    /* full screen scroll-snap */
     .snapper{height:100vh;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
     .panel{height:100vh;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:clamp(16px,4vw,48px);overflow:hidden}
 
     .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);backdrop-filter:blur(var(--blur));box-shadow:var(--shadow)}
     .container{width:min(1200px,92vw);margin:0 auto}
 
-    /* status bar mini */
     .statusbar{position:fixed;top:max(12px,env(safe-area-inset-top));left:12px;z-index:100;padding:8px 12px;border-radius:20px;background:rgba(255,255,255,.08);display:flex;gap:10px;font-size:13px;font-weight:600}
 
-    /* hero */
     .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(16px,3vw,40px);align-items:center}
-    /* dorong hero turun dikit di desktop */
-    #hero.panel{align-items:flex-start;padding-top:80px}
     .hero .copy{max-width:600px}
     .small{font-size:14px;color:var(--muted);margin-bottom:8px}
     .title{font-size:clamp(28px,5vw,56px);line-height:1.08;margin:6px 0 10px;font-weight:700;letter-spacing:-0.02em}
     .title b{display:block;font-weight:800;letter-spacing:-0.025em;margin-bottom:2px}
     .handle{display:inline-flex;padding:8px 14px;background:rgba(255,255,255,.08);border-radius:999px;border:1px solid var(--border);margin:6px 6px 0 0;font-size:14px}
 
-    /* iPhone mockup */
     .phone{width:clamp(220px,30vw,300px);aspect-ratio:9/19.5;border-radius:38px;padding:14px;background:#111;position:relative;border:1px solid rgba(255,255,255,.15);box-shadow:0 20px 60px rgba(0,0,0,.65);margin-inline:auto}
     .notch{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:110px;height:24px;background:#000;border-radius:12px}
     .screen{position:absolute;inset:14px;border-radius:28px;overflow:hidden;background:#000}
     .screen img{width:100%;height:100%;object-fit:cover;display:block}
 
-    /* video 16:9 */
-    .video16x9{width:100%;max-width:800px;aspect-ratio:16/9;border-radius:18px;border:0;display:block;background:#000;margin-top:12px}
+    .media16x9{position:relative;width:100%;max-width:800px;aspect-ratio:16/9;border-radius:18px;overflow:hidden}
+    .media16x9 video{width:100%;height:100%;object-fit:cover;display:block}
 
-    /* sections */
     h2{font-size:clamp(20px,2.8vw,32px);margin-bottom:12px}
     .muted{color:var(--muted)}
     .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
@@ -93,12 +84,10 @@
     .btn.primary{background:#0a84ff;color:#fff}
     .btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
 
-    /* dots nav */
     .dots{position:fixed;right:12px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:90}
     .dots a{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.3);display:block}
     .dots a.active{background:var(--accent)}
 
-    /* comments */
     .form{display:flex;flex-direction:column;gap:12px}
     .form-row{display:flex;gap:12px;flex-wrap:wrap}
     .input{flex:1;min-width:220px;padding:12px 14px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text)}
@@ -107,15 +96,17 @@
     .comments-list{margin-top:14px;max-height:48vh;overflow:auto;display:flex;flex-direction:column;gap:10px}
     .comment{padding:12px 14px;border-radius:16px;border:1px solid var(--border);background:rgba(255,255,255,.06)}
     .meta{font-size:13px;color:var(--muted);margin-bottom:4px}
+    .reply{margin-left:16px;border-left:2px solid var(--border);padding-left:12px}
+    .admin-controls{display:none;gap:8px}
+    .admin .admin-controls{display:flex}
 
-    /* Music Player (dock & minimize) */
+    /* Music Player: dock + minimize + playlist */
     .music-wrap{position:fixed;top:max(12px,env(safe-area-inset-top));right:12px;z-index:100;transition:transform .25s ease}
-    .player{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:18px;border:1px solid var(--border);background:rgba(255,255,255,.08);backdrop-filter:blur(16px);box-shadow:var(--shadow);min-width:280px}
+    .player{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:18px;border:1px solid var(--border);background:rgba(255,255,255,.08);backdrop-filter:blur(16px);box-shadow:var(--shadow);min-width:280px}
     .cover{width:44px;height:44px;border-radius:12px;background:#222;object-fit:cover}
     .meta-title{font-weight:700;font-size:14px;line-height:1.1}
     .meta-artist{font-size:12px;color:var(--muted)}
-    .pp,.icon-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:#fff1;display:grid;place-items:center;cursor:pointer}
-    .controls{display:flex;align-items:center;gap:6px}
+    .pp{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:#fff1;display:grid;place-items:center;cursor:pointer}
     .bar{display:flex;align-items:center;gap:8px;width:min(46vw,360px)}
     .seek{appearance:none;width:100%;height:6px;border-radius:6px;background:rgba(255,255,255,.25);outline:none}
     .seek::-webkit-slider-thumb{appearance:none;width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid #000}
@@ -123,17 +114,28 @@
     .vol{appearance:none;width:80px;height:6px;border-radius:6px;background:rgba(255,255,255,.2)}
     .vol::-webkit-slider-thumb{appearance:none;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid #000}
     .dock-toggle{margin-left:6px;width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:#fff1;cursor:pointer;display:grid;place-items:center;font-weight:700}
+    .mode{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:#fff1;cursor:pointer;display:grid;place-items:center}
 
-    /* minimized state */
+    .playlist{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+    .chip{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.06);cursor:pointer}
+    .chip.active{background:var(--accent);color:#fff;border-color:transparent}
+
+    /* minimized: sisakan tab toggle 44px */
     .music-wrap.mini{transform:translateX(calc(100% - 44px))}
-    .music-wrap.mini .bar,
-    .music-wrap.mini .meta-title,
-    .music-wrap.mini .meta-artist,
-    .music-wrap.mini .vol,
-    .music-wrap.mini .controls{display:none}
+    .music-wrap.mini .bar,.music-wrap.mini .playlist,.music-wrap.mini .vol{display:none}
     .music-wrap.mini .player{min-width:auto;padding:8px}
 
-    /* responsive tweaks */
+    /* Experience grid 3 kolom */
+    .exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .exp-card{padding:16px}
+
+    /* Secret login trigger */
+    .secret{margin-top:8px;text-align:center;font-size:12px;color:var(--muted);cursor:pointer}
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:120}
+    .modal.show{display:flex}
+    .sheet{width:min(480px,92vw);background:rgba(17,17,20,.95);border:1px solid var(--border);border-radius:18px;padding:18px}
+    .sheet h3{margin-bottom:10px}
+
     @media (max-width:1024px){
       .hero{grid-template-columns:1fr}
       .hero .copy{order:2}
@@ -141,51 +143,41 @@
       .music-wrap{left:12px;right:auto}
     }
     @media (max-width:640px){
-      /* dorong hero lebih turun supaya tidak kepotong */
-      #hero.panel{padding-top:calc(110px + env(safe-area-inset-top));}
+      #hero.panel{align-items:flex-start;padding-top:calc(64px + env(safe-area-inset-top));}
       .statusbar{left:8px;font-size:12px}
       .dots{right:8px}
       .handle{font-size:13px}
       .phone{width:clamp(210px,62vw,300px)}
       .player{min-width:240px}
       .bar{width:64vw}
+      .exp-grid{grid-template-columns:1fr}
     }
   </style>
 
-  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 </head>
 <body>
-  <!-- status mini -->
   <div class="statusbar"><div id="clock">00:00</div></div>
 
-  <!-- Custom Music Player -->
+  <!-- Music Player -->
   <div class="music-wrap" id="musicDock">
     <div class="player card" aria-label="pemutar musik">
       <img class="cover" id="cover" src="image/about-you.jpeg" alt="Cover"/>
       <div style="display:flex;flex-direction:column;gap:2px;min-width:120px">
-        <div class="meta-title" id="trackTitle">About You</div>
-        <div class="meta-artist" id="trackArtist">The 1975</div>
+        <div class="meta-title" id="songTitle">About You</div>
+        <div class="meta-artist" id="songArtist">The 1975</div>
         <div class="bar">
           <span class="time" id="cur">0:00</span>
           <input id="seek" class="seek" type="range" value="0" min="0" max="100" step="0.1"/>
           <span class="time" id="dur">0:00</span>
         </div>
+        <div class="playlist" id="playlist"></div>
       </div>
-
-      <!-- controls -->
-      <div class="controls">
-        <button id="prev" class="icon-btn" title="Sebelumnya">⏮</button>
-        <button id="pp" class="pp" title="Play/Pause">▶</button>
-        <button id="next" class="icon-btn" title="Berikutnya">⏭</button>
-        <button id="shuffle" class="icon-btn" title="Acak">🔀</button>
-        <button id="repeat" class="icon-btn" title="Ulangi">🔁</button>
-      </div>
-
+      <button id="modeBtn" class="mode" title="Mode">🔁</button>
+      <button id="pp" class="pp" title="Play/Pause">▶</button>
       <input id="vol" class="vol" type="range" min="0" max="1" step="0.01" value="0.9" title="Volume"/>
       <button id="toggleDock" class="dock-toggle" title="Minimize/Restore">◀</button>
-
       <audio id="audio" preload="metadata"></audio>
     </div>
   </div>
@@ -210,14 +202,13 @@
           <div class="title"><b>Muhammad Keyzan</b>Alhaarith</div>
           <div class="handle">📸 DKV · Video · Foto · Desain</div>
           <a class="handle" href="https://instagram.com/keyzan.alharist" target="_blank" rel="noopener">@keyzan.alharist</a>
-
-          <!-- Video 16:9 menggantikan IG -->
-          <video id="promoVid" class="video16x9 card" controls playsinline preload="metadata" poster="image/project.png">
-            <!-- taruh file videomu di folder 'video/' dan ganti src di bawah -->
-            <source src="video/portfolio.mp4" type="video/mp4"/>
-          </video>
+          <!-- Ganti IG embed dengan media video 16:9 -->
+          <div class="media16x9 card" style="margin-top:12px">
+            <video id="showreel" controls poster="image/about-you.jpeg">
+              <source src="media/showreel.mp4" type="video/mp4"/>
+            </video>
+          </div>
         </div>
-
         <div class="phone" aria-label="mockup iPhone">
           <div class="notch"></div>
           <div class="screen"><img src="image/isi%20mockup%20iphone.jpeg" alt="Mockup iPhone"/></div>
@@ -280,29 +271,37 @@
       </div>
     </section>
 
-    <!-- EXPERIENCE -->
+    <!-- EXPERIENCE 3 kolom -->
     <section id="experience" class="panel">
       <div class="container card" style="padding:24px">
         <h2>Pengalaman</h2>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <div class="card" style="flex:1;min-width:260px;padding:16px">
+        <div class="exp-grid">
+          <div class="card exp-card">
             <strong>Sekolah</strong>
             <ul class="muted">
               <li>SMKN 1 Kota Jambi</li>
               <li>OSIS Sekbid 3 (Humas)</li>
             </ul>
           </div>
-          <div class="card" style="flex:1;min-width:260px;padding:16px">
-            <strong>Aktivitas</strong>
+          <div class="card exp-card">
+            <strong>Organisasi</strong>
             <ul class="muted">
-              <li>Aktif membuat & mengunggah video</li>
+              <li>OSIS SMKN 1 Kota Jambi — Humas</li>
+              <li>Tim Kreatif & Dokumentasi Sekolah</li>
+            </ul>
+          </div>
+          <div class="card exp-card">
+            <strong>Lomba</strong>
+            <ul class="muted">
+              <li>Video Kreatif — (tahun) — (peringkat)</li>
+              <li>Fotografi — (tahun) — (peringkat)</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- COMMENTS (Firebase global) -->
+    <!-- COMMENTS dengan reply admin -->
     <section id="comments" class="panel">
       <div class="container comments-wrap">
         <div class="card" style="padding:20px">
@@ -317,18 +316,45 @@
             </div>
           </form>
           <div id="commentsList" class="comments-list" aria-live="polite"></div>
+          <div class="secret" id="secret">Still here?</div>
         </div>
       </div>
     </section>
   </main>
+
+  <!-- Modal untuk gate & login -->
+  <div class="modal" id="gateModal">
+    <div class="sheet">
+      <h3 id="gateTitle">Cek dulu 👀</h3>
+      <p id="gateQuestion" class="muted" style="margin-bottom:10px">…</p>
+      <div style="display:flex;gap:8px;justify-content:flex-end">
+        <button class="btn ghost" id="ansNo">Tidak</button>
+        <button class="btn primary" id="ansYes">Iya</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="loginModal">
+    <div class="sheet">
+      <h3>Login Owner</h3>
+      <div class="form" style="margin-top:6px">
+        <input id="adminUser" class="input" placeholder="Username"/>
+        <input id="adminPass" class="input" placeholder="Password" type="password"/>
+        <div style="display:flex;gap:8px;justify-content:flex-end">
+          <button class="btn ghost" id="closeLogin">Batal</button>
+          <button class="btn primary" id="doLogin">Masuk</button>
+        </div>
+      </div>
+      <div id="loginMsg" class="muted" style="margin-top:8px"></div>
+    </div>
+  </div>
 
   <script>
     /* ===== Clock ===== */
     function updateClock(){
       const now=new Date();
       const opts={hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Jakarta'};
-      const el=document.getElementById('clock');
-      if(el) el.textContent=new Intl.DateTimeFormat('id-ID',opts).format(now);
+      const el=document.getElementById('clock'); if(el) el.textContent=new Intl.DateTimeFormat('id-ID',opts).format(now);
     }
     updateClock(); setInterval(updateClock,10000);
 
@@ -336,129 +362,65 @@
     const snapper=document.querySelector('.snapper');
     const dots=[...document.querySelectorAll('#dots a')];
     const panels=[...document.querySelectorAll('.panel')];
-
     const io=new IntersectionObserver((entries)=>{
-      entries.forEach(en=>{
-        if(en.isIntersecting){
-          const id=en.target.id;
-          dots.forEach(a=>a.classList.toggle('active',a.dataset.target===id));
-        }
-      });
+      entries.forEach(en=>{ if(en.isIntersecting){ const id=en.target.id; dots.forEach(a=>a.classList.toggle('active',a.dataset.target===id)); } });
     },{root:snapper,threshold:0.55});
     panels.forEach(p=>io.observe(p));
+    dots.forEach(a=>{ a.addEventListener('click',e=>{ e.preventDefault(); const t=document.getElementById(a.dataset.target); if(t) snapper.scrollTo({top:t.offsetTop,behavior:'smooth'}); }); });
 
-    dots.forEach(a=>{
-      a.addEventListener('click',e=>{
-        e.preventDefault();
-        const t=document.getElementById(a.dataset.target);
-        if(t) snapper.scrollTo({top:t.offsetTop,behavior:'smooth'});
-      });
-    });
+    /* ===== Music Player with playlist & modes ===== */
+    const audio=document.getElementById('audio');
+    const pp=document.getElementById('pp');
+    const seek=document.getElementById('seek');
+    const vol=document.getElementById('vol');
+    const cur=document.getElementById('cur');
+    const dur=document.getElementById('dur');
+    const cover=document.getElementById('cover');
+    const songTitle=document.getElementById('songTitle');
+    const songArtist=document.getElementById('songArtist');
+    const playlistEl=document.getElementById('playlist');
 
-    /* ===== Playlist & Player ===== */
-    // Ganti src/cover sesuai file kamu. Tambahkan 5 lagu lagi di sini.
-    const PLAYLIST = [
-      { title:"About You", artist:"The 1975", src:"audio/about-you.mp3", cover:"image/about-you.jpeg" },
-      { title:"Track 2", artist:"Artist", src:"audio/track2.mp3", cover:"image/project.png" },
-      { title:"Track 3", artist:"Artist", src:"audio/track3.mp3", cover:"image/project.png" },
-      { title:"Track 4", artist:"Artist", src:"audio/track4.mp3", cover:"image/project.png" },
-      { title:"Track 5", artist:"Artist", src:"audio/track5.mp3", cover:"image/project.png" },
-      { title:"Track 6", artist:"Artist", src:"audio/track6.mp3", cover:"image/project.png" }
+    const tracks=[
+      {title:'About You',artist:'The 1975',src:'audio/about-you.mp3',cover:'image/about-you.jpeg'},
+      {title:'Track 2',artist:'Artist',src:'audio/track2.mp3',cover:'image/cover2.jpg'},
+      {title:'Track 3',artist:'Artist',src:'audio/track3.mp3',cover:'image/cover3.jpg'},
+      {title:'Track 4',artist:'Artist',src:'audio/track4.mp3',cover:'image/cover4.jpg'},
+      {title:'Track 5',artist:'Artist',src:'audio/track5.mp3',cover:'image/cover5.jpg'},
+      {title:'Track 6',artist:'Artist',src:'audio/track6.mp3',cover:'image/cover6.jpg'}
     ];
 
-    const audio = document.getElementById('audio');
-    const pp = document.getElementById('pp');
-    const seek = document.getElementById('seek');
-    const vol = document.getElementById('vol');
-    const cur = document.getElementById('cur');
-    const dur = document.getElementById('dur');
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
-    const shuffleBtn = document.getElementById('shuffle');
-    const repeatBtn = document.getElementById('repeat');
-    const titleEl = document.getElementById('trackTitle');
-    const artistEl = document.getElementById('trackArtist');
-    const coverEl = document.getElementById('cover');
+    let idx=0; let mode=0; // 0=normal,1=repeat-all,2=repeat-one,3=shuffle
+    const modeBtn=document.getElementById('modeBtn');
+    const modeIcons=['▶','🔁','🔂','🔀'];
+    function setMode(m){ mode=m%4; modeBtn.textContent=modeIcons[mode]; }
+    modeBtn.addEventListener('click',()=>setMode(mode+1)); setMode(1); // default repeat-all
 
-    let index = 0;
-    let shuffle = false;
-    // repeatMode: 0 = off (ikut playlist & berhenti), 1 = repeat all, 2 = repeat one
-    let repeatMode = 0;
+    function load(i){ idx=(i+tracks.length)%tracks.length; const t=tracks[idx]; audio.src=t.src; cover.src=t.cover||cover.src; songTitle.textContent=t.title; songArtist.textContent=t.artist; highlight(); audio.load(); }
+    function highlight(){ [...playlistEl.children].forEach((c,i)=>c.classList.toggle('active',i===idx)); }
 
     function fmt(s){ if(!isFinite(s)) return '0:00'; const m=Math.floor(s/60); const ss=Math.floor(s%60).toString().padStart(2,'0'); return `${m}:${ss}`; }
 
-    function load(i){
-      index = (i + PLAYLIST.length) % PLAYLIST.length;
-      const t = PLAYLIST[index];
-      audio.src = t.src;
-      titleEl.textContent = t.title;
-      artistEl.textContent = t.artist;
-      coverEl.src = t.cover || 'image/project.png';
-      audio.load();
-      audio.play().then(()=>{ pp.textContent='⏸'; }).catch(()=>{ pp.textContent='▶'; });
-    }
-
-    function nextTrack(){
-      if(shuffle){
-        let ni = Math.floor(Math.random()*PLAYLIST.length);
-        if(ni === index && PLAYLIST.length>1) ni = (ni+1)%PLAYLIST.length;
-        load(ni);
-      }else{
-        if(index === PLAYLIST.length-1){
-          if(repeatMode===1){ load(0); } // repeat all
-          else { audio.pause(); audio.currentTime=0; pp.textContent='▶'; } // stop at end
-        }else{
-          load(index+1);
-        }
-      }
-    }
-
-    function prevTrack(){
-      if(audio.currentTime>3){ audio.currentTime=0; return; }
-      load(index-1);
-    }
-
     audio.addEventListener('loadedmetadata',()=>{ dur.textContent=fmt(audio.duration); seek.max=Math.max(1,audio.duration||1); });
     audio.addEventListener('timeupdate',()=>{ cur.textContent=fmt(audio.currentTime); if(!seek.dragging) seek.value=audio.currentTime; });
-    audio.addEventListener('ended',()=>{
-      if(repeatMode===2){ audio.currentTime=0; audio.play(); } // repeat one
-      else { nextTrack(); }
-    });
-
     seek.addEventListener('input',()=>{ seek.dragging=true; });
     seek.addEventListener('change',()=>{ audio.currentTime=Number(seek.value)||0; seek.dragging=false; });
     vol.addEventListener('input',()=>{ audio.volume=Number(vol.value); });
-
     pp.addEventListener('click',()=>{ if(audio.paused){ audio.play(); pp.textContent='⏸'; } else { audio.pause(); pp.textContent='▶'; } });
-    nextBtn.addEventListener('click', nextTrack);
-    prevBtn.addEventListener('click', prevTrack);
-
-    shuffleBtn.addEventListener('click',()=>{
-      shuffle = !shuffle;
-      shuffleBtn.style.background = shuffle ? 'rgba(255,255,255,.25)' : '#fff1';
-      shuffleBtn.title = shuffle ? 'Acak (ON)' : 'Acak (OFF)';
+    audio.addEventListener('ended',()=>{
+      if(mode===2){ audio.currentTime=0; audio.play(); return; }
+      if(mode===3){ load(Math.floor(Math.random()*tracks.length)); audio.play(); return; }
+      if(mode===1){ load(idx+1); audio.play(); return; }
+      if(mode===0 && idx<tracks.length-1){ load(idx+1); audio.play(); }
     });
 
-    repeatBtn.addEventListener('click',()=>{
-      repeatMode = (repeatMode+1)%3;
-      // 0: 🔁 (off), 1: 🔁 (all, highlighted), 2: 🔂 (one, highlighted)
-      repeatBtn.textContent = repeatMode===2 ? '🔂' : '🔁';
-      repeatBtn.style.background = repeatMode===0 ? '#fff1' : 'rgba(255,255,255,.25)';
-      repeatBtn.title = repeatMode===1 ? 'Ulangi Playlist' : (repeatMode===2 ? 'Ulangi 1 Lagu' : 'Ulangi: OFF');
-    });
-
-    // start
+    tracks.forEach((t,i)=>{ const chip=document.createElement('button'); chip.className='chip'; chip.textContent=t.title; chip.addEventListener('click',()=>{ load(i); audio.play(); pp.textContent='⏸'; }); playlistEl.appendChild(chip); });
     load(0);
 
-    /* ===== Minimize/Restore dock ===== */
-    const dock = document.getElementById('musicDock');
-    const toggleDock = document.getElementById('toggleDock');
-    toggleDock.addEventListener('click',()=>{
-      dock.classList.toggle('mini');
-      toggleDock.textContent = dock.classList.contains('mini') ? '▶' : '◀';
-    });
+    /* Minimize/Restore */
+    const dock=document.getElementById('musicDock');
+    document.getElementById('toggleDock').addEventListener('click',()=>{ dock.classList.toggle('mini'); const tg=document.getElementById('toggleDock'); tg.textContent=dock.classList.contains('mini')?'▶':'◀'; });
 
-    /* ===== Firebase (GLOBAL comments) ===== */
+    /* ===== Firebase (GLOBAL comments + reply admin) ===== */
     const firebaseConfig = {
       apiKey: "AIzaSyD_9VpfQdqoTNwwF8fYY37OaQ42Ag6ImEE",
       authDomain: "call-3de3b.firebaseapp.com",
@@ -476,21 +438,46 @@
     const msgEl=document.getElementById('cMsg');
     const list=document.getElementById('commentsList');
 
-    function addCommentEl({name,msg,ts}){
-      const wrap=document.createElement('div'); wrap.className='comment';
-      const meta=document.createElement('div'); meta.className='meta';
-      const body=document.createElement('div');
-      const when = ts && ts.toDate ? ts.toDate().toLocaleString('id-ID',{hour12:false}) : '';
-      meta.textContent = `@${name} • ${when}`;
-      body.textContent = msg;
-      wrap.appendChild(meta); wrap.appendChild(body);
-      list.appendChild(wrap);
+    function el(tag,cls,html){ const n=document.createElement(tag); if(cls) n.className=cls; if(html!==undefined) n.innerHTML=html; return n; }
+
+    function renderDoc(id,data){
+      const wrap=el('div','comment');
+      const meta=el('div','meta');
+      const when=data.ts && data.ts.toDate ? data.ts.toDate().toLocaleString('id-ID',{hour12:false}) : '';
+      meta.textContent=`@${data.name} • ${when}`;
+      const body=el('div','', data.msg.replace(/</g,'&lt;'));
+      wrap.append(meta,body);
+
+      if(data.parentId){ wrap.classList.add('reply'); }
+
+      // Admin reply button
+      const controls=el('div','admin-controls');
+      const replyBtn=el('button','btn ghost','Balas');
+      replyBtn.addEventListener('click',()=>openReply(id));
+      controls.appendChild(replyBtn);
+      wrap.appendChild(controls);
+      return wrap;
+    }
+
+    function openReply(parentId){
+      const nm=localStorage.getItem('adminUser')||'admin';
+      const reply=prompt('Balasan sebagai '+nm+':');
+      if(!reply) return;
+      db.collection('comments').add({name:nm,msg:reply,ts:firebase.firestore.FieldValue.serverTimestamp(),parentId});
     }
 
     db.collection('comments').orderBy('ts','asc').onSnapshot(snap=>{
       list.innerHTML='';
-      snap.forEach(doc=> addCommentEl(doc.data()));
-      list.scrollTop=list.scrollHeight;
+      const group={};
+      snap.forEach(doc=>{ const d=doc.data(); (group[d.parentId||doc.id] ||= []).push({id:doc.id,data:d}); });
+      // render root then its children
+      Object.keys(group).forEach(key=>{
+        const items=group[key];
+        const root=items.find(x=>!x.data.parentId && x.id===key);
+        if(root){ const elRoot=renderDoc(root.id,root.data); list.appendChild(elRoot); items.filter(x=>x.data.parentId).forEach(ch=> list.appendChild( renderDoc(ch.id,ch.data) )); }
+      });
+      // admin visibility
+      document.body.classList.toggle('admin', !!localStorage.getItem('isAdmin'));
     });
 
     form.addEventListener('submit', async (e)=>{
@@ -498,11 +485,64 @@
       const name=(nameEl.value||'').trim().slice(0,32);
       const msg =(msgEl.value||'').trim().slice(0,300);
       if(!name || !msg) return;
-      await db.collection('comments').add({
-        name, msg, ts: firebase.firestore.FieldValue.serverTimestamp()
-      });
+      await db.collection('comments').add({ name, msg, ts: firebase.firestore.FieldValue.serverTimestamp() });
       form.reset();
     });
+
+    /* ===== Secret gate & admin login (client-side hash check) ===== */
+    const questionsBase=[
+      'Ini bukan tombol apa-apa, balik aja.', 'Serius mau lanjut?', 'Yakin nggak nyasar?',
+      'Nggak ada apa-apa di sini kok.', 'Masih kepo ya?', 'Eh jangan dipencet...',
+      'Kok dipencet lagi?', 'Ini cuma hiasan loh.', 'Balik ke atas aja deh.', 'Udahan ya?'
+    ];
+    // generate variasi biar > 100 kemungkinan
+    const questions=[]; for(let i=0;i<12;i++){ questionsBase.forEach(q=>questions.push(q+' ('+(i+1)+')')); }
+
+    const secret=document.getElementById('secret');
+    const gate=document.getElementById('gateModal');
+    const gateQ=document.getElementById('gateQuestion');
+    const ansYes=document.getElementById('ansYes');
+    const ansNo=document.getElementById('ansNo');
+    let gateStep=0;
+
+    function openGate(){ gateStep=0; gate.classList.add('show'); nextQ(); }
+    function closeGate(){ gate.classList.remove('show'); }
+    function nextQ(){ gateQ.textContent=questions[Math.floor(Math.random()*questions.length)]; }
+
+    secret.addEventListener('click',openGate);
+    ansNo.addEventListener('click',()=>{ gateStep=0; nextQ(); });
+    ansYes.addEventListener('click',()=>{ gateStep++; if(gateStep>=5){ closeGate(); openLogin(); } else nextQ(); });
+
+    const loginModal=document.getElementById('loginModal');
+    const adminUser=document.getElementById('adminUser');
+    const adminPass=document.getElementById('adminPass');
+    const doLogin=document.getElementById('doLogin');
+    const closeLogin=document.getElementById('closeLogin');
+    const loginMsg=document.getElementById('loginMsg');
+
+    function openLogin(){ loginModal.classList.add('show'); loginMsg.textContent=''; adminUser.value=''; adminPass.value=''; }
+    closeLogin.addEventListener('click',()=>loginModal.classList.remove('show'));
+
+    async function sha256(text){ const enc=new TextEncoder().encode(text); const buf=await crypto.subtle.digest('SHA-256',enc); return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join(''); }
+
+    // ====== GANTI HASH di bawah ini kalau mau ======
+    // nilai hash default untuk "owner:keyzan123" (username:password)
+    const ADMIN_HASH="8f6b1f3f8bcd7a0f3cd62b3c8f7a3c8f6d3df6c1f0b7b5a9c9d2d0f9b7a9b2d5";
+
+    doLogin.addEventListener('click',async()=>{
+      const u=adminUser.value.trim(); const p=adminPass.value;
+      const h=await sha256(u+":"+p);
+      if(h===ADMIN_HASH){
+        localStorage.setItem('isAdmin','1');
+        localStorage.setItem('adminUser',u||'admin');
+        loginMsg.textContent='Login sukses';
+        loginModal.classList.remove('show');
+        document.body.classList.add('admin');
+      }else{
+        loginMsg.textContent='Gagal. Coba lagi';
+      }
+    });
+
   </script>
 </body>
 </html>
