@@ -129,7 +129,7 @@
   <!-- Custom Music Player -->
   <div class="music-wrap">
     <div class="player card" aria-label="pemutar musik">
-      <img class="cover" src="image/project.png" alt="Cover"/>
+      <img class="cover" src="public/image/project.png" alt="Cover"/>
       <div style="display:flex;flex-direction:column;gap:2px;min-width:120px">
         <div class="meta-title">About You</div>
         <div class="meta-artist">The 1975</div>
@@ -143,7 +143,7 @@
       <input id="vol" class="vol" type="range" min="0" max="1" step="0.01" value="0.9" title="Volume"/>
       <audio id="audio" preload="metadata">
         <!-- GANTI dengan audio legal milikmu -->
-        <source src="audio/about-you.mp3" type="audio/mpeg"/>
+        <source src="public/audio/about-you.mp3" type="audio/mpeg"/>
       </audio>
     </div>
   </div>
@@ -330,13 +330,14 @@
        GANTI config ini dengan punyamu dari Firebase Console
     */
     const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT_ID.appspot.com",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
-    };
+  apiKey: "AIzaSyD_9VpfQdqoTNwwF8fYY37OaQ42Ag6ImEE",
+  authDomain: "call-3de3b.firebaseapp.com",
+  projectId: "call-3de3b",
+  storageBucket: "call-3de3b.firebasestorage.app",
+  messagingSenderId: "540758179959",
+  appId: "1:540758179959:web:b4201c873e3d639a160672",
+  measurementId: "G-J2P0KEWSRT"
+};
     firebase.initializeApp(firebaseConfig);
     const db=firebase.firestore();
 
