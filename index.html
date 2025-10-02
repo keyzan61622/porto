@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Portofolio — Muhammad Keyzan Alhaarith</title>
   <meta name="description" content="Portofolio iOS aesthetic — DKV, Video, Foto, Desain" />
   <style>
@@ -18,6 +18,7 @@
       --shadow: 0 20px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
     }
     *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
     body{
       font-family:-apple-system, BlinkMacSystemFont, "SF Pro Display","SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background:
@@ -27,14 +28,302 @@
       color:var(--text);
       -webkit-font-smoothing:antialiased;
       overflow:hidden;
+      padding-bottom:env(safe-area-inset-bottom);
     }
     a{color:inherit; text-decoration:none}
 
-    .snapper{height:100vh; overflow-y:auto; scroll-snap-type:y mandatory; scroll-behavior:smooth}
-    .panel{height:100vh; scroll-snap-align:start; scroll-snap-stop:always; display:flex; align-items:center; justify-content:center; padding:48px; overflow:hidden}
+    /* scroll-snap layout */
+    .snapper{height:100vh; overflow-y:auto; scroll-snap-type:y mandatory; scroll-behavior:smooth; -webkit-overflow-scrolling:touch}
+    .panel{height:100vh; scroll-snap-align:start; scroll-snap-stop:always; display:flex; align-items:center; justify-content:center; padding: clamp(16px, 4vw, 48px); overflow:hidden}
 
     .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); backdrop-filter:blur(var(--blur)); box-shadow:var(--shadow)}
 
+    .container{width:min(1200px,92vw); margin:0 auto}
+
+    /* status bar */
+    .statusbar{position:fixed; top: max(12px, env(safe-area-inset-top)); left:12px; z-index:100; padding:8px 12px; border-radius:20px; background:rgba(255,255,255,.08); display:flex; align-items:center; gap:10px; font-size:13px; font-weight:600}
+
+    /* music */
+    .music{position:fixed; top: max(12px, env(safe-area-inset-top)); right:12px; z-index:100;}
+    .music iframe{border-radius:14px; border:0; width: clamp(240px, 38vw, 320px); height: 80px}
+
+    /* hero */
+    .hero{display:grid; grid-template-columns:1.1fr 0.9fr; gap: clamp(16px, 3.2vw, 40px); align-items:center;}
+    .hero > .copy{max-width: 560px}
+    .small{font-size:14px; color:var(--muted); margin-bottom:8px}
+    .title{font-size: clamp(28px, 5vw, 56px); line-height:1.08; margin:6px 0 10px; font-weight:700; letter-spacing:-0.02em}
+    .title b{display:block; font-weight:800; letter-spacing:-0.025em; margin-bottom:2px}
+    .handle{display:inline-flex; padding:8px 14px; background:rgba(255,255,255,.08); border-radius:999px; border:1px solid var(--border); margin:6px 6px 0 0; font-size:14px}
+
+    /* iPhone mockup */
+    .phone{width: clamp(220px, 30vw, 340px); aspect-ratio:9/19.5; border-radius:38px; padding:14px; background:#111; position:relative; border:1px solid rgba(255,255,255,.15); box-shadow:0 20px 60px rgba(0,0,0,.65); margin-inline:auto}
+    .notch{position:absolute; top:14px; left:50%; transform:translateX(-50%); width:110px; height:24px; background:#000; border-radius:12px}
+    .screen{position:absolute; inset:14px; border-radius:28px; overflow:hidden; background:#000}
+    .screen img{width:100%; height:100%; object-fit:cover; display:block}
+
+    /* instagram reel */
+    .media iframe{width:100%; max-width:800px; height: clamp(360px, 56vh, 700px); border-radius:18px; border:0}
+
+    /* sections */
+    h2{font-size: clamp(20px, 2.8vw, 32px); margin-bottom:12px}
+    .muted{color:var(--muted)}
+
+    .skills-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px}
+    .tile{padding:18px; font-size:16px}
+
+    .apps{display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:14px}
+    .app{aspect-ratio:1/1; border-radius:26px; background:rgba(255,255,255,.08); display:flex; align-items:center; justify-content:center; border:1px solid var(--border); font-size:16px}
+
+    .project{display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-top:1px dashed var(--border)}
+    .project:first-child{border-top:none}
+    .thumb{width:80px; height:80px; border-radius:16px; object-fit:cover; background:#222}
+
+    .btn{padding:12px 18px; border-radius:14px; border:none; cursor:pointer; font-weight:600; font-size:16px}
+    .btn.primary{background:#0a84ff; color:#fff}
+    .btn.ghost{background:transparent; border:1px solid var(--border); color:var(--text)}
+
+    .dots{position:fixed; right:12px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:10px;}
+    .dots a{width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,.3); display:block}
+    .dots a.active{background:var(--accent)}
+
+    /* Responsive tweaks */
+    @media (max-width: 1024px){
+      .hero{grid-template-columns:1fr;}
+      .music iframe{width: clamp(220px, 50vw, 300px)}
+      .media iframe{height: clamp(320px, 50vh, 560px)}
+    }
+    @media (max-width: 640px){
+      .statusbar{left:8px; font-size:12px}
+      .music{right:8px}
+      .dots{right:8px}
+      .handle{font-size:13px}
+      .phone{width: clamp(200px, 56vw, 300px)}
+    }
+
+    /* comments */
+    .form{display:flex; flex-direction:column; gap:12px}
+    .form-row{display:flex; gap:12px; flex-wrap:wrap}
+    .input{flex:1; min-width:220px; padding:12px 14px; border-radius:14px; border:1px solid var(--border); background:rgba(255,255,255,.06); color:var(--text)}
+    textarea.input{min-height:110px; resize:vertical}
+    .comments-wrap{max-width:900px; width:100%}
+    .comments-list{margin-top:14px; max-height:48vh; overflow:auto; display:flex; flex-direction:column; gap:10px}
+    .comment{padding:12px 14px; border-radius:16px; border:1px solid var(--border); background:rgba(255,255,255,.06)}
+    .meta{font-size:13px; color:var(--muted); margin-bottom:4px}
+  </style>
+  <!-- Firebase SDK (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <div class="statusbar">
+    <div id="clock">00:00</div>
+    <div id="battery">80%</div>
+  </div>
+  <div class="music">
+    <iframe id="spotify" src="https://open.spotify.com/embed/track/7nzsY8vlnKdvGOEE0rjAXZ" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+  </div>
+
+  <nav class="dots" id="dots">
+    <a href="#hero" data-target="hero" class="active" aria-label="Hero"></a>
+    <a href="#skills" data-target="skills" aria-label="Skills"></a>
+    <a href="#shortcuts" data-target="shortcuts" aria-label="Shortcuts"></a>
+    <a href="#projects" data-target="projects" aria-label="Projects"></a>
+    <a href="#contact" data-target="contact" aria-label="Contact"></a>
+    <a href="#experience" data-target="experience" aria-label="Experience"></a>
+    <a href="#comments" data-target="comments" aria-label="Comments"></a>
+  </nav>
+
+  <main class="snapper" tabindex="0">
+    <section id="hero" class="panel">
+      <div class="hero container">
+        <div class="copy">
+          <div class="small">Hai Semua, Perkenalkan Namaku :</div>
+          <div class="title"><b>Muhammad Keyzan</b>Alhaarith</div>
+          <div class="handle">📸 DKV · Video · Foto · Desain</div>
+          <a class="handle" href="https://instagram.com/keyzan.alharist" target="_blank" rel="noopener">@keyzan.alharist</a>
+          <div class="media card" style="margin-top:12px"><iframe id="igEmbed" src="https://www.instagram.com/reel/DMFlopQvMil/embed" title="Instagram Reel"></iframe></div>
+        </div>
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="screen"><img src="image/isi%20mockup%20iphone.jpeg" alt="Mockup"/></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section contoh lain (isi sesuai kebutuhanmu) -->
+    <section id="skills" class="panel">
+      <div class="container card" style="padding:24px">
+        <h2>Keahlian DKV</h2>
+        <div class="skills-grid">
+          <div class="tile card"><strong>Video</strong><p class="muted">Shooting, editing, color grade, motion.</p></div>
+          <div class="tile card"><strong>Foto</strong><p class="muted">Konsep, lighting, retouching.</p></div>
+          <div class="tile card"><strong>Desain</strong><p class="muted">Branding, poster, carousel IG.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="shortcuts" class="panel">
+      <div class="container card" style="padding:24px">
+        <h2>Shortcut</h2>
+        <div class="apps">
+          <a class="app" href="https://instagram.com/keyzan.alharist" target="_blank" rel="noopener">Instagram</a>
+          <a class="app" href="https://tiktok.com/@keyzan.alharist" target="_blank" rel="noopener">TikTok</a>
+          <a class="app" href="#projects">Project</a>
+          <a class="app" href="#contact">Kontak</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="panel">
+      <div class="container card" style="padding:24px">
+        <h2>Proyek</h2>
+        <div class="project">
+          <img class="thumb" src="image/project.png" alt="DaVinci"/>
+          <div><strong>DaVinci Resolve</strong><div class="muted">Color grading.</div></div>
+        </div>
+        <div class="project">
+          <img class="thumb" src="image/project.png" alt="AE"/>
+          <div><strong>After Effects</strong><div class="muted">Motion graphic.</div></div>
+        </div>
+        <div class="project">
+          <img class="thumb" src="image/project.png" alt="CapCut"/>
+          <div><strong>CapCut</strong><div class="muted">Editing mobile.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="panel">
+      <div class="container card" style="padding:24px">
+        <h2>Kontak</h2>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn primary" href="https://instagram.com/keyzan.alharist" target="_blank" rel="noopener">Instagram</a>
+          <a class="btn ghost" href="https://tiktok.com/@keyzan.alharist" target="_blank" rel="noopener">TikTok</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="panel">
+      <div class="container card" style="padding:24px">
+        <h2>Pengalaman</h2>
+        <div style="display:flex; gap:12px; flex-wrap:wrap">
+          <div class="card" style="flex:1; min-width:260px; padding:16px">
+            <strong>Sekolah</strong>
+            <ul class="muted">
+              <li>— (isi nama sekolah)</li>
+              <li>— (jurusan, tahun)</li>
+            </ul>
+          </div>
+          <div class="card" style="flex:1; min-width:260px; padding:16px">
+            <strong>Lomba</strong>
+            <ul class="muted">
+              <li>— (nama lomba) — (tahun) — (peringkat)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMENTS (global via Firebase) -->
+    <section id="comments" class="panel">
+      <div class="container comments-wrap">
+        <div class="card" style="padding:20px">
+          <h2>Tinggalkan Jejak (Komentar)</h2>
+          <p class="muted" style="margin-bottom:8px">Masukkan <strong>Username</strong> dan <strong>Pesan</strong>. Komentar tersimpan di database online (semua orang bisa melihat).</p>
+          <form id="commentForm" class="form" autocomplete="off">
+            <div class="form-row">
+              <input id="cName" class="input" type="text" placeholder="Username" required maxlength="32" />
+            </div>
+            <textarea id="cMsg" class="input" placeholder="Isi pesanmu di sini..." required maxlength="300"></textarea>
+            <div class="form-row">
+              <button class="btn primary" type="submit">Kirim Komentar</button>
+            </div>
+          </form>
+          <div id="commentsList" class="comments-list" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // === CLOCK ===
+    function updateClock(){
+      const now=new Date();
+      const opts={hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Jakarta'};
+      const el=document.getElementById('clock');
+      if(el) el.textContent=new Intl.DateTimeFormat('id-ID',opts).format(now);
+    }
+    updateClock(); setInterval(updateClock,10000);
+
+    // === SCROLL SPY ===
+    const snapper=document.querySelector('.snapper');
+    const dots=Array.from(document.querySelectorAll('#dots a'));
+    const panels=Array.from(document.querySelectorAll('.panel'));
+    const io=new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting){
+          const id=en.target.id;
+          dots.forEach(a=>a.classList.toggle('active',a.dataset.target===id));
+        }
+      });
+    },{root:snapper,threshold:0.5});
+    panels.forEach(p=>io.observe(p));
+
+    dots.forEach(a=>{
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        const target=document.getElementById(a.dataset.target);
+        if(target) snapper.scrollTo({top:target.offsetTop,behavior:'smooth'});
+      });
+    });
+
+    // === FIREBASE (GLOBAL COMMENTS) ===
+    const firebaseConfig={
+      apiKey:"YOUR_API_KEY",
+      authDomain:"YOUR_PROJECT_ID.firebaseapp.com",
+      projectId:"YOUR_PROJECT_ID",
+      storageBucket:"YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId:"YOUR_SENDER_ID",
+      appId:"YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db=firebase.firestore();
+
+    const formEl=document.getElementById('commentForm');
+    const nameEl=document.getElementById('cName');
+    const msgEl=document.getElementById('cMsg');
+    const listEl=document.getElementById('commentsList');
+
+    const esc=(s)=>String(s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+
+    function renderComment(doc){
+      const d=doc.data()||{};
+      const name=(d.name||'Anon').toString().slice(0,32);
+      const msg=(d.msg||'').toString().slice(0,300);
+      const when=d.ts && d.ts.toDate ? d.ts.toDate().toLocaleString('id-ID',{hour12:false}) : '';
+      const item=document.createElement('div');
+      item.className='comment';
+      item.innerHTML=`<div class="meta">@${esc(name)} • ${esc(when)}</div><div>${esc(msg)}</div>`;
+      listEl.appendChild(item);
+    }
+
+    // Realtime render (lama -> baru) biar enak dibaca
+    db.collection('comments').orderBy('ts','asc').onSnapshot(snap=>{
+      listEl.innerHTML='';
+      snap.forEach(doc=>renderComment(doc));
+      listEl.scrollTop=listEl.scrollHeight; // auto-scroll ke bawah
+    });
+
+    formEl.addEventListener('submit',async (e)=>{
+      e.preventDefault();
+      const name=nameEl.value.trim();
+      const msg=msgEl.value.trim();
+      if(!name||!msg) return;
+      await db.collection('comments').add({name,msg,ts:firebase.firestore.FieldValue.serverTimestamp()});
+      formEl.reset();
+    });
+  </script>
+</body>
+</html>
     .container{width:min(1400px,95vw); margin:0 auto}
 
     .statusbar{position:fixed; top:20px; left:20px; z-index:100; padding:10px 16px; border-radius:24px; background:rgba(255,255,255,.08); display:flex; align-items:center; gap:12px; font-size:15px; font-weight:600}
@@ -494,4 +783,5 @@
   </script>
 </body>
 </html>
+
 
