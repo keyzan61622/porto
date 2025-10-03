@@ -4,285 +4,62 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Portofolio — Muhammad Keyzan Alhaarith</title>
+  <meta name="description" content="Portofolio iOS aesthetic — DKV, Video, Foto, Desain" />
 
-  <!-- =====================================================================================
-       META + SEO (biar gampang kebaca Ringkasan AI Google)
-       ===================================================================================== -->
-  <meta name="description" content="Portofolio iOS aesthetic — Muhammad Keyzan Alhaarith. Siswa SMKN 1 Kota Jambi, OSIS Sekbid 3 (Humas). Aktif DKV, Video, Foto, Desain, dan membuat konten video." />
-  <meta name="theme-color" content="#0b0c0f" />
-  <meta property="og:title" content="Portofolio — Muhammad Keyzan Alhaarith" />
-  <meta property="og:description" content="SMKN 1 Kota Jambi — OSIS Sekbid 3 (Humas). DKV, Video, Foto, Desain." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="image/about-you.jpeg" />
-  <meta property="og:url" content="/" />
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
 
-  <!-- JSON-LD schema Person (buat Ringkasan AI) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Muhammad Keyzan Alhaarith",
-    "alternateName": "Keyzan Alhaarith",
-    "jobTitle": "OSIS Sekbid 3 (Humas)",
-    "affiliation": {
-      "@type": "EducationalOrganization",
-      "name": "SMKN 1 Kota Jambi"
-    },
-    "knowsAbout": ["DKV", "Video Editing", "Photography", "Desain"],
-    "description": "Siswa SMKN 1 Kota Jambi, menjabat sebagai OSIS Sekbid 3 (Humas). Aktif membuat & mengunggah video.",
-    "url": "/",
-    "sameAs": [
-      "https://instagram.com/keyzan.alharist",
-      "https://tiktok.com/@keyzan.alharist"
-    ]
-  }
-  </script>
+  <!-- CryptoJS (sha256) untuk login hash -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" defer></script>
 
-  <!-- =====================================================================================
-       STYLES
-       ===================================================================================== -->
-  <style>
-    :root{
-      --bg:#0b0c0f; --text:#eaeef5; --muted:#9aa3b2; --accent:#0a84ff;
-      --card:rgba(255,255,255,.06); --border:rgba(255,255,255,.10);
-      --radius:24px; --blur:18px;
-      --shadow:0 20px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
-      --glass:rgba(255,255,255,.08);
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
-    body{
-      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-      background:
-        radial-gradient(1200px 1200px at 80% -10%, #21314f, transparent 60%),
-        radial-gradient(900px 900px at -10% 20%, #1a2537, transparent 55%),
-        linear-gradient(180deg, #0b0c0f 0%, #0b0c0f 100%);
-      padding-bottom:env(safe-area-inset-bottom);
-    }
-    a{color:inherit;text-decoration:none}
-
-    /* =====================================================================================
-       LAYOUT (scroll snap full screen)
-       ===================================================================================== */
-    .snapper{
-      height:100vh;
-      overflow-y:auto;
-      scroll-snap-type:y mandatory;
-      scroll-behavior:smooth;
-      -webkit-overflow-scrolling:touch;
-    }
-    @supports (height: 100svh){
-      .snapper{ height:100svh; }
-      .panel{ height:100svh; }
-    }
-    .panel{
-      height:100vh;
-      scroll-snap-align:start;
-      display:flex;align-items:center;justify-content:center;
-      padding:clamp(16px,4vw,48px);
-      overflow:hidden;
-    }
-    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);backdrop-filter:blur(var(--blur));box-shadow:var(--shadow)}
-    .container{width:min(1200px,92vw);margin:0 auto}
-
-    /* status mini */
-    .statusbar{
-      position:fixed;top:max(12px,env(safe-area-inset-top));left:12px;z-index:100;
-      padding:8px 12px;border-radius:20px;background:var(--glass);
-      display:flex;gap:10px;font-size:13px;font-weight:600
-    }
-
-    /* =====================================================================================
-       HERO
-       ===================================================================================== */
-    .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(16px,3vw,40px);align-items:center}
-    .hero .copy{max-width:600px}
-    .small{font-size:14px;color:var(--muted);margin-bottom:8px}
-    .title{font-size:clamp(28px,5vw,56px);line-height:1.08;margin:6px 0 10px;font-weight:700;letter-spacing:-0.02em}
-    .title b{display:block;font-weight:800;letter-spacing:-0.025em;margin-bottom:2px}
-    .handle{display:inline-flex;padding:8px 14px;background:var(--glass);border-radius:999px;border:1px solid var(--border);margin:6px 6px 0 0;font-size:14px}
-
-    /* iPhone mockup */
-    .phone{width:clamp(220px,30vw,300px);aspect-ratio:9/19.5;border-radius:38px;padding:14px;background:#111;position:relative;border:1px solid rgba(255,255,255,.15);box-shadow:0 20px 60px rgba(0,0,0,.65);margin-inline:auto}
-    .notch{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:110px;height:24px;background:#000;border-radius:12px}
-    .screen{position:absolute;inset:14px;border-radius:28px;overflow:hidden;background:#000}
-    .screen img{width:100%;height:100%;object-fit:cover;display:block}
-
-    /* media player area (16:9 mp4 preview) */
-    .media-player{width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000}
-    .media-player video{width:100%;height:100%;object-fit:cover;display:block}
-
-    /* sections */
-    h2{font-size:clamp(20px,2.8vw,32px);margin-bottom:12px}
-    .muted{color:var(--muted)}
-    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-    .tile{padding:18px;font-size:16px}
-
-    .apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px}
-    .app{aspect-ratio:1/1;border-radius:26px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;border:1px solid var(--border);font-size:16px}
-
-    .project{display:flex;gap:12px;padding:12px 0;border-top:1px dashed var(--border)}
-    .project:first-child{border-top:none}
-    .thumb{width:80px;height:80px;border-radius:16px;object-fit:cover;background:#222}
-
-    .btn{padding:12px 18px;border-radius:14px;border:none;cursor:pointer;font-weight:600;font-size:16px}
-    .btn.primary{background:#0a84ff;color:#fff}
-    .btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
-
-    /* dots nav */
-    .dots{position:fixed;right:12px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:90}
-    .dots a{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.3);display:block}
-    .dots a.active{background:var(--accent)}
-
-    /* comments */
-    .form{display:flex;flex-direction:column;gap:12px}
-    .form-row{display:flex;gap:12px;flex-wrap:wrap}
-    .input{flex:1;min-width:220px;padding:12px 14px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text)}
-    textarea.input{min-height:110px;resize:vertical}
-    .comments-wrap{max-width:900px;width:100%}
-    .comments-list{margin-top:14px;max-height:48vh;overflow:auto;display:flex;flex-direction:column;gap:10px}
-    .comment{padding:12px 14px;border-radius:16px;border:1px solid var(--border);background:rgba(255,255,255,.06)}
-    .meta{font-size:13px;color:var(--muted);margin-bottom:4px}
-
-    /* =====================================================================================
-       Music Player (dock & minimize) — disetel supaya rapi di HP
-       ===================================================================================== */
-    .music-wrap{
-      position:fixed;top:24px;right:12px;z-index:120;
-      transition:transform .25s ease, bottom .25s ease, left .25s ease, right .25s ease;
-    }
-    .player{
-      display:flex;align-items:center;gap:12px;
-      padding:10px 12px;border-radius:18px;border:1px solid var(--border);
-      background:var(--glass);backdrop-filter:blur(16px);box-shadow:var(--shadow);
-      min-width:280px;max-width:86vw
-    }
-    .cover{width:52px;height:52px;border-radius:10px;background:#222;object-fit:cover}
-    /* Hide title/artist sesuai request */
-    .meta-title{font-weight:700;font-size:14px;line-height:1.1;display:none}
-    .meta-artist{font-size:12px;color:var(--muted);display:none}
-    .pp{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:#fff1;display:grid;place-items:center;cursor:pointer}
-    .bar{display:flex;align-items:center;gap:8px;width:min(46vw,300px)}
-    .seek{appearance:none;width:100%;height:6px;border-radius:6px;background:rgba(255,255,255,.25);outline:none}
-    .seek::-webkit-slider-thumb{appearance:none;width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid #000}
-    .time{font-size:11px;color:var(--muted);min-width:36px;text-align:center}
-    .vol{appearance:none;width:80px;height:6px;border-radius:6px;background:rgba(255,255,255,.2)}
-    .vol::-webkit-slider-thumb{appearance:none;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid #000}
-    .dock-toggle{margin-left:6px;width:36px;height:36px;border-radius:10px;border:1px solid var(--border);background:#fff1;cursor:pointer;display:grid;place-items:center;font-weight:700}
-
-    /* Minimized: hanya sisakan cover + tombol toggle supaya gak ganggu konten (khusus HP rapi) */
-    .music-wrap.mini{transform:translateX(calc(100% - 56px))}
-    .music-wrap.mini .bar,
-    .music-wrap.mini .meta-title,
-    .music-wrap.mini .meta-artist,
-    .music-wrap.mini .vol,
-    .music-wrap.mini #prevBtn,
-    .music-wrap.mini #nextBtn,
-    .music-wrap.mini #shuffleBtn,
-    .music-wrap.mini #repeatBtn { display:none }
-    .music-wrap.mini .player{min-width:auto;padding:8px}
-    .music-wrap.mini .cover{width:40px;height:40px}
-
-    /* playlist buttons row (kecil, tanpa judul lagu) */
-    .playlist-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-    .track-btn{padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.04);cursor:pointer;font-size:13px}
-
-    /* modal (login admin tersembunyi) */
-    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:200}
-    .modal{background:var(--card);border-radius:12px;padding:18px;max-width:420px;width:92%;border:1px solid var(--border)}
-    .modal h3{margin-bottom:8px}
-    .modal .row{display:flex;gap:8px;align-items:center;margin-top:8px}
-    .modal .btn{padding:10px 12px;border-radius:10px}
-
-    /* hidden "still here?" anchor */
-    #stillHere{position:fixed;left:12px;bottom:8px;color:var(--muted);cursor:pointer;z-index:100;font-size:13px}
-
-    /* =====================================================================================
-       RESPONSIVE
-       ===================================================================================== */
-    @media (max-width:1200px){
-      .bar{width:44vw}
-    }
-    @media (max-width:1024px){
-      .hero{grid-template-columns:1fr}
-      .hero .copy{order:2}
-      .phone{order:1;margin-top:8px}
-      .media-player{height:clamp(180px,34vh,360px)}
-      .music-wrap{left:12px;right:auto} /* pindah ke kiri di tablet/HP biar gak nutup dots */
-    }
-    @media (max-width:640px){
-      /* dorong hero ke bawah supaya mockup tidak ketutup statusbar/music */
-      #hero.panel{align-items:flex-start;padding-top:calc(108px + env(safe-area-inset-top));}
-      .statusbar{left:8px;font-size:12px}
-      .dots{right:8px}
-      .handle{font-size:13px}
-      .phone{width:clamp(210px,62vw,300px)}
-      .player{min-width:220px;max-width:92vw}
-      .bar{width:46vw}
-    }
-
-    /* kecilin gutter khusus layar super mungil */
-    @media (max-width:360px){
-      .player{gap:8px}
-      .pp{width:34px;height:34px}
-      .dock-toggle{width:32px;height:32px}
-    }
-  </style>
-
-  <!-- =====================================================================================
-       LIBS
-       ===================================================================================== -->
-  <!-- CryptoJS (sha256) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <!-- Firebase compat -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js" defer></script>
+
+  <!-- App Logic -->
+  <script src="app.js" defer></script>
 </head>
 <body>
-  <!-- =====================================================================================
-       STATUS BAR
-       ===================================================================================== -->
+  <!-- status mini -->
   <div class="statusbar"><div id="clock">00:00</div></div>
 
-  <!-- =====================================================================================
-       MUSIC PLAYER (dock)
-       ===================================================================================== -->
+  <!-- Music player (dock) -->
   <div class="music-wrap" id="musicDock" aria-hidden="false">
-    <div class="player card" aria-label="Pemutar Musik">
+    <div class="player card">
       <img class="cover" id="coverImg" src="image/about-you.jpeg" alt="cover"/>
-      <div style="display:flex;flex-direction:column;gap:4px;min-width:120px">
-        <div class="meta-title" id="metaTitle">—</div>
-        <div class="meta-artist" id="metaArtist">—</div>
-        <div class="bar" aria-hidden="true">
+      <div class="player-col">
+        <div class="meta-title" id="metaTitle" aria-hidden="true">—</div>
+        <div class="meta-artist" id="metaArtist" aria-hidden="true">—</div>
+
+        <div class="bar" aria-label="progress">
           <span class="time" id="cur">0:00</span>
-          <input id="seek" class="seek" type="range" value="0" min="0" max="100" step="0.1" aria-label="Seek"/>
+          <input id="seek" class="seek" type="range" value="0" min="0" max="100" step="0.1"/>
           <span class="time" id="dur">0:00</span>
         </div>
-        <div class="playlist-row" id="playlistRow" aria-hidden="true"></div>
+
+        <div class="playlist-row" id="playlistRow" aria-label="playlist"></div>
       </div>
 
-      <div style="display:flex;flex-direction:column;gap:8px;align-items:center">
-        <div style="display:flex;gap:8px;align-items:center">
-          <button id="prevBtn" class="pp" title="Sebelumnya" aria-label="Sebelumnya">⏮</button>
-          <button id="pp" class="pp" title="Play/Pause" aria-label="Play/Pause">▶</button>
-          <button id="nextBtn" class="pp" title="Berikutnya" aria-label="Berikutnya">⏭</button>
+      <div class="player-controls">
+        <div class="transport">
+          <button id="prevBtn" class="pp" title="Prev">⏮</button>
+          <button id="pp" class="pp" title="Play/Pause">▶</button>
+          <button id="nextBtn" class="pp" title="Next">⏭</button>
         </div>
-        <div style="display:flex;gap:6px;align-items:center">
-          <button id="shuffleBtn" class="dock-toggle" title="Acak" aria-label="Acak">🔀</button>
-          <button id="repeatBtn" class="dock-toggle" title="Ulangi" aria-label="Ulangi">🔁</button>
+        <div class="toggles">
+          <!-- hanya Shuffle (tidak ada acak lain / repeat mode) -->
+          <button id="shuffleBtn" class="dock-toggle" title="Shuffle">🔀</button>
         </div>
       </div>
 
-      <input id="vol" class="vol" type="range" min="0" max="1" step="0.01" value="0.9" style="margin-left:12px" aria-label="Volume"/>
-      <button id="toggleDock" class="dock-toggle" title="Minimize/Restore" aria-label="Minimize/Restore">◀</button>
+      <input id="vol" class="vol" type="range" min="0" max="1" step="0.01" value="0.9" title="Volume"/>
+      <button id="toggleDock" class="dock-toggle" title="Minimize/Restore">◀</button>
 
       <audio id="audio" preload="metadata"></audio>
     </div>
   </div>
 
-  <!-- =====================================================================================
-       DOTS NAV
-       ===================================================================================== -->
+  <!-- dots -->
   <nav class="dots" id="dots" aria-label="navigasi cepat">
     <a href="#hero" data-target="hero" class="active" aria-label="Hero"></a>
     <a href="#skills" data-target="skills" aria-label="Skills"></a>
@@ -293,9 +70,6 @@
     <a href="#comments" data-target="comments" aria-label="Komentar"></a>
   </nav>
 
-  <!-- =====================================================================================
-       PAGES
-       ===================================================================================== -->
   <main class="snapper">
     <!-- HERO -->
     <section id="hero" class="panel">
@@ -305,27 +79,28 @@
           <div class="title"><b>Muhammad Keyzan</b>Alhaarith</div>
           <div class="handle">📸 DKV · Video · Foto · Desain</div>
 
-          <!-- media: MP4 16:9 (ganti file jika perlu) -->
+          <!-- media: MP4 16:9 -->
           <div class="media card" style="margin-top:12px;padding:0;overflow:hidden">
             <div class="media-player">
               <video id="mediaVideo" controls playsinline>
-                <source src="media/promo.mp4" type="video/mp4">
-                <!-- jika tidak ada file, area akan hitam -->
+                <source src="media/promo.mp4" type="video/mp4" />
               </video>
             </div>
           </div>
         </div>
 
-        <div class="phone" aria-label="Mockup iPhone">
+        <div class="phone" aria-label="mockup iPhone">
           <div class="notch"></div>
-          <div class="screen"><img src="image/isi%20mockup%20iphone.jpeg" alt="Mockup iPhone"/></div>
+          <div class="screen">
+            <img src="image/isi%20mockup%20iphone.jpeg" alt="Mockup iPhone"/>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- SKILLS -->
     <section id="skills" class="panel">
-      <div class="container card" style="padding:24px">
+      <div class="container card section-pad">
         <h2>Keahlian DKV</h2>
         <div class="skills-grid">
           <div class="tile card"><strong>Video</strong><p class="muted">Shooting, editing, color grade, motion.</p></div>
@@ -337,7 +112,7 @@
 
     <!-- SHORTCUTS -->
     <section id="shortcuts" class="panel">
-      <div class="container card" style="padding:24px">
+      <div class="container card section-pad">
         <h2>Shortcut</h2>
         <div class="apps">
           <a class="app" href="https://instagram.com/keyzan.alharist" target="_blank" rel="noopener">Instagram</a>
@@ -350,7 +125,7 @@
 
     <!-- PROJECTS -->
     <section id="projects" class="panel">
-      <div class="container card" style="padding:24px">
+      <div class="container card section-pad">
         <h2>Proyek</h2>
         <div class="project">
           <img class="thumb" src="image/project.png" alt="DaVinci Resolve"/>
@@ -361,31 +136,31 @@
 
     <!-- CONTACT -->
     <section id="contact" class="panel">
-      <div class="container card" style="padding:24px">
+      <div class="container card section-pad">
         <h2>Kontak</h2>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <div class="btn-row">
           <a class="btn primary" href="https://instagram.com/keyzan.alharist" target="_blank" rel="noopener">Instagram</a>
           <a class="btn ghost" href="https://tiktok.com/@keyzan.alharist" target="_blank" rel="noopener">TikTok</a>
         </div>
       </div>
     </section>
 
-    <!-- EXPERIENCE (3 kolom) -->
+    <!-- EXPERIENCE -->
     <section id="experience" class="panel">
-      <div class="container card" style="padding:24px">
+      <div class="container card section-pad">
         <h2>Pengalaman</h2>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
-          <div class="card" style="padding:16px"><strong>Sekolah</strong><ul class="muted"><li>SMKN 1 Kota Jambi</li></ul></div>
-          <div class="card" style="padding:16px"><strong>Organisasi</strong><ul class="muted"><li>OSIS — Sekbid 3 (Humas)</li></ul></div>
-          <div class="card" style="padding:16px"><strong>Lomba</strong><ul class="muted"><li>Partisipasi lomba desain/video</li></ul></div>
+        <div class="exp-grid">
+          <div class="card exp-tile"><strong>Sekolah</strong><ul class="muted"><li>SMKN 1 Kota Jambi</li></ul></div>
+          <div class="card exp-tile"><strong>Organisasi</strong><ul class="muted"><li>OSIS — Sekbid 3 (Humas)</li></ul></div>
+          <div class="card exp-tile"><strong>Lomba</strong><ul class="muted"><li>Partisipasi lomba desain/video</li></ul></div>
         </div>
       </div>
     </section>
 
-    <!-- COMMENTS (Firebase global) -->
+    <!-- COMMENTS -->
     <section id="comments" class="panel">
       <div class="container comments-wrap">
-        <div class="card" style="padding:20px">
+        <div class="card section-pad">
           <h2>Tinggalkan Jejak (Komentar)</h2>
           <form id="commentForm" class="form" autocomplete="off">
             <div class="form-row">
@@ -402,537 +177,35 @@
     </section>
   </main>
 
-  <!-- =====================================================================================
-       SECRET LOGIN ANCHOR
-       ===================================================================================== -->
+  <!-- hidden secret login anchor -->
   <div id="stillHere">still here?</div>
 
-  <!-- =====================================================================================
-       MODALS
-       ===================================================================================== -->
+  <!-- modal for secret questions -->
   <div class="modal-backdrop" id="modalBackdrop">
-    <div class="modal" id="modalBox" role="dialog" aria-modal="true">
+    <div class="modal" role="dialog" aria-modal="true">
       <h3 id="modalTitle">…</h3>
       <div id="modalBody"></div>
-      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+      <div class="modal-actions">
         <button id="modalNo" class="btn">Tidak</button>
         <button id="modalYes" class="btn primary">Iya</button>
       </div>
     </div>
   </div>
 
+  <!-- login modal -->
   <div class="modal-backdrop" id="loginBackdrop" style="display:none">
     <div class="modal">
       <h3>Login Admin</h3>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <input id="loginUser" class="input" placeholder="Username" autocomplete="username"/>
-        <input id="loginPass" type="password" class="input" placeholder="Password" autocomplete="current-password"/>
-        <div style="display:flex;gap:8px;justify-content:flex-end">
+      <div class="modal-form">
+        <input id="loginUser" class="input" placeholder="Username"/>
+        <input id="loginPass" type="password" class="input" placeholder="Password"/>
+        <div class="modal-actions">
           <button id="loginCancel" class="btn">Batal</button>
           <button id="loginSubmit" class="btn primary">Masuk</button>
         </div>
-        <div id="loginMsg" style="color:var(--muted);font-size:13px;margin-top:6px"></div>
+        <div id="loginMsg" class="login-msg"></div>
       </div>
     </div>
   </div>
-
-  <!-- =====================================================================================
-       SCRIPTS
-       ===================================================================================== -->
-  <script>
-    /* =========================================================
-       CLOCK
-       ========================================================= */
-    function updateClock(){
-      const now=new Date();
-      const opts={hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Jakarta'};
-      const el=document.getElementById('clock');
-      if(el) el.textContent=new Intl.DateTimeFormat('id-ID',opts).format(now);
-    }
-    updateClock(); setInterval(updateClock,10000);
-
-    /* =========================================================
-       SCROLL DOTS
-       ========================================================= */
-    const snapper=document.querySelector('.snapper');
-    const dots=[...document.querySelectorAll('#dots a')];
-    const panels=[...document.querySelectorAll('.panel')];
-    const io=new IntersectionObserver((entries)=>{
-      entries.forEach(en=>{
-        if(en.isIntersecting){
-          const id=en.target.id;
-          dots.forEach(a=>a.classList.toggle('active',a.dataset.target===id));
-        }
-      });
-    },{root:snapper,threshold:0.55});
-    panels.forEach(p=>io.observe(p));
-    dots.forEach(a=>a.addEventListener('click',e=>{
-      e.preventDefault();
-      const t=document.getElementById(a.dataset.target);
-      if(t) snapper.scrollTo({top:t.offsetTop,behavior:'smooth'});
-    }));
-
-    /* =========================================================
-       MUSIC PLAYER + PLAYLIST (6 lagu, judul disembunyikan)
-       ========================================================= */
-    const audio = document.getElementById('audio');
-    const ppBtn = document.querySelector('#pp');
-    const seek = document.getElementById('seek');
-    const vol = document.getElementById('vol');
-    const curEl = document.getElementById('cur');
-    const durEl = document.getElementById('dur');
-    const coverImg = document.getElementById('coverImg');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const shuffleBtn = document.getElementById('shuffleBtn');
-    const repeatBtn = document.getElementById('repeatBtn');
-    const toggleDockBtn = document.getElementById('toggleDock');
-    const musicDock = document.getElementById('musicDock');
-    const playlistRow = document.getElementById('playlistRow');
-
-    // playlist (ganti file sesuai folder kamu)
-    const playlist = [
-      {id:1, title:'About You', src:'audio/about-you.mp3', cover:'image/about-you.jpeg'},
-      {id:2, title:'Track 2', src:'audio/track2.mp3', cover:'image/track2.jpg'},
-      {id:3, title:'Track 3', src:'audio/track3.mp3', cover:'image/track3.jpg'},
-      {id:4, title:'Track 4', src:'audio/track4.mp3', cover:'image/track4.jpg'},
-      {id:5, title:'Track 5', src:'audio/track5.mp3', cover:'image/track5.jpg'},
-      {id:6, title:'Track 6', src:'audio/track6.mp3', cover:'image/track6.jpg'}
-    ];
-
-    // state
-    let idx = 0;
-    let shuffle = (localStorage.getItem('mp_shuffle') === '1');
-    let repeatMode = Number(localStorage.getItem('mp_repeat') || 0); // 0=off 1=all 2=one
-    let shuffledOrder = [];
-
-    function fmt(s){ if(!isFinite(s)) return '0:00'; const m=Math.floor(s/60); const ss=Math.floor(s%60).toString().padStart(2,'0'); return `${m}:${ss}`; }
-
-    function loadTrack(i){
-      if(i < 0) i = playlist.length - 1;
-      if(i >= playlist.length) i = 0;
-      idx = i;
-      audio.src = playlist[idx].src;
-      coverImg.src = playlist[idx].cover || 'image/about-you.jpeg';
-      // simpan current index (biar balik lagi setelah refresh)
-      localStorage.setItem('mp_idx', String(idx));
-    }
-
-    function playPause(){
-      if(audio.paused){ audio.play(); ppBtn.textContent='⏸'; }
-      else { audio.pause(); ppBtn.textContent='▶'; }
-    }
-
-    function generateShuffle(){
-      shuffledOrder = playlist.map((_,i)=>i).filter(i=>i!==idx);
-      for(let i=shuffledOrder.length-1;i>0;i--){
-        const j = Math.floor(Math.random()*(i+1));
-        [shuffledOrder[i],shuffledOrder[j]] = [shuffledOrder[j],shuffledOrder[i]];
-      }
-    }
-
-    function nextTrack(){
-      if(shuffle){
-        if(shuffledOrder.length === 0) generateShuffle();
-        idx = shuffledOrder.shift();
-      } else {
-        idx++;
-        if(idx >= playlist.length)
-          idx = (repeatMode === 1) ? 0 : playlist.length-1;
-      }
-      loadTrack(idx);
-      audio.play();
-      ppBtn.textContent='⏸';
-    }
-
-    function prevTrack(){
-      if(audio.currentTime > 3){ audio.currentTime = 0; return; }
-      idx--;
-      if(idx < 0) idx = playlist.length -1;
-      loadTrack(idx);
-      audio.play();
-      ppBtn.textContent='⏸';
-    }
-
-    function renderPlaylistRow(){
-      playlistRow.innerHTML='';
-      playlist.forEach((t,i)=>{
-        const btn = document.createElement('button');
-        btn.className='track-btn';
-        btn.textContent = `Track ${i+1}`;     // tanpa nama lagu
-        btn.onclick = ()=>{ loadTrack(i); audio.play(); ppBtn.textContent='⏸'; };
-        playlistRow.appendChild(btn);
-      });
-    }
-
-    // events
-    audio.addEventListener('loadedmetadata', ()=>{
-      durEl.textContent = fmt(audio.duration);
-      seek.max = Math.max(1,audio.duration||1);
-    });
-    audio.addEventListener('timeupdate', ()=>{
-      curEl.textContent = fmt(audio.currentTime);
-      if(!seek.dragging) seek.value = audio.currentTime;
-    });
-    audio.addEventListener('ended', ()=>{
-      if(repeatMode === 2){ audio.currentTime = 0; audio.play(); return; } // repeat one
-      if(shuffle && shuffledOrder.length>0){ nextTrack(); return; }
-      if(repeatMode === 1){ nextTrack(); } else { ppBtn.textContent='▶'; } // repeat all / off
-    });
-
-    seek.addEventListener('input', ()=>{ seek.dragging=true; });
-    seek.addEventListener('change', ()=>{ audio.currentTime = Number(seek.value)||0; seek.dragging=false; });
-
-    // restore/simpan volume
-    const savedVol = Number(localStorage.getItem('mp_vol'));
-    if(!Number.isNaN(savedVol)) { audio.volume = savedVol; vol.value = savedVol; }
-    vol.addEventListener('input', ()=>{ audio.volume = Number(vol.value); localStorage.setItem('mp_vol', String(audio.volume)); });
-
-    ppBtn.addEventListener('click', playPause);
-    prevBtn.addEventListener('click', prevTrack);
-    nextBtn.addEventListener('click', nextTrack);
-
-    shuffleBtn.addEventListener('click', ()=>{
-      shuffle = !shuffle;
-      shuffleBtn.style.background = shuffle ? 'rgba(10,132,255,0.18)' : '';
-      localStorage.setItem('mp_shuffle', shuffle ? '1':'0');
-      if(shuffle) generateShuffle();
-    });
-    // set initial visual for shuffle
-    if(shuffle) shuffleBtn.style.background = 'rgba(10,132,255,0.18)';
-
-    repeatBtn.addEventListener('click', ()=>{
-      repeatMode = (repeatMode+1)%3;
-      localStorage.setItem('mp_repeat', String(repeatMode));
-      repeatBtn.style.background = repeatMode ? 'rgba(10,132,255,0.18)' : '';
-      repeatBtn.title = repeatMode===0 ? 'Repeat off' : repeatMode===1 ? 'Repeat all' : 'Repeat one';
-      repeatBtn.setAttribute('aria-label', repeatBtn.title);
-    });
-    if(repeatMode) repeatBtn.style.background = 'rgba(10,132,255,0.18)';
-
-    // dock toggle
-    toggleDockBtn.addEventListener('click', ()=>{
-      musicDock.classList.toggle('mini');
-      toggleDockBtn.textContent = musicDock.classList.contains('mini') ? '▶' : '◀';
-    });
-
-    // init player
-    const savedIdx = Number(localStorage.getItem('mp_idx'));
-    loadTrack(Number.isFinite(savedIdx) ? savedIdx : 0);
-    renderPlaylistRow();
-
-    /* =========================================================
-       FIREBASE (komentar + reply admin)
-       ========================================================= */
-    const firebaseConfig = {
-      apiKey: "AIzaSyD_9VpfQdqoTNwwF8fYY37OaQ42Ag6ImEE",
-      authDomain: "call-3de3b.firebaseapp.com",
-      projectId: "call-3de3b",
-      storageBucket: "call-3de3b.firebasestorage.app",
-      messagingSenderId: "540758179959",
-      appId: "1:540758179959:web:b4201c873e3d639a160672",
-      measurementId: "G-J2P0KEWSRT"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-
-    const formEl = document.getElementById('commentForm');
-    const nameEl = document.getElementById('cName');
-    const msgEl = document.getElementById('cMsg');
-    const commentsList = document.getElementById('commentsList');
-
-    let isAdmin = (localStorage.getItem('isAdmin') === '1');
-
-    function renderOneComment(doc){
-      const d = doc.data();
-      const wrap = document.createElement('div'); wrap.className='comment';
-      const meta = document.createElement('div'); meta.className='meta';
-      meta.textContent = `@${d.name} • ${d.ts && d.ts.toDate ? d.ts.toDate().toLocaleString('id-ID',{hour12:false}) : ''}`;
-      const body = document.createElement('div'); body.textContent = d.msg;
-      wrap.appendChild(meta);
-      wrap.appendChild(body);
-
-      // tampilkan balasan (kalau ada)
-      if(d.reply){
-        const rep = document.createElement('div');
-        rep.style.marginTop='8px';
-        rep.style.padding='10px';
-        rep.style.borderRadius='10px';
-        rep.style.background='rgba(0,0,0,.12)';
-        rep.innerHTML = `<strong>Owner Reply:</strong><div style="margin-top:6px">${d.reply}</div>`;
-        wrap.appendChild(rep);
-      }
-
-      // tombol balas khusus admin
-      if(isAdmin){
-        const replyRow = document.createElement('div');
-        replyRow.style.marginTop='8px';
-        replyRow.style.display='flex';
-        replyRow.style.gap='8px';
-        const input = document.createElement('input');
-        input.className='input';
-        input.placeholder='Tulis balasan...';
-        const btn = document.createElement('button');
-        btn.className='btn primary';
-        btn.textContent='Balas';
-        btn.onclick = async ()=>{
-          const replyText = input.value.trim();
-          if(!replyText) return alert('Isi balasan dulu');
-          await db.collection('comments').doc(doc.id).update({reply: replyText});
-          input.value='';
-        };
-        replyRow.appendChild(input); replyRow.appendChild(btn); wrap.appendChild(replyRow);
-      }
-
-      commentsList.appendChild(wrap);
-    }
-
-    db.collection('comments').orderBy('ts','asc').onSnapshot(snap=>{
-      commentsList.innerHTML='';
-      snap.forEach(d=> renderOneComment(d));
-      commentsList.scrollTop = commentsList.scrollHeight;
-    });
-
-    formEl.addEventListener('submit', async (ev)=>{
-      ev.preventDefault();
-      const name = (nameEl.value||'').trim().slice(0,32);
-      const msg = (msgEl.value||'').trim().slice(0,300);
-      if(!name || !msg) return;
-      await db.collection('comments').add({name,msg,ts: firebase.firestore.FieldValue.serverTimestamp()});
-      formEl.reset();
-    });
-
-    /* =========================================================
-       SECRET QUESTIONS & LOGIN ADMIN (hash SHA-256)
-       ========================================================= */
-    const stillHere = document.getElementById('stillHere');
-    const modalBackdrop = document.getElementById('modalBackdrop');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalBody = document.getElementById('modalBody');
-    const modalYes = document.getElementById('modalYes');
-    const modalNo = document.getElementById('modalNo');
-
-    const loginBackdrop = document.getElementById('loginBackdrop');
-    const loginUser = document.getElementById('loginUser');
-    const loginPass = document.getElementById('loginPass');
-    const loginSubmit = document.getElementById('loginSubmit');
-    const loginCancel = document.getElementById('loginCancel');
-    const loginMsg = document.getElementById('loginMsg');
-
-    // 100+ pertanyaan jebakan (dipilih 5 random)
-    const questionsPool = [
-      "Eh ini bukan tombol apa2 loh udah balik aja",
-      "Lah kok masih dipencet?",
-      "Napa di pencet?",
-      "Ku bilang jangan di pencet!!!",
-      "Dey?!, ku cakap jangan di pencet laa",
-      "Kamu yakin mau lanjut? (ga ada apa2 beneran)",
-      "Masih mau? balik aja deh",
-      "Serius nih? Ini beneran bukan tombol apa2.",
-      "Kok kepo sih, balik aja",
-      "Iya berhenti, ini beneran ga ada apa2",
-      "Tenang... nggak ada rahasia di sini.",
-      "Tombol ini fungsinya cuma bikin kamu penasaran.",
-      "Yakin 100% mau terusin?",
-      "Beneran nih, ada jalan pulang di atas 😄",
-      "Tips: kembali ke atas dan nikmati musiknya aja.",
-      "Kamu masih di sini? Hebat juga 🙃",
-      "Jangan salahin aku kalo ga ada apa-apa loh.",
-      "Lanjut? (oke/tidak)",
-      "Balik kanan, grak! (atau… lanjut?)",
-      "Ini cuma tes keingintahuan, jan marah ya.",
-      "Beneran mau? Klik OK kalo nekat.",
-      "Stop dulu. Minum air dulu. Lanjut?",
-      "Tentukan nasibmu: OK atau TIDAK?",
-      "Jangan pencet… eh dipencet wkwk",
-      "Tanya hati kecil: lanjut atau tidak?",
-      "Nih pertanyaan jebakan #1",
-      "Nih pertanyaan jebakan #2",
-      "Nih pertanyaan jebakan #3",
-      "Nih pertanyaan jebakan #4",
-      "Nih pertanyaan jebakan #5",
-      "Oke, kamu masih penasaran. Lanjut?",
-      "Pilihan bijak: kembali 😅",
-      "Kamu udah 1% lagi dari rahasia… bohong deng",
-      "Sebenarnya ini cuma mini-game",
-      "Masih klik juga? Hadeh",
-      "Klik saja kalau berani",
-      "Apakah kamu admin? (jangan jawab)",
-      "Dilarang masuk kecuali senyum 😁",
-      "Ini bukan pintu masuk (katanya…)",
-      "Kepo level Dewa detected",
-      "Oke deh, pilihanmu dihargai",
-      "Kamu sabar juga, lanjut?",
-      "Kalau salah tekan, pilih 'tidak' ya",
-      "Beneran terus? Awas bosan",
-      "Ssst… nggak ada apa-apa kok",
-      "Aduh, kok ngotot sih",
-      "Yakin mau lanjut? (terakhir katanya…) ",
-      "Hehe, bercanda. Masih mau?",
-      "OK terakhir beneran",
-      "Kalo kamu yakin, pilih OK",
-      "Kalau nggak yakin, pilih Tidak",
-      "Serius, ini terakhir pra-login",
-      "Kamu menang sabar award 2025",
-      "Bisa jadi ini cuma ilusi",
-      "Masih ada empat langkah",
-      "Tinggal tiga langkah",
-      "Dua langkah lagi",
-      "Satu langkah lagi? (yah bohong)",
-      "Jangan tersinggung ya",
-      "Good choice kalau berhenti 😇",
-      "Oke fine… lanjut aja",
-      "Mungkin ini bukan buatmu",
-      "Atau justru memang buatmu?",
-      "Apakah ini jejak admin?",
-      "Kamu baca semua gini? mantap!",
-      "Kalau kamu senyum, pilih OK",
-      "Kalau kamu kaget, pilih Tidak",
-      "Jangan bilang-bilang siapa2 ya",
-      "Kalian jangan lihat ya 🙈",
-      "Masih berminat? (OK/Tidak)",
-      "Pencet OK kalau kamu yakin",
-      "Pencet Tidak kalau ragu",
-      "Beneran akhir dari awal",
-      "Oke lanjut. (atau tidak?)",
-      "Kamu sabar banget. Terakhir?",
-      "Promise: ini beneran hampir selesai",
-      "Mau lanjut? Pilih OK",
-      "Ga jadi? Pilih Tidak",
-      "Sadar diri bukan admin? Balik",
-      "Kalau kamu Keyzan: OK",
-      "Kalau bukan: Tidak",
-      "Rahasia negara (bukan)",
-      "Fakta: ini cuma tes kepo",
-      "Hint: 5 klik OK baru login",
-      "Yuk, klik OK lagi",
-      "Masih kuat? Klik OK",
-      "Capek? Klik Tidak",
-      "Oke beneran last",
-      "Ada 100 pesan kayak gini loh",
-      "Tapi kamu cuma dikasih 5 random",
-      "Sisa 2 lagi nih",
-      "Sisa 1 lagi nih",
-      "Nggak jadi… tambah satu 😜",
-      "Akhirnya… hampir",
-      "Kamu berhasil membaca semuanya",
-      "Admin itu sederhana: baik dan sabar",
-      "Apakah kamu memenuhi syarat?",
-      "OK kalau yakin",
-      "Tidak kalau meragukan",
-      "Masuk? (OK)",
-      "Pulang? (Tidak)",
-      "Serius terakhir banget",
-      "Kalo ini kepencet, ya lanjut",
-      "Kalau enggak, ya udah balik",
-      "Pilihan ada di tanganmu",
-      "OK kuy!",
-      "Tidak juga boleh",
-      "… ini bukan ancaman, jan takut",
-      "Santai, cuma modal senyum",
-      "Halo calon admin yang budiman",
-      "Boleh sih lanjut, asal yakin",
-      "Fix. Klik OK buat lanjut login"
-    ];
-
-    function pickRandomQuestions(n=5){
-      const arr = [...questionsPool];
-      const out=[];
-      for(let i=0;i<n;i++){
-        if(arr.length===0) break;
-        const j = Math.floor(Math.random()*arr.length);
-        out.push(arr.splice(j,1)[0]);
-      }
-      return out;
-    }
-
-    let secretQuestions = [];
-    let secretIndex = 0;
-
-    stillHere.addEventListener('click', ()=>{
-      secretQuestions = pickRandomQuestions(5); // pilih 5 random
-      secretIndex = 0;
-      showQuestion(secretQuestions[secretIndex]);
-    });
-
-    function showQuestion(q){
-      modalTitle.textContent = `Yakinkan dulu`;
-      modalBody.innerHTML = `<div style="color:var(--muted)">${q}</div>`;
-      modalBackdrop.style.display = 'flex';
-    }
-
-    modalNo.addEventListener('click', ()=>{
-      // User memilih "Tidak" -> close, jangan lanjut
-      modalBackdrop.style.display = 'none';
-    });
-
-    modalYes.addEventListener('click', ()=>{
-      secretIndex++;
-      if(secretIndex < secretQuestions.length){
-        showQuestion(secretQuestions[secretIndex]);
-      } else {
-        // selesai 5 pertanyaan -> tampilkan login
-        modalBackdrop.style.display = 'none';
-        loginBackdrop.style.display = 'flex';
-        loginUser.focus();
-      }
-    });
-
-    loginCancel.addEventListener('click', ()=>{
-      loginBackdrop.style.display = 'none';
-    });
-
-    // HASH kredensial: SHA-256("Keyzzz1:Alhaarith123")
-    const ADMIN_HASH_FINAL = "e0a495a5eea47a155bc76370d16bbfd7f3a9d5fff753f1f601f22b7365471024";
-
-    loginSubmit.addEventListener('click', ()=>{
-      const u = (loginUser.value||'').trim();
-      const p = (loginPass.value||'').trim();
-      if(!u || !p){ loginMsg.textContent = 'Isi username & password'; return; }
-      const attemptHash = CryptoJS.SHA256(u+':'+p).toString();
-      if(attemptHash === ADMIN_HASH_FINAL){
-        isAdmin = true;
-        localStorage.setItem('isAdmin','1');
-        loginMsg.style.color = 'lightgreen';
-        loginMsg.textContent = 'Login sukses — kamu admin';
-        setTimeout(()=>{ loginBackdrop.style.display = 'none'; }, 500);
-        // refresh tampilan komentar (biar tombol balas muncul)
-        db.collection('comments').orderBy('ts','asc').get().then(snap=>{
-          commentsList.innerHTML='';
-          snap.forEach(doc=> renderOneComment(doc));
-        });
-      } else {
-        loginMsg.style.color = 'salmon';
-        loginMsg.textContent = 'Salah username/password';
-      }
-    });
-
-    // kalau sudah login sebelumnya
-    if(localStorage.getItem('isAdmin') === '1'){ isAdmin = true; }
-
-    /* =========================================================
-       POSISI PLAYER (biar gak terlalu bawah di HP)
-       ========================================================= */
-    function adjustMusicPosition(){
-      if(window.innerWidth > 1024){
-        musicDock.style.top = '24px';
-        musicDock.style.right = '12px';
-        musicDock.style.left = '';
-      } else {
-        musicDock.style.top = '18px';
-        musicDock.style.left = '12px';
-        musicDock.style.right = '';
-      }
-    }
-    window.addEventListener('resize', adjustMusicPosition);
-    adjustMusicPosition();
-
-    // optional: pause musik ketika tab disembunyikan (biar irit)
-    document.addEventListener('visibilitychange', ()=>{
-      if(document.hidden && !audio.paused){
-        audio.pause(); ppBtn.textContent='▶';
-      }
-    });
-  </script>
 </body>
 </html>
