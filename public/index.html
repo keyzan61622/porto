@@ -1,53 +1,48 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Portofolio — Muhammad Keyzan Alhaarith</title>
   <meta name="description" content="Portofolio iOS aesthetic — DKV, Video, Foto, Desain" />
+  <link rel="preload" href="image/about-you.jpeg" as="image">
   <link rel="stylesheet" href="style.css" />
-
-  <!-- CryptoJS (SHA-256) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" defer></script>
-
-  <!-- Firebase compat -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js" defer></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js" defer></script>
-
-  <script src="app.js" defer></script>
+  <!-- CryptoJS untuk SHA-256 -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+  <!-- Firebase compat (komentar realtime) -->
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script defer src="script.js"></script>
 </head>
 <body>
-  <!-- mini status clock -->
-  <div class="statusbar"><div id="clock">00:00</div></div>
+  <!-- status mini (jam) -->
+  <div class="statusbar glass"><div id="clock">00:00</div></div>
 
-  <!-- Music player (simple + dock) -->
+  <!-- Music Player (dock) -->
   <div class="music-wrap" id="musicDock" aria-hidden="false">
-    <div class="player card">
-      <img class="cover" id="coverImg" src="image/about-you.jpeg" alt="cover" />
-      <div class="player-col">
+    <div class="player glass">
+      <img class="cover" id="coverImg" src="image/about-you.jpeg" alt="Cover"/>
+      <div class="player-center">
         <div class="bar">
           <span class="time" id="cur">0:00</span>
           <input id="seek" class="seek" type="range" value="0" min="0" max="100" step="0.1" />
           <span class="time" id="dur">0:00</span>
         </div>
-
-        <div class="ctrl-row">
-          <button id="prevBtn" class="pp" title="Sebelumnya">⏮</button>
-          <button id="pp" class="pp" title="Play/Pause">▶</button>
-          <button id="nextBtn" class="pp" title="Berikutnya">⏭</button>
-          <button id="shuffleBtn" class="chip" title="Shuffle">🔀</button>
-          <input id="vol" class="vol" type="range" min="0" max="1" step="0.01" value="0.9" title="Volume" />
-        </div>
-
-        <div class="playlist-row" id="playlistRow"></div>
+        <div class="playlist-row" id="playlistRow" aria-hidden="true"></div>
       </div>
-
+      <div class="controls">
+        <button id="prevBtn" class="pp" title="Sebelumnya">⏮</button>
+        <button id="pp" class="pp" title="Play/Pause">▶</button>
+        <button id="nextBtn" class="pp" title="Berikutnya">⏭</button>
+        <button id="shuffleBtn" class="pp" title="Shuffle">🔀</button>
+      </div>
+      <input id="vol" class="vol" type="range" min="0" max="1" step="0.01" value="0.9" title="Volume"/>
       <button id="toggleDock" class="dock-toggle" title="Minimize/Restore">◀</button>
       <audio id="audio" preload="metadata"></audio>
     </div>
   </div>
 
-  <!-- dots -->
+  <!-- navigasi titik -->
   <nav class="dots" id="dots" aria-label="navigasi cepat">
     <a href="#hero" data-target="hero" class="active" aria-label="Hero"></a>
     <a href="#skills" data-target="skills" aria-label="Skills"></a>
@@ -62,13 +57,13 @@
     <!-- HERO -->
     <section id="hero" class="panel">
       <div class="hero container">
-        <div class="copy">
+        <div class="copy glass">
           <div class="small">Hai Semua, Perkenalkan Namaku :</div>
-          <div class="title"><b>Muhammad Keyzan</b>Alhaarith</div>
+          <h1 class="title"><b>Muhammad Keyzan</b>Alhaarith</h1>
           <div class="handle">📸 DKV · Video · Foto · Desain</div>
 
-          <!-- media: MP4 16:9 -->
-          <div class="media card" style="margin-top:12px;padding:0;overflow:hidden">
+          <!-- media: video 16:9 -->
+          <div class="media glass" style="margin-top:14px;">
             <div class="media-player">
               <video id="mediaVideo" controls playsinline>
                 <source src="media/promo.mp4" type="video/mp4">
@@ -77,55 +72,82 @@
           </div>
         </div>
 
-        <!-- iPhone mockup — kecil & benar2 center -->
-        <div class="phone phone-center" aria-label="mockup iPhone">
+        <!-- iPhone mockup: dipusatkan & lebih kecil -->
+        <div class="phone glass" aria-label="mockup iPhone">
           <div class="notch"></div>
-          <div class="screen">
-            <img src="image/isi%20mockup%20iphone.jpeg" alt="Mockup iPhone" />
-          </div>
+          <div class="screen"><img src="image/isi%20mockup%20iphone.jpeg" alt="Mockup iPhone"/></div>
         </div>
       </div>
     </section>
 
     <!-- SKILLS -->
     <section id="skills" class="panel">
-      <div class="container card pad24">
+      <div class="container glass section-pad">
         <h2>Keahlian DKV</h2>
         <div class="skills-grid">
-          <div class="tile card"><strong>Video</strong><p class="muted">Shooting, editing, color grade, motion.</p></div>
-          <div class="tile card"><strong>Organisasi</strong><p class="muted">OSIS — Sekbid 3 (Humas), aktif membuat & mengunggah video.</p></div>
-          <div class="tile card"><strong>Lomba</strong><p class="muted">Partisipasi lomba desain & video.</p></div>
+          <div class="tile glass">
+            <strong>Video</strong>
+            <p class="muted">Shooting, editing, color grade, motion.</p>
+          </div>
+          <div class="tile glass">
+            <strong>Organisasi</strong>
+            <p class="muted">OSIS — Sekbid 3 (Humas), aktif membuat & mengunggah video.</p>
+          </div>
+          <div class="tile glass">
+            <strong>Lomba</strong>
+            <p class="muted">Partisipasi lomba desain & video.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- SHORTCUTS -->
     <section id="shortcuts" class="panel">
-      <div class="container card pad24">
+      <div class="container glass section-pad">
         <h2>Shortcut</h2>
         <div class="apps">
-          <a class="app" href="https://instagram.com/keyzan.alharist" target="_blank" rel="noopener">Instagram</a>
-          <a class="app" href="https://tiktok.com/@keyzan.alharist" target="_blank" rel="noopener">TikTok</a>
-          <a class="app" href="#projects">Project</a>
-          <a class="app" href="#contact">Kontak</a>
+          <a class="app glass" href="https://instagram.com/keyzan.alharist" target="_blank" rel="noopener">Instagram</a>
+          <a class="app glass" href="https://tiktok.com/@keyzan.alharist" target="_blank" rel="noopener">TikTok</a>
+          <a class="app glass" href="#projects">Project</a>
+          <a class="app glass" href="#contact">Kontak</a>
         </div>
       </div>
     </section>
 
-    <!-- PROJECTS -->
+    <!-- PROJECTS (lebih dari 1) -->
     <section id="projects" class="panel">
-      <div class="container card pad24">
+      <div class="container glass section-pad">
         <h2>Proyek</h2>
+
         <div class="project">
           <img class="thumb" src="image/project.png" alt="DaVinci Resolve"/>
-          <div><strong>DaVinci Resolve</strong><div class="muted">Color grading.</div></div>
+          <div>
+            <strong>DaVinci Resolve</strong>
+            <div class="muted">Color grading, look development.</div>
+          </div>
+        </div>
+
+        <div class="project">
+          <img class="thumb" src="image/project.png" alt="After Effects"/>
+          <div>
+            <strong>After Effects</strong>
+            <div class="muted">Motion graphics, kinetic text.</div>
+          </div>
+        </div>
+
+        <div class="project">
+          <img class="thumb" src="image/project.png" alt="CapCut"/>
+          <div>
+            <strong>CapCut</strong>
+            <div class="muted">Editing mobile cepat & rapi.</div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- CONTACT -->
     <section id="contact" class="panel">
-      <div class="container card pad24">
+      <div class="container glass section-pad">
         <h2>Kontak</h2>
         <div class="btn-row">
           <a class="btn primary" href="https://instagram.com/keyzan.alharist" target="_blank" rel="noopener">Instagram</a>
@@ -134,55 +156,44 @@
       </div>
     </section>
 
-    <!-- EXPERIENCE (3 kolom) -->
+    <!-- EXPERIENCE -->
     <section id="experience" class="panel">
-      <div class="container card pad24">
+      <div class="container glass section-pad">
         <h2>Pengalaman</h2>
         <div class="exp-grid">
-          <div class="card exp-tile">
-            <strong>Sekolah</strong>
-            <ul class="muted"><li>SMKN 1 Kota Jambi</li></ul>
-          </div>
-          <div class="card exp-tile">
-            <strong>Organisasi</strong>
-            <ul class="muted"><li>OSIS — Sekbid 3 (Humas)</li></ul>
-          </div>
-          <div class="card exp-tile">
-            <strong>Lomba</strong>
-            <ul class="muted"><li>Partisipasi lomba desain/video</li></ul>
-          </div>
+          <div class="tile glass"><strong>Sekolah</strong><ul class="muted"><li>SMKN 1 Kota Jambi</li></ul></div>
+          <div class="tile glass"><strong>Organisasi</strong><ul class="muted"><li>OSIS — Sekbid 3 (Humas)</li></ul></div>
+          <div class="tile glass"><strong>Lomba</strong><ul class="muted"><li>Desain & Video</li></ul></div>
         </div>
       </div>
     </section>
 
-    <!-- COMMENTS -->
+    <!-- COMMENTS (Firebase) -->
     <section id="comments" class="panel">
-      <div class="container comments-wrap">
-        <div class="card pad20">
-          <h2>Tinggalkan Jejak (Komentar)</h2>
-          <form id="commentForm" class="form" autocomplete="off">
-            <div class="form-row">
-              <input id="cName" class="input" type="text" placeholder="Username" required maxlength="32" />
-            </div>
-            <textarea id="cMsg" class="input" placeholder="Isi pesanmu di sini..." required maxlength="300"></textarea>
-            <div class="form-row">
-              <button class="btn primary" type="submit">Kirim Komentar</button>
-            </div>
-          </form>
-          <div id="commentsList" class="comments-list" aria-live="polite"></div>
-        </div>
+      <div class="container comments-wrap glass section-pad">
+        <h2>Tinggalkan Jejak (Komentar)</h2>
+        <form id="commentForm" class="form" autocomplete="off">
+          <div class="form-row">
+            <input id="cName" class="input" type="text" placeholder="Username" required maxlength="32" />
+          </div>
+          <textarea id="cMsg" class="input" placeholder="Isi pesanmu di sini..." required maxlength="300"></textarea>
+          <div class="form-row">
+            <button class="btn primary" type="submit">Kirim Komentar</button>
+          </div>
+        </form>
+        <div id="commentsList" class="comments-list" aria-live="polite"></div>
       </div>
     </section>
   </main>
 
-  <!-- hidden secret login anchor -->
-  <div id="stillHere">still here?</div>
+  <!-- secret login trigger — benar2 di PALING BAWAH -->
+  <button id="stillHere" class="stillhere">still here?</button>
 
-  <!-- questions modal -->
+  <!-- modal Q&A -->
   <div class="modal-backdrop" id="modalBackdrop">
-    <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal glass" role="dialog" aria-modal="true">
       <h3 id="modalTitle">…</h3>
-      <div id="modalBody"></div>
+      <div id="modalBody" class="muted"></div>
       <div class="modal-actions">
         <button id="modalNo" class="btn">Tidak</button>
         <button id="modalYes" class="btn primary">Iya</button>
@@ -190,18 +201,18 @@
     </div>
   </div>
 
-  <!-- login modal -->
+  <!-- modal login -->
   <div class="modal-backdrop" id="loginBackdrop">
-    <div class="modal">
+    <div class="modal glass">
       <h3>Login Admin</h3>
-      <div class="modal-login">
-        <input id="loginUser" class="input" placeholder="Username" />
-        <input id="loginPass" type="password" class="input" placeholder="Password" />
+      <div class="login-body">
+        <input id="loginUser" class="input" placeholder="Username"/>
+        <input id="loginPass" type="password" class="input" placeholder="Password"/>
         <div class="modal-actions">
           <button id="loginCancel" class="btn">Batal</button>
           <button id="loginSubmit" class="btn primary">Masuk</button>
         </div>
-        <div id="loginMsg" class="login-msg"></div>
+        <div id="loginMsg" class="login-msg muted"></div>
       </div>
     </div>
   </div>
