@@ -4,13 +4,50 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Portofolio — Muhammad Keyzan Alhaarith</title>
-  <meta name="description" content="Portofolio iOS aesthetic — DKV, Video, Foto, Desain" />
+
+  <!-- =====================================================================================
+       META + SEO (biar gampang kebaca Ringkasan AI Google)
+       ===================================================================================== -->
+  <meta name="description" content="Portofolio iOS aesthetic — Muhammad Keyzan Alhaarith. Siswa SMKN 1 Kota Jambi, OSIS Sekbid 3 (Humas). Aktif DKV, Video, Foto, Desain, dan membuat konten video." />
+  <meta name="theme-color" content="#0b0c0f" />
+  <meta property="og:title" content="Portofolio — Muhammad Keyzan Alhaarith" />
+  <meta property="og:description" content="SMKN 1 Kota Jambi — OSIS Sekbid 3 (Humas). DKV, Video, Foto, Desain." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="image/about-you.jpeg" />
+  <meta property="og:url" content="/" />
+
+  <!-- JSON-LD schema Person (buat Ringkasan AI) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Muhammad Keyzan Alhaarith",
+    "alternateName": "Keyzan Alhaarith",
+    "jobTitle": "OSIS Sekbid 3 (Humas)",
+    "affiliation": {
+      "@type": "EducationalOrganization",
+      "name": "SMKN 1 Kota Jambi"
+    },
+    "knowsAbout": ["DKV", "Video Editing", "Photography", "Desain"],
+    "description": "Siswa SMKN 1 Kota Jambi, menjabat sebagai OSIS Sekbid 3 (Humas). Aktif membuat & mengunggah video.",
+    "url": "/",
+    "sameAs": [
+      "https://instagram.com/keyzan.alharist",
+      "https://tiktok.com/@keyzan.alharist"
+    ]
+  }
+  </script>
+
+  <!-- =====================================================================================
+       STYLES
+       ===================================================================================== -->
   <style>
     :root{
       --bg:#0b0c0f; --text:#eaeef5; --muted:#9aa3b2; --accent:#0a84ff;
       --card:rgba(255,255,255,.06); --border:rgba(255,255,255,.10);
       --radius:24px; --blur:18px;
       --shadow:0 20px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
+      --glass:rgba(255,255,255,.08);
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
@@ -24,20 +61,48 @@
     }
     a{color:inherit;text-decoration:none}
 
-    .snapper{height:100vh;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
-    .panel{height:100vh;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:clamp(16px,4vw,48px);overflow:hidden}
+    /* =====================================================================================
+       LAYOUT (scroll snap full screen)
+       ===================================================================================== */
+    .snapper{
+      height:100vh;
+      overflow-y:auto;
+      scroll-snap-type:y mandatory;
+      scroll-behavior:smooth;
+      -webkit-overflow-scrolling:touch;
+    }
+    @supports (height: 100svh){
+      .snapper{ height:100svh; }
+      .panel{ height:100svh; }
+    }
+    .panel{
+      height:100vh;
+      scroll-snap-align:start;
+      display:flex;align-items:center;justify-content:center;
+      padding:clamp(16px,4vw,48px);
+      overflow:hidden;
+    }
     .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);backdrop-filter:blur(var(--blur));box-shadow:var(--shadow)}
     .container{width:min(1200px,92vw);margin:0 auto}
 
-    .statusbar{position:fixed;top:max(12px,env(safe-area-inset-top));left:12px;z-index:100;padding:8px 12px;border-radius:20px;background:rgba(255,255,255,.08);display:flex;gap:10px;font-size:13px;font-weight:600}
+    /* status mini */
+    .statusbar{
+      position:fixed;top:max(12px,env(safe-area-inset-top));left:12px;z-index:100;
+      padding:8px 12px;border-radius:20px;background:var(--glass);
+      display:flex;gap:10px;font-size:13px;font-weight:600
+    }
 
+    /* =====================================================================================
+       HERO
+       ===================================================================================== */
     .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(16px,3vw,40px);align-items:center}
     .hero .copy{max-width:600px}
     .small{font-size:14px;color:var(--muted);margin-bottom:8px}
     .title{font-size:clamp(28px,5vw,56px);line-height:1.08;margin:6px 0 10px;font-weight:700;letter-spacing:-0.02em}
     .title b{display:block;font-weight:800;letter-spacing:-0.025em;margin-bottom:2px}
-    .handle{display:inline-flex;padding:8px 14px;background:rgba(255,255,255,.08);border-radius:999px;border:1px solid var(--border);margin:6px 6px 0 0;font-size:14px}
+    .handle{display:inline-flex;padding:8px 14px;background:var(--glass);border-radius:999px;border:1px solid var(--border);margin:6px 6px 0 0;font-size:14px}
 
+    /* iPhone mockup */
     .phone{width:clamp(220px,30vw,300px);aspect-ratio:9/19.5;border-radius:38px;padding:14px;background:#111;position:relative;border:1px solid rgba(255,255,255,.15);box-shadow:0 20px 60px rgba(0,0,0,.65);margin-inline:auto}
     .notch{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:110px;height:24px;background:#000;border-radius:12px}
     .screen{position:absolute;inset:14px;border-radius:28px;overflow:hidden;background:#000}
@@ -47,6 +112,7 @@
     .media-player{width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000}
     .media-player video{width:100%;height:100%;object-fit:cover;display:block}
 
+    /* sections */
     h2{font-size:clamp(20px,2.8vw,32px);margin-bottom:12px}
     .muted{color:var(--muted)}
     .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
@@ -63,10 +129,12 @@
     .btn.primary{background:#0a84ff;color:#fff}
     .btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
 
+    /* dots nav */
     .dots{position:fixed;right:12px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:90}
     .dots a{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.3);display:block}
     .dots a.active{background:var(--accent)}
 
+    /* comments */
     .form{display:flex;flex-direction:column;gap:12px}
     .form-row{display:flex;gap:12px;flex-wrap:wrap}
     .input{flex:1;min-width:220px;padding:12px 14px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text)}
@@ -76,12 +144,23 @@
     .comment{padding:12px 14px;border-radius:16px;border:1px solid var(--border);background:rgba(255,255,255,.06)}
     .meta{font-size:13px;color:var(--muted);margin-bottom:4px}
 
-    /* Music Player (dock & minimize improved) */
-    .music-wrap{position:fixed;top:24px;right:12px;z-index:120;transition:transform .25s ease, bottom .25s ease}
-    .player{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:18px;border:1px solid var(--border);background:rgba(255,255,255,.08);backdrop-filter:blur(16px);box-shadow:var(--shadow);min-width:280px;max-width:86vw}
+    /* =====================================================================================
+       Music Player (dock & minimize) — disetel supaya rapi di HP
+       ===================================================================================== */
+    .music-wrap{
+      position:fixed;top:24px;right:12px;z-index:120;
+      transition:transform .25s ease, bottom .25s ease, left .25s ease, right .25s ease;
+    }
+    .player{
+      display:flex;align-items:center;gap:12px;
+      padding:10px 12px;border-radius:18px;border:1px solid var(--border);
+      background:var(--glass);backdrop-filter:blur(16px);box-shadow:var(--shadow);
+      min-width:280px;max-width:86vw
+    }
     .cover{width:52px;height:52px;border-radius:10px;background:#222;object-fit:cover}
-    .meta-title{font-weight:700;font-size:14px;line-height:1.1;display:none} /* hide track name as requested */
-    .meta-artist{font-size:12px;color:var(--muted);display:none} /* hide artist as requested */
+    /* Hide title/artist sesuai request */
+    .meta-title{font-weight:700;font-size:14px;line-height:1.1;display:none}
+    .meta-artist{font-size:12px;color:var(--muted);display:none}
     .pp{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:#fff1;display:grid;place-items:center;cursor:pointer}
     .bar{display:flex;align-items:center;gap:8px;width:min(46vw,300px)}
     .seek{appearance:none;width:100%;height:6px;border-radius:6px;background:rgba(255,255,255,.25);outline:none}
@@ -91,19 +170,24 @@
     .vol::-webkit-slider-thumb{appearance:none;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid #000}
     .dock-toggle{margin-left:6px;width:36px;height:36px;border-radius:10px;border:1px solid var(--border);background:#fff1;cursor:pointer;display:grid;place-items:center;font-weight:700}
 
-    .music-wrap.mini{transform:translateX(calc(100% - 56px))} /* leave toggle visible */
+    /* Minimized: hanya sisakan cover + tombol toggle supaya gak ganggu konten (khusus HP rapi) */
+    .music-wrap.mini{transform:translateX(calc(100% - 56px))}
     .music-wrap.mini .bar,
     .music-wrap.mini .meta-title,
     .music-wrap.mini .meta-artist,
-    .music-wrap.mini .vol{display:none}
+    .music-wrap.mini .vol,
+    .music-wrap.mini #prevBtn,
+    .music-wrap.mini #nextBtn,
+    .music-wrap.mini #shuffleBtn,
+    .music-wrap.mini #repeatBtn { display:none }
     .music-wrap.mini .player{min-width:auto;padding:8px}
     .music-wrap.mini .cover{width:40px;height:40px}
 
-    /* playlist buttons row */
+    /* playlist buttons row (kecil, tanpa judul lagu) */
     .playlist-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
     .track-btn{padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.04);cursor:pointer;font-size:13px}
 
-    /* admin login modal & secret questions */
+    /* modal (login admin tersembunyi) */
     .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:200}
     .modal{background:var(--card);border-radius:12px;padding:18px;max-width:420px;width:92%;border:1px solid var(--border)}
     .modal h3{margin-bottom:8px}
@@ -113,16 +197,21 @@
     /* hidden "still here?" anchor */
     #stillHere{position:fixed;left:12px;bottom:8px;color:var(--muted);cursor:pointer;z-index:100;font-size:13px}
 
-    /* responsive adjustments */
+    /* =====================================================================================
+       RESPONSIVE
+       ===================================================================================== */
+    @media (max-width:1200px){
+      .bar{width:44vw}
+    }
     @media (max-width:1024px){
       .hero{grid-template-columns:1fr}
       .hero .copy{order:2}
       .phone{order:1;margin-top:8px}
       .media-player{height:clamp(180px,34vh,360px)}
-      .music-wrap{left:12px;right:auto}
+      .music-wrap{left:12px;right:auto} /* pindah ke kiri di tablet/HP biar gak nutup dots */
     }
     @media (max-width:640px){
-      /* push hero down so mockup not cropped by statusbar/player */
+      /* dorong hero ke bawah supaya mockup tidak ketutup statusbar/music */
       #hero.panel{align-items:flex-start;padding-top:calc(108px + env(safe-area-inset-top));}
       .statusbar{left:8px;font-size:12px}
       .dots{right:8px}
@@ -131,8 +220,18 @@
       .player{min-width:220px;max-width:92vw}
       .bar{width:46vw}
     }
+
+    /* kecilin gutter khusus layar super mungil */
+    @media (max-width:360px){
+      .player{gap:8px}
+      .pp{width:34px;height:34px}
+      .dock-toggle{width:32px;height:32px}
+    }
   </style>
 
+  <!-- =====================================================================================
+       LIBS
+       ===================================================================================== -->
   <!-- CryptoJS (sha256) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <!-- Firebase compat -->
@@ -140,18 +239,23 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 </head>
 <body>
+  <!-- =====================================================================================
+       STATUS BAR
+       ===================================================================================== -->
   <div class="statusbar"><div id="clock">00:00</div></div>
 
-  <!-- Music player (dock) -->
+  <!-- =====================================================================================
+       MUSIC PLAYER (dock)
+       ===================================================================================== -->
   <div class="music-wrap" id="musicDock" aria-hidden="false">
-    <div class="player card">
+    <div class="player card" aria-label="Pemutar Musik">
       <img class="cover" id="coverImg" src="image/about-you.jpeg" alt="cover"/>
       <div style="display:flex;flex-direction:column;gap:4px;min-width:120px">
         <div class="meta-title" id="metaTitle">—</div>
         <div class="meta-artist" id="metaArtist">—</div>
         <div class="bar" aria-hidden="true">
           <span class="time" id="cur">0:00</span>
-          <input id="seek" class="seek" type="range" value="0" min="0" max="100" step="0.1"/>
+          <input id="seek" class="seek" type="range" value="0" min="0" max="100" step="0.1" aria-label="Seek"/>
           <span class="time" id="dur">0:00</span>
         </div>
         <div class="playlist-row" id="playlistRow" aria-hidden="true"></div>
@@ -159,24 +263,26 @@
 
       <div style="display:flex;flex-direction:column;gap:8px;align-items:center">
         <div style="display:flex;gap:8px;align-items:center">
-          <button id="prevBtn" class="pp" title="Prev">⏮</button>
-          <button id="pp" class="pp" title="Play/Pause">▶</button>
-          <button id="nextBtn" class="pp" title="Next">⏭</button>
+          <button id="prevBtn" class="pp" title="Sebelumnya" aria-label="Sebelumnya">⏮</button>
+          <button id="pp" class="pp" title="Play/Pause" aria-label="Play/Pause">▶</button>
+          <button id="nextBtn" class="pp" title="Berikutnya" aria-label="Berikutnya">⏭</button>
         </div>
         <div style="display:flex;gap:6px;align-items:center">
-          <button id="shuffleBtn" class="dock-toggle" title="Shuffle">🔀</button>
-          <button id="repeatBtn" class="dock-toggle" title="Repeat">🔁</button>
+          <button id="shuffleBtn" class="dock-toggle" title="Acak" aria-label="Acak">🔀</button>
+          <button id="repeatBtn" class="dock-toggle" title="Ulangi" aria-label="Ulangi">🔁</button>
         </div>
       </div>
 
-      <input id="vol" class="vol" type="range" min="0" max="1" step="0.01" value="0.9" style="margin-left:12px"/>
-      <button id="toggleDock" class="dock-toggle" title="Minimize/Restore">◀</button>
+      <input id="vol" class="vol" type="range" min="0" max="1" step="0.01" value="0.9" style="margin-left:12px" aria-label="Volume"/>
+      <button id="toggleDock" class="dock-toggle" title="Minimize/Restore" aria-label="Minimize/Restore">◀</button>
 
       <audio id="audio" preload="metadata"></audio>
     </div>
   </div>
 
-  <!-- dots -->
+  <!-- =====================================================================================
+       DOTS NAV
+       ===================================================================================== -->
   <nav class="dots" id="dots" aria-label="navigasi cepat">
     <a href="#hero" data-target="hero" class="active" aria-label="Hero"></a>
     <a href="#skills" data-target="skills" aria-label="Skills"></a>
@@ -187,7 +293,11 @@
     <a href="#comments" data-target="comments" aria-label="Komentar"></a>
   </nav>
 
+  <!-- =====================================================================================
+       PAGES
+       ===================================================================================== -->
   <main class="snapper">
+    <!-- HERO -->
     <section id="hero" class="panel">
       <div class="hero container">
         <div class="copy">
@@ -206,13 +316,14 @@
           </div>
         </div>
 
-        <div class="phone">
+        <div class="phone" aria-label="Mockup iPhone">
           <div class="notch"></div>
           <div class="screen"><img src="image/isi%20mockup%20iphone.jpeg" alt="Mockup iPhone"/></div>
         </div>
       </div>
     </section>
 
+    <!-- SKILLS -->
     <section id="skills" class="panel">
       <div class="container card" style="padding:24px">
         <h2>Keahlian DKV</h2>
@@ -224,6 +335,7 @@
       </div>
     </section>
 
+    <!-- SHORTCUTS -->
     <section id="shortcuts" class="panel">
       <div class="container card" style="padding:24px">
         <h2>Shortcut</h2>
@@ -236,6 +348,7 @@
       </div>
     </section>
 
+    <!-- PROJECTS -->
     <section id="projects" class="panel">
       <div class="container card" style="padding:24px">
         <h2>Proyek</h2>
@@ -246,6 +359,7 @@
       </div>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact" class="panel">
       <div class="container card" style="padding:24px">
         <h2>Kontak</h2>
@@ -256,6 +370,7 @@
       </div>
     </section>
 
+    <!-- EXPERIENCE (3 kolom) -->
     <section id="experience" class="panel">
       <div class="container card" style="padding:24px">
         <h2>Pengalaman</h2>
@@ -267,6 +382,7 @@
       </div>
     </section>
 
+    <!-- COMMENTS (Firebase global) -->
     <section id="comments" class="panel">
       <div class="container comments-wrap">
         <div class="card" style="padding:20px">
@@ -286,10 +402,14 @@
     </section>
   </main>
 
-  <!-- hidden secret login anchor -->
+  <!-- =====================================================================================
+       SECRET LOGIN ANCHOR
+       ===================================================================================== -->
   <div id="stillHere">still here?</div>
 
-  <!-- modal for secret questions & login -->
+  <!-- =====================================================================================
+       MODALS
+       ===================================================================================== -->
   <div class="modal-backdrop" id="modalBackdrop">
     <div class="modal" id="modalBox" role="dialog" aria-modal="true">
       <h3 id="modalTitle">…</h3>
@@ -301,13 +421,12 @@
     </div>
   </div>
 
-  <!-- admin login form (inside modal after questions) -->
   <div class="modal-backdrop" id="loginBackdrop" style="display:none">
     <div class="modal">
       <h3>Login Admin</h3>
       <div style="display:flex;flex-direction:column;gap:8px">
-        <input id="loginUser" class="input" placeholder="Username"/>
-        <input id="loginPass" type="password" class="input" placeholder="Password"/>
+        <input id="loginUser" class="input" placeholder="Username" autocomplete="username"/>
+        <input id="loginPass" type="password" class="input" placeholder="Password" autocomplete="current-password"/>
         <div style="display:flex;gap:8px;justify-content:flex-end">
           <button id="loginCancel" class="btn">Batal</button>
           <button id="loginSubmit" class="btn primary">Masuk</button>
@@ -317,8 +436,13 @@
     </div>
   </div>
 
+  <!-- =====================================================================================
+       SCRIPTS
+       ===================================================================================== -->
   <script>
-    // ---------- CLOCK ----------
+    /* =========================================================
+       CLOCK
+       ========================================================= */
     function updateClock(){
       const now=new Date();
       const opts={hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Jakarta'};
@@ -327,7 +451,9 @@
     }
     updateClock(); setInterval(updateClock,10000);
 
-    // ---------- SCROLL DOTS ----------
+    /* =========================================================
+       SCROLL DOTS
+       ========================================================= */
     const snapper=document.querySelector('.snapper');
     const dots=[...document.querySelectorAll('#dots a')];
     const panels=[...document.querySelectorAll('.panel')];
@@ -340,9 +466,15 @@
       });
     },{root:snapper,threshold:0.55});
     panels.forEach(p=>io.observe(p));
-    dots.forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const t=document.getElementById(a.dataset.target); if(t) snapper.scrollTo({top:t.offsetTop,behavior:'smooth'});}));
+    dots.forEach(a=>a.addEventListener('click',e=>{
+      e.preventDefault();
+      const t=document.getElementById(a.dataset.target);
+      if(t) snapper.scrollTo({top:t.offsetTop,behavior:'smooth'});
+    }));
 
-    // ---------- PLAYLIST & PLAYER ----------
+    /* =========================================================
+       MUSIC PLAYER + PLAYLIST (6 lagu, judul disembunyikan)
+       ========================================================= */
     const audio = document.getElementById('audio');
     const ppBtn = document.querySelector('#pp');
     const seek = document.getElementById('seek');
@@ -358,7 +490,7 @@
     const musicDock = document.getElementById('musicDock');
     const playlistRow = document.getElementById('playlistRow');
 
-    // playlist: ganti nama file sesuai folder audio/
+    // playlist (ganti file sesuai folder kamu)
     const playlist = [
       {id:1, title:'About You', src:'audio/track1.mp3', cover:'image/about-you.jpeg'},
       {id:2, title:'Track 2', src:'audio/track2.mp3', cover:'image/track2.jpg'},
@@ -367,21 +499,23 @@
       {id:5, title:'Track 5', src:'audio/track5.mp3', cover:'image/track5.jpg'},
       {id:6, title:'Track 6', src:'audio/track6.mp3', cover:'image/track6.jpg'}
     ];
+
+    // state
     let idx = 0;
-    let shuffle = false;
-    let repeatMode = 0; // 0 = off, 1 = all, 2 = one
+    let shuffle = (localStorage.getItem('mp_shuffle') === '1');
+    let repeatMode = Number(localStorage.getItem('mp_repeat') || 0); // 0=off 1=all 2=one
     let shuffledOrder = [];
+
+    function fmt(s){ if(!isFinite(s)) return '0:00'; const m=Math.floor(s/60); const ss=Math.floor(s%60).toString().padStart(2,'0'); return `${m}:${ss}`; }
 
     function loadTrack(i){
       if(i < 0) i = playlist.length - 1;
       if(i >= playlist.length) i = 0;
       idx = i;
       audio.src = playlist[idx].src;
-      // cover change
       coverImg.src = playlist[idx].cover || 'image/about-you.jpeg';
-      // hide title/artist (as requested) so we keep meta but hide visually
-      // metaTitle.textContent = playlist[idx].title;
-      // metaArtist.textContent = '';
+      // simpan current index (biar balik lagi setelah refresh)
+      localStorage.setItem('mp_idx', String(idx));
     }
 
     function playPause(){
@@ -389,14 +523,22 @@
       else { audio.pause(); ppBtn.textContent='▶'; }
     }
 
+    function generateShuffle(){
+      shuffledOrder = playlist.map((_,i)=>i).filter(i=>i!==idx);
+      for(let i=shuffledOrder.length-1;i>0;i--){
+        const j = Math.floor(Math.random()*(i+1));
+        [shuffledOrder[i],shuffledOrder[j]] = [shuffledOrder[j],shuffledOrder[i]];
+      }
+    }
+
     function nextTrack(){
       if(shuffle){
         if(shuffledOrder.length === 0) generateShuffle();
-        const nx = shuffledOrder.shift();
-        idx = nx;
+        idx = shuffledOrder.shift();
       } else {
         idx++;
-        if(idx >= playlist.length) idx = (repeatMode === 1) ? 0 : playlist.length-1;
+        if(idx >= playlist.length)
+          idx = (repeatMode === 1) ? 0 : playlist.length-1;
       }
       loadTrack(idx);
       audio.play();
@@ -412,54 +554,61 @@
       ppBtn.textContent='⏸';
     }
 
-    function generateShuffle(){
-      shuffledOrder = playlist.map((_,i)=>i).filter(i=>i!==idx);
-      // fisher-yates
-      for(let i=shuffledOrder.length-1;i>0;i--){
-        const j = Math.floor(Math.random()*(i+1));
-        [shuffledOrder[i],shuffledOrder[j]] = [shuffledOrder[j],shuffledOrder[i]];
-      }
-    }
-
-    // set up playlist UI small buttons
     function renderPlaylistRow(){
       playlistRow.innerHTML='';
       playlist.forEach((t,i)=>{
         const btn = document.createElement('button');
         btn.className='track-btn';
-        btn.textContent = `Track ${i+1}`;
+        btn.textContent = `Track ${i+1}`;     // tanpa nama lagu
         btn.onclick = ()=>{ loadTrack(i); audio.play(); ppBtn.textContent='⏸'; };
         playlistRow.appendChild(btn);
       });
     }
 
     // events
-    audio.addEventListener('loadedmetadata', ()=>{ durEl.textContent = fmt(audio.duration); seek.max = Math.max(1,audio.duration||1); });
-    audio.addEventListener('timeupdate', ()=>{ curEl.textContent = fmt(audio.currentTime); if(!seek.dragging) seek.value = audio.currentTime; });
-    audio.addEventListener('ended', ()=>{
-      if(repeatMode === 2){ audio.currentTime = 0; audio.play(); return; }
-      if(shuffle && shuffledOrder.length>0){ nextTrack(); return; }
-      if(repeatMode === 1){ nextTrack(); } else {
-        // stop
-        ppBtn.textContent='▶';
-      }
+    audio.addEventListener('loadedmetadata', ()=>{
+      durEl.textContent = fmt(audio.duration);
+      seek.max = Math.max(1,audio.duration||1);
     });
+    audio.addEventListener('timeupdate', ()=>{
+      curEl.textContent = fmt(audio.currentTime);
+      if(!seek.dragging) seek.value = audio.currentTime;
+    });
+    audio.addEventListener('ended', ()=>{
+      if(repeatMode === 2){ audio.currentTime = 0; audio.play(); return; } // repeat one
+      if(shuffle && shuffledOrder.length>0){ nextTrack(); return; }
+      if(repeatMode === 1){ nextTrack(); } else { ppBtn.textContent='▶'; } // repeat all / off
+    });
+
     seek.addEventListener('input', ()=>{ seek.dragging=true; });
     seek.addEventListener('change', ()=>{ audio.currentTime = Number(seek.value)||0; seek.dragging=false; });
-    vol.addEventListener('input', ()=>{ audio.volume = Number(vol.value); });
+
+    // restore/simpan volume
+    const savedVol = Number(localStorage.getItem('mp_vol'));
+    if(!Number.isNaN(savedVol)) { audio.volume = savedVol; vol.value = savedVol; }
+    vol.addEventListener('input', ()=>{ audio.volume = Number(vol.value); localStorage.setItem('mp_vol', String(audio.volume)); });
+
     ppBtn.addEventListener('click', playPause);
     prevBtn.addEventListener('click', prevTrack);
     nextBtn.addEventListener('click', nextTrack);
+
     shuffleBtn.addEventListener('click', ()=>{
       shuffle = !shuffle;
       shuffleBtn.style.background = shuffle ? 'rgba(10,132,255,0.18)' : '';
+      localStorage.setItem('mp_shuffle', shuffle ? '1':'0');
       if(shuffle) generateShuffle();
     });
+    // set initial visual for shuffle
+    if(shuffle) shuffleBtn.style.background = 'rgba(10,132,255,0.18)';
+
     repeatBtn.addEventListener('click', ()=>{
       repeatMode = (repeatMode+1)%3;
+      localStorage.setItem('mp_repeat', String(repeatMode));
       repeatBtn.style.background = repeatMode ? 'rgba(10,132,255,0.18)' : '';
       repeatBtn.title = repeatMode===0 ? 'Repeat off' : repeatMode===1 ? 'Repeat all' : 'Repeat one';
+      repeatBtn.setAttribute('aria-label', repeatBtn.title);
     });
+    if(repeatMode) repeatBtn.style.background = 'rgba(10,132,255,0.18)';
 
     // dock toggle
     toggleDockBtn.addEventListener('click', ()=>{
@@ -467,14 +616,14 @@
       toggleDockBtn.textContent = musicDock.classList.contains('mini') ? '▶' : '◀';
     });
 
-    // helper
-    function fmt(s){ if(!isFinite(s)) return '0:00'; const m=Math.floor(s/60); const ss=Math.floor(s%60).toString().padStart(2,'0'); return `${m}:${ss}`; }
-
-    // init
-    loadTrack(0);
+    // init player
+    const savedIdx = Number(localStorage.getItem('mp_idx'));
+    loadTrack(Number.isFinite(savedIdx) ? savedIdx : 0);
     renderPlaylistRow();
 
-    // ---------- FIREBASE (comments) ----------
+    /* =========================================================
+       FIREBASE (komentar + reply admin)
+       ========================================================= */
     const firebaseConfig = {
       apiKey: "AIzaSyD_9VpfQdqoTNwwF8fYY37OaQ42Ag6ImEE",
       authDomain: "call-3de3b.firebaseapp.com",
@@ -492,10 +641,9 @@
     const msgEl = document.getElementById('cMsg');
     const commentsList = document.getElementById('commentsList');
 
-    // admin state
     let isAdmin = (localStorage.getItem('isAdmin') === '1');
 
-    function appendComment(doc){
+    function renderOneComment(doc){
       const d = doc.data();
       const wrap = document.createElement('div'); wrap.className='comment';
       const meta = document.createElement('div'); meta.className='meta';
@@ -504,17 +652,29 @@
       wrap.appendChild(meta);
       wrap.appendChild(body);
 
-      // show reply if exists
+      // tampilkan balasan (kalau ada)
       if(d.reply){
-        const rep = document.createElement('div'); rep.style.marginTop='8px'; rep.style.padding='10px'; rep.style.borderRadius='10px'; rep.style.background='rgba(0,0,0,.12)'; rep.innerHTML = `<strong>Owner Reply:</strong><div style="margin-top:6px">${d.reply}</div>`;
+        const rep = document.createElement('div');
+        rep.style.marginTop='8px';
+        rep.style.padding='10px';
+        rep.style.borderRadius='10px';
+        rep.style.background='rgba(0,0,0,.12)';
+        rep.innerHTML = `<strong>Owner Reply:</strong><div style="margin-top:6px">${d.reply}</div>`;
         wrap.appendChild(rep);
       }
 
-      // reply button only for admin
+      // tombol balas khusus admin
       if(isAdmin){
-        const replyRow = document.createElement('div'); replyRow.style.marginTop='8px'; replyRow.style.display='flex'; replyRow.style.gap='8px';
-        const input = document.createElement('input'); input.className='input'; input.placeholder='Tulis balasan...';
-        const btn = document.createElement('button'); btn.className='btn primary'; btn.textContent='Balas';
+        const replyRow = document.createElement('div');
+        replyRow.style.marginTop='8px';
+        replyRow.style.display='flex';
+        replyRow.style.gap='8px';
+        const input = document.createElement('input');
+        input.className='input';
+        input.placeholder='Tulis balasan...';
+        const btn = document.createElement('button');
+        btn.className='btn primary';
+        btn.textContent='Balas';
         btn.onclick = async ()=>{
           const replyText = input.value.trim();
           if(!replyText) return alert('Isi balasan dulu');
@@ -529,7 +689,7 @@
 
     db.collection('comments').orderBy('ts','asc').onSnapshot(snap=>{
       commentsList.innerHTML='';
-      snap.forEach(d=> appendComment(d));
+      snap.forEach(d=> renderOneComment(d));
       commentsList.scrollTop = commentsList.scrollHeight;
     });
 
@@ -542,13 +702,16 @@
       formEl.reset();
     });
 
-    // ---------- SECRET QUESTIONS & HIDDEN LOGIN (with SHA-256 check) ----------
+    /* =========================================================
+       SECRET QUESTIONS & LOGIN ADMIN (hash SHA-256)
+       ========================================================= */
     const stillHere = document.getElementById('stillHere');
     const modalBackdrop = document.getElementById('modalBackdrop');
     const modalTitle = document.getElementById('modalTitle');
     const modalBody = document.getElementById('modalBody');
     const modalYes = document.getElementById('modalYes');
     const modalNo = document.getElementById('modalNo');
+
     const loginBackdrop = document.getElementById('loginBackdrop');
     const loginUser = document.getElementById('loginUser');
     const loginPass = document.getElementById('loginPass');
@@ -556,7 +719,7 @@
     const loginCancel = document.getElementById('loginCancel');
     const loginMsg = document.getElementById('loginMsg');
 
-    // questions pool (you requested 100 -> but we pick 5 random each session)
+    // 100+ pertanyaan jebakan (dipilih 5 random)
     const questionsPool = [
       "Eh ini bukan tombol apa2 loh udah balik aja",
       "Lah kok masih dipencet?",
@@ -565,10 +728,111 @@
       "Dey?!, ku cakap jangan di pencet laa",
       "Kamu yakin mau lanjut? (ga ada apa2 beneran)",
       "Masih mau? balik aja deh",
-      "Kalo kamu biar aku tau, ketik iya.",
+      "Serius nih? Ini beneran bukan tombol apa2.",
       "Kok kepo sih, balik aja",
       "Iya berhenti, ini beneran ga ada apa2",
-      // ... bisa kamu tambahkan lebih banyak, total 100 jika mau
+      "Tenang... nggak ada rahasia di sini.",
+      "Tombol ini fungsinya cuma bikin kamu penasaran.",
+      "Yakin 100% mau terusin?",
+      "Beneran nih, ada jalan pulang di atas 😄",
+      "Tips: kembali ke atas dan nikmati musiknya aja.",
+      "Kamu masih di sini? Hebat juga 🙃",
+      "Jangan salahin aku kalo ga ada apa-apa loh.",
+      "Lanjut? (oke/tidak)",
+      "Balik kanan, grak! (atau… lanjut?)",
+      "Ini cuma tes keingintahuan, jan marah ya.",
+      "Beneran mau? Klik OK kalo nekat.",
+      "Stop dulu. Minum air dulu. Lanjut?",
+      "Tentukan nasibmu: OK atau TIDAK?",
+      "Jangan pencet… eh dipencet wkwk",
+      "Tanya hati kecil: lanjut atau tidak?",
+      "Nih pertanyaan jebakan #1",
+      "Nih pertanyaan jebakan #2",
+      "Nih pertanyaan jebakan #3",
+      "Nih pertanyaan jebakan #4",
+      "Nih pertanyaan jebakan #5",
+      "Oke, kamu masih penasaran. Lanjut?",
+      "Pilihan bijak: kembali 😅",
+      "Kamu udah 1% lagi dari rahasia… bohong deng",
+      "Sebenarnya ini cuma mini-game",
+      "Masih klik juga? Hadeh",
+      "Klik saja kalau berani",
+      "Apakah kamu admin? (jangan jawab)",
+      "Dilarang masuk kecuali senyum 😁",
+      "Ini bukan pintu masuk (katanya…)",
+      "Kepo level Dewa detected",
+      "Oke deh, pilihanmu dihargai",
+      "Kamu sabar juga, lanjut?",
+      "Kalau salah tekan, pilih 'tidak' ya",
+      "Beneran terus? Awas bosan",
+      "Ssst… nggak ada apa-apa kok",
+      "Aduh, kok ngotot sih",
+      "Yakin mau lanjut? (terakhir katanya…) ",
+      "Hehe, bercanda. Masih mau?",
+      "OK terakhir beneran",
+      "Kalo kamu yakin, pilih OK",
+      "Kalau nggak yakin, pilih Tidak",
+      "Serius, ini terakhir pra-login",
+      "Kamu menang sabar award 2025",
+      "Bisa jadi ini cuma ilusi",
+      "Masih ada empat langkah",
+      "Tinggal tiga langkah",
+      "Dua langkah lagi",
+      "Satu langkah lagi? (yah bohong)",
+      "Jangan tersinggung ya",
+      "Good choice kalau berhenti 😇",
+      "Oke fine… lanjut aja",
+      "Mungkin ini bukan buatmu",
+      "Atau justru memang buatmu?",
+      "Apakah ini jejak admin?",
+      "Kamu baca semua gini? mantap!",
+      "Kalau kamu senyum, pilih OK",
+      "Kalau kamu kaget, pilih Tidak",
+      "Jangan bilang-bilang siapa2 ya",
+      "Kalian jangan lihat ya 🙈",
+      "Masih berminat? (OK/Tidak)",
+      "Pencet OK kalau kamu yakin",
+      "Pencet Tidak kalau ragu",
+      "Beneran akhir dari awal",
+      "Oke lanjut. (atau tidak?)",
+      "Kamu sabar banget. Terakhir?",
+      "Promise: ini beneran hampir selesai",
+      "Mau lanjut? Pilih OK",
+      "Ga jadi? Pilih Tidak",
+      "Sadar diri bukan admin? Balik",
+      "Kalau kamu Keyzan: OK",
+      "Kalau bukan: Tidak",
+      "Rahasia negara (bukan)",
+      "Fakta: ini cuma tes kepo",
+      "Hint: 5 klik OK baru login",
+      "Yuk, klik OK lagi",
+      "Masih kuat? Klik OK",
+      "Capek? Klik Tidak",
+      "Oke beneran last",
+      "Ada 100 pesan kayak gini loh",
+      "Tapi kamu cuma dikasih 5 random",
+      "Sisa 2 lagi nih",
+      "Sisa 1 lagi nih",
+      "Nggak jadi… tambah satu 😜",
+      "Akhirnya… hampir",
+      "Kamu berhasil membaca semuanya",
+      "Admin itu sederhana: baik dan sabar",
+      "Apakah kamu memenuhi syarat?",
+      "OK kalau yakin",
+      "Tidak kalau meragukan",
+      "Masuk? (OK)",
+      "Pulang? (Tidak)",
+      "Serius terakhir banget",
+      "Kalo ini kepencet, ya lanjut",
+      "Kalau enggak, ya udah balik",
+      "Pilihan ada di tanganmu",
+      "OK kuy!",
+      "Tidak juga boleh",
+      "… ini bukan ancaman, jan takut",
+      "Santai, cuma modal senyum",
+      "Halo calon admin yang budiman",
+      "Boleh sih lanjut, asal yakin",
+      "Fix. Klik OK buat lanjut login"
     ];
 
     function pickRandomQuestions(n=5){
@@ -586,7 +850,7 @@
     let secretIndex = 0;
 
     stillHere.addEventListener('click', ()=>{
-      secretQuestions = pickRandomQuestions(5);
+      secretQuestions = pickRandomQuestions(5); // pilih 5 random
       secretIndex = 0;
       showQuestion(secretQuestions[secretIndex]);
     });
@@ -598,6 +862,7 @@
     }
 
     modalNo.addEventListener('click', ()=>{
+      // User memilih "Tidak" -> close, jangan lanjut
       modalBackdrop.style.display = 'none';
     });
 
@@ -606,9 +871,10 @@
       if(secretIndex < secretQuestions.length){
         showQuestion(secretQuestions[secretIndex]);
       } else {
-        // done -> show login modal
+        // selesai 5 pertanyaan -> tampilkan login
         modalBackdrop.style.display = 'none';
         loginBackdrop.style.display = 'flex';
+        loginUser.focus();
       }
     });
 
@@ -616,22 +882,8 @@
       loginBackdrop.style.display = 'none';
     });
 
-    // ADMIN credentials:
-    // IMPORTANT: original credentials (as requested):
-    // username: Keyzzz1
-    // password: Alhaarith123
-    // We store only SHA-256 hash in code.
-    const ADMIN_HASH = "REPLACE_ME_HASH"; // <- will be set below programmatically for you
-
-    // create hash from the known credentials (so you can see how it's derived)
-    // (We do this on load so the exact hash is in code; if you want to hardcode later, replace)
-    const ADMIN_USER_PLAIN = "Keyzzz1";
-    const ADMIN_PASS_PLAIN = "Alhaarith123";
-    const ADMIN_PLAIN_COMBINED = ADMIN_USER_PLAIN + ":" + ADMIN_PASS_PLAIN;
-    const computedHash = CryptoJS.SHA256(ADMIN_PLAIN_COMBINED).toString();
-    // put into ADMIN_HASH variable (so comparison later compares same)
-    // (Note: in real deploy you'd precompute and hardcode the hash. This way it's consistent.)
-    const ADMIN_HASH_FINAL = computedHash;
+    // HASH kredensial: SHA-256("Keyzzz1:Alhaarith123")
+    const ADMIN_HASH_FINAL = "e0a495a5eea47a155bc76370d16bbfd7f3a9d5fff753f1f601f22b7365471024";
 
     loginSubmit.addEventListener('click', ()=>{
       const u = (loginUser.value||'').trim();
@@ -643,13 +895,11 @@
         localStorage.setItem('isAdmin','1');
         loginMsg.style.color = 'lightgreen';
         loginMsg.textContent = 'Login sukses — kamu admin';
-        loginBackdrop.style.display = 'none';
-        // re-render comments to show reply fields
-        // (we already listen to snapshot; setting isAdmin true will cause next snapshot render to include reply inputs)
-        // quick refresh: fetch comments and re-render by forcing local snapshot read
+        setTimeout(()=>{ loginBackdrop.style.display = 'none'; }, 500);
+        // refresh tampilan komentar (biar tombol balas muncul)
         db.collection('comments').orderBy('ts','asc').get().then(snap=>{
           commentsList.innerHTML='';
-          snap.forEach(doc=> { const d = doc.data(); const fakeDoc = { id: doc.id, data: ()=>d }; appendComment(fakeDoc); });
+          snap.forEach(doc=> renderOneComment(doc));
         });
       } else {
         loginMsg.style.color = 'salmon';
@@ -657,48 +907,32 @@
       }
     });
 
-    // fallback: if already logged in, ensure isAdmin true
+    // kalau sudah login sebelumnya
     if(localStorage.getItem('isAdmin') === '1'){ isAdmin = true; }
 
-    // small utility to append comment in admin re-render (same as above)
-    function appendComment(fakeDoc){
-      const d = fakeDoc.data();
-      const wrap = document.createElement('div'); wrap.className='comment';
-      const meta = document.createElement('div'); meta.className='meta';
-      meta.textContent = `@${d.name} • ${d.ts && d.ts.toDate ? d.ts.toDate().toLocaleString('id-ID',{hour12:false}) : ''}`;
-      const body = document.createElement('div'); body.textContent = d.msg;
-      wrap.appendChild(meta);
-      wrap.appendChild(body);
-      if(d.reply){
-        const rep = document.createElement('div'); rep.style.marginTop='8px'; rep.style.padding='10px'; rep.style.borderRadius='10px'; rep.style.background='rgba(0,0,0,.12)'; rep.innerHTML = `<strong>Owner Reply:</strong><div style="margin-top:6px">${d.reply}</div>`;
-        wrap.appendChild(rep);
-      }
-      if(isAdmin){
-        const replyRow = document.createElement('div'); replyRow.style.marginTop='8px'; replyRow.style.display='flex'; replyRow.style.gap='8px';
-        const input = document.createElement('input'); input.className='input'; input.placeholder='Tulis balasan...';
-        const btn = document.createElement('button'); btn.className='btn primary'; btn.textContent='Balas';
-        btn.onclick = async ()=>{ const replyText = input.value.trim(); if(!replyText) return alert('Isi balasan dulu'); await db.collection('comments').doc(fakeDoc.id).update({reply: replyText}); input.value=''; };
-        replyRow.appendChild(input); replyRow.appendChild(btn); wrap.appendChild(replyRow);
-      }
-      commentsList.appendChild(wrap);
-    }
-
-    // ---------- small UX improvements ----------
-    // ensure player not too low on desktop (if it gets pushed)
+    /* =========================================================
+       POSISI PLAYER (biar gak terlalu bawah di HP)
+       ========================================================= */
     function adjustMusicPosition(){
-      // keep it slightly above bottom on small screens if mini
       if(window.innerWidth > 1024){
         musicDock.style.top = '24px';
         musicDock.style.right = '12px';
+        musicDock.style.left = '';
       } else {
         musicDock.style.top = '18px';
-        musicDock.style.right = '12px';
+        musicDock.style.left = '12px';
+        musicDock.style.right = '';
       }
     }
     window.addEventListener('resize', adjustMusicPosition);
     adjustMusicPosition();
 
-    // End of script
+    // optional: pause musik ketika tab disembunyikan (biar irit)
+    document.addEventListener('visibilitychange', ()=>{
+      if(document.hidden && !audio.paused){
+        audio.pause(); ppBtn.textContent='▶';
+      }
+    });
   </script>
 </body>
 </html>
