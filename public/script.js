@@ -46,18 +46,23 @@ var coverImg = $('#coverImg');
 var prevBtn = $('#prevBtn');
 var nextBtn = $('#nextBtn');
 var shuffleBtn = $('#shuffleBtn');
-var toggleDockBtn = $('#toggleDock'); // sekarang ada di controls
+var toggleDockBtn = $('#toggleDock');
 var musicDock = $('#musicDock');
 var metaTitle = $('#metaTitle');
 var metaArtist = $('#metaArtist');
 
+// Encode setiap segmen path agar spasi/karakter spesial aman
+function safe(path) {
+  return path.split('/').map(encodeURIComponent).join('/');
+}
+
 var playlist = [
-  { title: 'About You', artist: 'The 1975', src: 'audio/about-you.mp3', cover: 'image/about-you.jpeg' },
-  { title: 'Måneskin - Beggin'', artist: '', src: 'audio/Måneskin - Beggin.mp3', cover: 'image/Måneskin - Beggin'.jpeg' },
-  { title: 'No. 1 Party Anthem', artist: 'Arctic Monkey', src: 'audio/No. 1 Party Anthem.mp3', cover: 'image/download.jpeg' },
-  { title: 'Track 4', artist: 'Unknown', src: 'audio/track4.mp3', cover: 'image/about-you.jpeg' },
-  { title: 'Track 5', artist: 'Unknown', src: 'audio/track5.mp3', cover: 'image/about-you.jpeg' },
-  { title: 'Track 6', artist: 'Unknown', src: 'audio/track6.mp3', cover: 'image/about-you.jpeg' }
+  { title: "About You", artist: "The 1975", src: "audio/about-you.mp3", cover: "image/about-you.jpeg" },
+  { title: "Måneskin - Beggin'", artist: "Måneskin", src: "audio/Maneskin - Beggin'.mp3", cover: "image/download.jpeg" },
+  { title: "No. 1 Party Anthem", artist: "Arctic Monkeys", src: "audio/No. 1 Party Anthem.mp3", cover: "image/download.jpeg" },
+  { title: "Track 4", artist: "Unknown", src: "audio/track4.mp3", cover: "image/about-you.jpeg" },
+  { title: "Track 5", artist: "Unknown", src: "audio/track5.mp3", cover: "image/about-you.jpeg" },
+  { title: "Track 6", artist: "Unknown", src: "audio/track6.mp3", cover: "image/about-you.jpeg" }
 ];
 
 var idx = 0;
@@ -69,10 +74,10 @@ function loadTrack(i) {
   if (i >= playlist.length) i = 0;
   idx = i;
   var t = playlist[idx];
-  audio.src = t.src;
-  coverImg.src = t.cover || 'image/about-you.jpeg';
-  metaTitle.textContent = t.title;
-  metaArtist.textContent = t.artist;
+  audio.src = safe(t.src);
+  coverImg.src = safe(t.cover || 'image/about-you.jpeg');
+  metaTitle.textContent = t.title || '';
+  metaArtist.textContent = t.artist || '';
 }
 
 function fmt(sec) {
