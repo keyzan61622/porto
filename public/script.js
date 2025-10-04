@@ -53,8 +53,8 @@ var metaArtist = $('#metaArtist');
 
 var playlist = [
   { title: 'About You', artist: 'The 1975', src: 'audio/about-you.mp3', cover: 'image/about-you.jpeg' },
-  { title: 'Track 2', artist: 'Unknown', src: 'audio/track2.mp3', cover: 'image/about-you.jpeg' },
-  { title: 'Track 3', artist: 'Unknown', src: 'audio/track3.mp3', cover: 'image/about-you.jpeg' },
+  { title: 'Måneskin - Beggin'', artist: '', src: 'audio/Måneskin - Beggin.mp3', cover: 'image/Måneskin - Beggin'.jpeg' },
+  { title: 'No. 1 Party Anthem', artist: 'Arctic Monkey', src: 'audio/No. 1 Party Anthem.mp3', cover: 'image/download.jpeg' },
   { title: 'Track 4', artist: 'Unknown', src: 'audio/track4.mp3', cover: 'image/about-you.jpeg' },
   { title: 'Track 5', artist: 'Unknown', src: 'audio/track5.mp3', cover: 'image/about-you.jpeg' },
   { title: 'Track 6', artist: 'Unknown', src: 'audio/track6.mp3', cover: 'image/about-you.jpeg' }
