@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <title>Daftar Proyek — Portfolio</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body{min-height:100vh}
+    .topbar{position:sticky;top:0;z-index:50;margin:16px auto 0;width:min(1200px,92vw)}
+    .back{display:inline-flex;gap:8px;align-items:center;padding:10px 14px;border-radius:14px;border:1px solid var(--glass-border)}
+    .page{width:min(1200px,92vw);margin:16px auto;padding:16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+    .vid-card{padding:12px;display:flex;flex-direction:column;gap:10px}
+    .vid-title{font-weight:700}
+    .ratio{position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000}
+    .ratio iframe,.ratio video{position:absolute;inset:0;width:100%;height:100%;display:block;border:0}
+  </style>
+</head>
+<body>
+  <div class="statusbar glass"><div id="clock">00:00</div></div>
+
+  <div class="topbar">
+    <a class="back glass" href="index.html#projects">← Kembali</a>
+  </div>
+
+  <main class="page card glass">
+    <h2 id="pageTitle">Proyek</h2>
+    <div id="videoGrid" class="grid"></div>
+    <p class="muted" style="margin-top:12px">
+      Tip: Video besar dihosting via <b>Cloudflare Stream</b>. Ganti <code>uid</code> di data di bawah dengan UID videomu.
+    </p>
+  </main>
+
+  <script>
+    function updateClock(){
+      const el=document.getElementById('clock');
+      if(!el) return;
+      el.textContent=new Intl.DateTimeFormat('id-ID',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Jakarta'}).format(new Date());
+    } updateClock(); setInterval(updateClock,10000);
+
+    // ======= DATA PROJECTS =======
+    const DATA = {
+      resolve: {
+        title: 'DaVinci Resolve — Color Grading',
+        videos: [
+          { title:'Reel – Wedding Grade', uid:'PUT_UID_STREAM_1' },
+          { title:'Short Film – Night Grade', uid:'PUT_UID_STREAM_2' },
+        ]
+      },
+      alightmotion: {
+        title: 'Alight Motion — Typography ',
+        videos: [
+          { title:'Logo Reveal', uid:'PUT_UID_STREAM_3' },
+          { title:'Lower Third Pack', uid:'PUT_UID_STREAM_4' },
+        ]
+      },
+      capcut: {
+        title: 'CapCut — Editing Mobile',
+        videos: [
+          { title:'Travel Montage', uid:'PUT_UID_STREAM_5' },
+          { title:'Before/After Color', uid:'PUT_UID_STREAM_6' },
+        ]
+      }
+    };
+
+    const params = new URLSearchParams(location.search);
+    const cat = (params.get('cat') || '').toLowerCase();
+    const conf = DATA[cat] || {title:'Proyek', videos:[]};
+    document.getElementById('pageTitle').textContent = conf.title;
+
+    const grid = document.getElementById('videoGrid');
+    if (!conf.videos.length){
+      grid.innerHTML = '<div class="muted">Belum ada video untuk kategori ini.</div>';
+    } else {
+      grid.innerHTML = conf.videos.map(v=>{
+        let embed = '';
+        if (v.uid){
+          embed = `<iframe allow="accelerometer;autoplay;encrypted-media;picture-in-picture" 
+                     allowfullscreen 
+                     src="https://iframe.cloudflarestream.com/${v.uid}"></iframe>`;
+        } else if (v.yt){
+          embed = `<iframe allow="accelerometer;autoplay;encrypted-media;picture-in-picture" 
+                     allowfullscreen 
+                     src="https://www.youtube.com/embed/${v.yt}"></iframe>`;
+        }
+        return `
+          <div class="vid-card glass">
+            <div class="ratio">${embed}</div>
+            <div class="vid-title">${v.title}</div>
+          </div>
+        `;
+      }).join('');
+    }
+  </script>
+</body>
+</html>
