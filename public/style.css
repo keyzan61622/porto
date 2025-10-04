@@ -68,9 +68,19 @@ h2{font-size:clamp(22px,3vw,34px);margin-bottom:12px}
 .tile{padding:18px;font-size:16px}
 .apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px}
 .app{aspect-ratio:1/1;border-radius:26px;display:flex;align-items:center;justify-content:center;border:1px solid var(--glass-border);font-size:16px}
-.project{display:flex;gap:12px;padding:12px 0;border-top:1px dashed rgba(255,255,255,.22)}
+
+/* daftar project */
+.project{display:flex;gap:12px;align-items:center;padding:12px 0;border-top:1px dashed rgba(255,255,255,.22)}
 .project:first-child{border-top:none}
+.project .proj-text{flex:1;min-width:0} /* ⚠️ buat tombol kanan rapi */
 .thumb{width:80px;height:80px;border-radius:16px;object-fit:cover;background:#222}
+.project .go{ /* ⚠️ tombol panah ke halaman video */
+  margin-left:auto;min-width:44px;text-align:center;
+  border-radius:12px;padding:10px 14px;font-size:20px;
+  background:rgba(255,255,255,.08);border:1px solid var(--glass-border)
+}
+.project .go:hover{background:rgba(255,255,255,.14)}
+
 .btn-row{display:flex;gap:10px;flex-wrap:wrap}
 .btn{padding:12px 18px;border-radius:14px;border:1px solid var(--glass-border);cursor:pointer;font-weight:600;font-size:16px;background:transparent;color:var(--text)}
 .btn.primary{background:var(--accent);border-color:transparent;color:#fff}
