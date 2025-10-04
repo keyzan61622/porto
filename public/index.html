@@ -9,20 +9,18 @@
 
   <!-- CryptoJS untuk verifikasi hash admin -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js" defer></script>
-  <!-- Firebase (compat agar simpel) -->
+  <!-- Firebase (compat) -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js" defer></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js" defer></script>
-  <!-- App JS -->
   <script src="script.js" defer></script>
 </head>
 <body>
-  <!-- Status mini -->
+  <!-- jam kecil -->
   <div class="statusbar glass"><div id="clock">00:00</div></div>
 
-  <!-- Music Player / Dock -->
+  <!-- MUSIC DOCK -->
   <div class="music-wrap" id="musicDock" aria-hidden="false">
     <div class="player glass card">
-      <!-- kiri -->
       <div class="left">
         <img class="cover" id="coverImg" src="image/about-you.jpeg" alt="cover"/>
         <div class="meta">
@@ -35,15 +33,15 @@
           </div>
         </div>
       </div>
-      <!-- kanan -->
+
       <div class="right">
         <div class="controls">
           <button id="prevBtn" class="pp" title="Sebelumnya">⏮</button>
           <button id="pp" class="pp" title="Play/Pause">▶</button>
           <button id="nextBtn" class="pp" title="Berikutnya">⏭</button>
           <button id="shuffleBtn" class="pp" title="Shuffle">🔀</button>
-          <!-- tombol minimize dipindah ke sini -->
-          <button id="toggleDock" class="pp" title="Minimize/Restore">—</button>
+          <!-- MINIMIZE dipindah di samping shuffle biar rapi -->
+          <button id="toggleDock" class="pp" title="Minimize/Restore">▢</button>
         </div>
         <input id="vol" class="vol" type="range" min="0" max="1" step="0.01" value="0.9" title="Volume"/>
       </div>
@@ -52,7 +50,7 @@
     </div>
   </div>
 
-  <!-- Dots nav -->
+  <!-- titik navigasi (masih ada, tapi snap lock dimatiin di CSS) -->
   <nav class="dots" id="dots" aria-label="navigasi cepat">
     <a href="#hero" data-target="hero" class="active" aria-label="Hero"></a>
     <a href="#skills" data-target="skills" aria-label="Skills"></a>
@@ -72,7 +70,6 @@
           <h1 class="title"><b>Muhammad Keyzan</b>Alhaarith</h1>
           <div class="handle">📸 DKV · Video · Foto · Desain</div>
 
-          <!-- media: MP4 16:9 -->
           <div class="media-player">
             <video id="mediaVideo" controls playsinline>
               <source src="media/promo.mp4" type="video/mp4">
@@ -80,7 +77,6 @@
           </div>
         </div>
 
-        <!-- iPhone mockup (kecil & center) -->
         <div class="phone" aria-label="mockup iPhone">
           <div class="notch"></div>
           <div class="screen">
@@ -177,7 +173,7 @@
     </section>
   </main>
 
-  <!-- Hidden secret login anchor (tetap di paling bawah kiri) -->
+  <!-- anchor login (tetap pojok kiri bawah) -->
   <div id="stillHere">still here?</div>
 
   <!-- Modal Q&A -->
