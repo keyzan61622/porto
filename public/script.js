@@ -58,8 +58,8 @@ function safe(path) {
 
 var playlist = [
   { title: "About You", artist: "The 1975", src: "audio/about-you.mp3", cover: "image/about-you.jpeg" },
-  { title: "Måneskin - Beggin'", artist: "Måneskin", src: "audio/Maneskin - Beggin'.mp3", cover: "image/download.jpeg" },
-  { title: "No. 1 Party Anthem", artist: "Arctic Monkeys", src: "audio/No. 1 Party Anthem.mp3", cover: "image/download.jpeg" },
+  { title: "Måneskin - Beggin'", artist: "Måneskin", src: "audio/sekin.mp3", cover: "image/begin.jpeg" },
+  { title: "No. 1 Party Anthem", artist: "Arctic Monkeys", src: "audio/No. 1 Party Anthem.mp3", cover: "image/pary.jpeg" },
   { title: "Track 4", artist: "Unknown", src: "audio/track4.mp3", cover: "image/about-you.jpeg" },
   { title: "Track 5", artist: "Unknown", src: "audio/track5.mp3", cover: "image/about-you.jpeg" },
   { title: "Track 6", artist: "Unknown", src: "audio/track6.mp3", cover: "image/about-you.jpeg" }
