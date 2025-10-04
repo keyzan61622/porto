@@ -12,8 +12,7 @@ function updateClock() {
 }
 updateClock(); setInterval(updateClock, 10000);
 
-/* ========= DOTS NAV ========= */
-var snapper = $('.snapper');
+/* ========= DOTS NAV (tanpa scroll-lock) ========= */
 var dots = $all('#dots a');
 var panels = $all('.panel');
 
@@ -24,14 +23,14 @@ var io = new IntersectionObserver(function (entries) {
       dots.forEach(function (a) { a.classList.toggle('active', a.dataset.target === id); });
     }
   });
-}, { root: snapper, threshold: 0.55 });
+}, { root: null, threshold: 0.55 });
 
 panels.forEach(function (p) { io.observe(p); });
 dots.forEach(function (a) {
   a.addEventListener('click', function (e) {
     e.preventDefault();
     var t = document.getElementById(a.dataset.target);
-    if (t) snapper.scrollTo({ top: t.offsetTop, behavior: 'smooth' });
+    if (t) window.scrollTo({ top: t.offsetTop, behavior: 'smooth' });
   });
 });
 
@@ -142,7 +141,6 @@ window.addEventListener('resize', function () {
 });
 
 /* ========= FIREBASE (COMMENTS + REPLIES) ========= */
-// pastikan index.html sudah memuat firebase compat
 var firebaseConfig = {
   apiKey: "AIzaSyD_9VpfQdqoTNwwF8fYY37OaQ42Ag6ImEE",
   authDomain: "call-3de3b.firebaseapp.com",
@@ -226,7 +224,6 @@ if (formEl) {
 }
 
 /* ========= SECRET LOGIN (Q&A + SHA-256) ========= */
-// butuh CryptoJS di index.html
 var stillHere = $('#stillHere');
 var modalBackdrop = $('#modalBackdrop');
 var modalTitle = $('#modalTitle');

@@ -42,11 +42,12 @@
           <button id="pp" class="pp" title="Play/Pause">▶</button>
           <button id="nextBtn" class="pp" title="Berikutnya">⏭</button>
           <button id="shuffleBtn" class="pp" title="Shuffle">🔀</button>
+          <!-- tombol minimize dipindah ke sini -->
+          <button id="toggleDock" class="pp" title="Minimize/Restore">—</button>
         </div>
         <input id="vol" class="vol" type="range" min="0" max="1" step="0.01" value="0.9" title="Volume"/>
       </div>
 
-      <button id="toggleDock" class="dock-toggle" title="Minimize/Restore">—</button>
       <audio id="audio" preload="metadata"></audio>
     </div>
   </div>
@@ -74,7 +75,6 @@
           <!-- media: MP4 16:9 -->
           <div class="media-player">
             <video id="mediaVideo" controls playsinline>
-              <!-- ganti file kalau perlu -->
               <source src="media/promo.mp4" type="video/mp4">
             </video>
           </div>
@@ -119,8 +119,6 @@
     <section id="projects" class="panel">
       <div class="container card glass pad">
         <h2>Proyek</h2>
-
-        <!-- Tiga contoh proyek (bisa tambah lagi) -->
         <div class="project">
           <img class="thumb" src="image/project.png" alt="DaVinci Resolve"/>
           <div><strong>DaVinci Resolve</strong><div class="muted">Color grading.</div></div>
