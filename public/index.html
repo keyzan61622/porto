@@ -1,252 +1,207 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Portofolio — Muhammad Keyzan Alhaarith</title>
-  <meta name="description" content="Portofolio iOS aesthetic — DKV, Video, Foto, Desain" />
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- CryptoJS untuk verifikasi hash admin -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js" defer></script>
-  <!-- Firebase (compat agar simpel) -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js" defer></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js" defer></script>
-  <!-- App JS -->
-  <script src="script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyzan — Digital Portfolio</title>
+    
+    <!-- Scripts & Styles -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide-icons/0.454.0/umd/lucide.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Minimal fallbacks in case external CDN/styles fail */
+        body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color: #ffffff; background-color: #0b0c0f; }
+        nav a { color: inherit; text-decoration: none; }
+        a { color: inherit; }
+        h1,h2,h3 { margin: 0; font-weight: 700; color: inherit; }
+        .input-field { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
+    </style>
 </head>
-<body>
-  <!-- Status mini -->
-  <div class="statusbar glass"><div id="clock">00:00</div></div>
+<body class="nixtio-grid">
 
-  <!-- Music Player / Dock -->
-  <div class="music-wrap" id="musicDock" aria-hidden="false">
-    <div class="player glass card">
-      <!-- kiri -->
-      <div class="left">
-        <img class="cover" id="coverImg" src="image/about-you.jpeg" alt="cover"/>
-        <div class="meta">
-          <div class="meta-title" id="metaTitle">About You</div>
-          <div class="meta-artist" id="metaArtist">The 1975</div>
-          <div class="bar">
-            <span class="time" id="cur">0:00</span>
-            <input id="seek" class="seek" type="range" value="0" min="0" max="100" step="0.1"/>
-            <span class="time" id="dur">0:00</span>
-          </div>
-        </div>
-      </div>
-      <!-- kanan -->
-      <div class="right">
-        <div class="controls">
-          <button id="prevBtn" class="pp" title="Sebelumnya">⏮</button>
-          <button id="pp" class="pp" title="Play/Pause">▶</button>
-          <button id="nextBtn" class="pp" title="Berikutnya">⏭</button>
-          <button id="shuffleBtn" class="pp" title="Shuffle">🔀</button>
-          <!-- MINIMIZE DIPINDAH KE SINI -->
-          <button id="toggleDock" class="pp" title="Minimize/Restore">▢</button>
-        </div>
-        <input id="vol" class="vol" type="range" min="0" max="1" step="0.01" value="0.9" title="Volume"/>
-      </div>
-
-      <audio id="audio" preload="metadata"></audio>
-    </div>
-  </div>
-
-  <!-- Dots nav -->
-  <nav class="dots" id="dots" aria-label="navigasi cepat">
-    <a href="#hero" data-target="hero" class="active" aria-label="Hero"></a>
-    <a href="#skills" data-target="skills" aria-label="Skills"></a>
-    <a href="#shortcuts" data-target="shortcuts" aria-label="Shortcut"></a>
-    <a href="#projects" data-target="projects" aria-label="Project"></a>
-    <a href="#contact" data-target="contact" aria-label="Kontak"></a>
-    <a href="#experience" data-target="experience" aria-label="Pengalaman"></a>
-    <a href="#comments" data-target="comments" aria-label="Komentar"></a>
-  </nav>
-
-  <main class="snapper">
-    <!-- HERO -->
-    <section id="hero" class="panel">
-      <div class="hero container card glass">
-        <div class="copy">
-          <div class="small">Hai Semua, Perkenalkan Namaku :</div>
-          <h1 class="title"><b>Muhammad Keyzan</b>Alhaarith</h1>
-          <div class="handle">📸 DKV · Video · Foto · Desain</div>
-
-          <!-- media: MP4 16:9 -->
-          <div class="media-player">
-            <video id="mediaVideo" controls playsinline>
-              <source src="video/davinci1.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-
-        <!-- iPhone mockup -->
-        <div class="phone" aria-label="mockup iPhone">
-          <div class="notch"></div>
-          <div class="screen">
-            <img src="image/isi%20mockup%20iphone.jpeg" alt="Mockup iPhone"/>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills" class="panel">
-      <div class="container card glass pad">
-        <h2>Keahlian DKV</h2>
-        <div class="skills-grid">
-          <div class="tile card glass"><strong>Video</strong><p class="muted">Shooting, editing, color grade, motion.</p></div>
-          <div class="tile card glass"><strong>Organisasi</strong><p class="muted">OSIS — Sekbid 3 (Humas), aktif membuat & mengunggah video.</p></div>
-          <div class="tile card glass"><strong>Lomba</strong><p class="muted">Partisipasi lomba desain & video.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SHORTCUTS -->
-    <section id="shortcuts" class="panel">
-      <div class="container card glass pad">
-        <h2>Shortcut</h2>
-        <div class="apps">
-          <a class="app glass" href="https://instagram.com/keyzan.alharist" target="_blank" rel="noopener">Instagram</a>
-          <a class="app glass" href="https://tiktok.com/@myself.keyy" target="_blank" rel="noopener">TikTok</a>
-          <a class="app glass" href="#projects">Project</a>
-          <a class="app glass" href="#contact">Kontak</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects" class="panel">
-      <div class="container card glass pad">
-        <h2>Proyek</h2>
-
-        <div class="project">
-          <img class="thumb" src="image/davinci.jpeg" alt="DaVinci Resolve"/>
-          <div class="proj-text">
-            <strong>DaVinci Resolve</strong>
-            <div class="muted">Color grading.</div>
-          </div>
-          <a class="go btn ghost" href="projects.html?cat=resolve" aria-label="Lihat proyek DaVinci Resolve">›</a>
-        </div>
-
-        <div class="project">
-          <img class="thumb" src="image/am.png" alt="Alight Motion"/>
-          <div class="proj-text">
-            <strong>Alight Motion</strong>
-            <div class="muted">Typography.</div>
-          </div>
-          <a class="go btn ghost" href="projects.html?cat=alightmotion" aria-label="Lihat proyek Alight Motion">›</a>
-        </div>
-
-        <div class="project">
-          <img class="thumb" src="image/capcut.png" alt="CapCut"/>
-          <div class="proj-text">
-            <strong>CapCut</strong>
-            <div class="muted">Editing mobile.</div>
-          </div>
-          <a class="go btn ghost" href="projects.html?cat=capcut" aria-label="Lihat proyek CapCut">›</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="panel">
-      <div class="container card glass pad">
-        <h2>Kontak</h2>
-        <div class="btn-row">
-          <a class="btn primary" href="https://instagram.com/keyzan.alharist" target="_blank" rel="noopener">Instagram</a>
-          <a class="btn ghost" href="https://www.tiktok.com/@myself.keyy" target="_blank" rel="noopener">TikTok</a>
-        </div>
-      </div>
-    </section>
-
-   <!-- EXPERIENCE -->
-<section id="experience" class="panel">
-  <div class="container card glass pad">
-    <h2>Pengalaman</h2>
-    <div class="exp-grid">
-      
-      <!-- Sekolah -->
-      <div class="card glass pad-sm">
-        <strong>Sekolah</strong>
-        <ul class="muted">
-          <li>MI Salamah</li>
-          <li>MTS Darul Arifin Jambi</li>
-          <li>SMKN 1 Kota Jambi</li>
-        </ul>
-      </div>
-
-      <!-- Organisasi -->
-      <div class="card glass pad-sm">
-        <strong>Organisasi</strong>
-        <ul class="muted">
-          <li>Organisasi Siswa Intra Sekolah (OSIS)</li>
-        </ul>
-      </div>
-
-      <!-- Lomba -->
-      <div class="card glass pad-sm">
-        <strong>Lomba</strong>
-        <ul class="muted">
-          <li>Juara 3 Hadroh Bank Indonesia(BI) — Jambi Town Square</li>
-          <li>FLS3N — Cabang Fotografi</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-    <!-- COMMENTS -->
-    <section id="comments" class="panel">
-      <div class="container comments-wrap">
-        <div class="card glass pad">
-          <h2>Tinggalkan Jejak (Komentar)</h2>
-          <form id="commentForm" class="form" autocomplete="off">
-            <div class="form-row">
-              <input id="cName" class="input" type="text" placeholder="Username" required maxlength="32" />
+    <!-- Header Navigation -->
+    <nav class="fixed top-0 w-full z-[100] px-6 py-8 flex justify-between items-center bg-gradient-to-b from-[#0b0c0f] to-transparent">
+        <div class="flex items-center gap-3 group cursor-pointer" onclick="window.scrollTo(0,0)">
+            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center transition-transform group-hover:rotate-12">
+                <span class="text-black font-black text-xl">K</span>
             </div>
-            <textarea id="cMsg" class="input" placeholder="Isi pesanmu di sini..." required maxlength="300"></textarea>
-            <div class="form-row">
-              <button class="btn primary" type="submit">Kirim Komentar</button>
+            <span class="font-bold tracking-tighter text-xl">KEYZAN.</span>
+        </div>
+        
+        <div class="hidden md:flex glass px-8 py-3 rounded-full items-center gap-10 text-xs font-bold uppercase tracking-widest">
+            <a href="#home" class="hover:opacity-50 transition-opacity">Home</a>
+            <a href="#work" class="hover:opacity-50 transition-opacity">Projects</a>
+            <a href="#guestbook" class="hover:opacity-50 transition-opacity">Guestbook</a>
+        </div>
+
+        <div class="flex items-center gap-6">
+            <div id="clock" class="text-sm font-mono opacity-50 tabular-nums">00:00:00</div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex flex-col items-center justify-center px-6">
+        <div class="max-w-5xl text-center">
+            <div class="inline-block px-4 py-1 border border-white/20 rounded-full text-[10px] uppercase tracking-[0.3em] mb-8 animate-pulse">
+                Available for New Projects
             </div>
-          </form>
-          <div id="commentsList" class="comments-list" aria-live="polite"></div>
+            <h1 class="text-6xl md:text-[120px] font-bold leading-[0.9] tracking-tighter mb-10">
+                VISUAL <span class="text-zinc-600">STORY</span><br>TELLER.
+            </h1>
+            <p class="text-zinc-400 text-lg md:text-xl max-w-xl mx-auto leading-relaxed">
+                Muhammad Keyzan Alhaarith — Spesialis Video Editing (Alight Motion & CapCut) serta Desain Grafis dengan pendekatan minimalis namun berdampak besar.
+            </p>
         </div>
-      </div>
     </section>
-  </main>
 
-  <!-- Hidden secret login anchor -->
-  <div id="stillHere">still here?</div>
-
-  <!-- Modal Q&A -->
-  <div class="modal-backdrop" id="modalBackdrop">
-    <div class="modal card glass" role="dialog" aria-modal="true">
-      <h3 id="modalTitle">…</h3>
-      <div id="modalBody"></div>
-      <div class="modal-actions">
-        <button id="modalNo" class="btn">Tidak</button>
-        <button id="modalYes" class="btn primary">Iya</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal Login -->
-  <div class="modal-backdrop" id="loginBackdrop">
-    <div class="modal card glass">
-      <h3>Login Admin</h3>
-      <div class="modal-form">
-        <input id="loginUser" class="input" placeholder="Username"/>
-        <input id="loginPass" type="password" class="input" placeholder="Password"/>
-        <div class="modal-actions">
-          <button id="loginCancel" class="btn">Batal</button>
-          <button id="loginSubmit" class="btn primary">Masuk</button>
+    <!-- Projects Section -->
+    <section id="work" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-20">
+            <h2 class="text-5xl md:text-7xl font-bold tracking-tighter">Selected<br>Works.</h2>
+            <p class="text-zinc-500 max-w-xs text-right mt-4 md:mt-0 italic">"Kualitas di atas kuantitas, setiap piksel memiliki cerita."</p>
         </div>
-        <div id="loginMsg" class="muted small-note"></div>
-      </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <!-- Project 1: Alight Motion -->
+            <div class="project-card group relative aspect-[4/5] bg-zinc-900 rounded-[40px] overflow-hidden cursor-pointer" onclick="location.href='projects.html?cat=alightmotion'">
+                <img src="image/am.png" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
+                <div class="absolute inset-0 p-12 flex flex-col justify-end bg-gradient-to-t from-black via-transparent to-transparent">
+                    <span class="text-xs font-bold tracking-[0.3em] uppercase mb-2">Alight Motion</span>
+                    <h3 class="text-4xl font-bold mb-6">Feast - Tarot</h3>
+                    <a href="projects.html?cat=alightmotion" class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-black">
+                        <i data-lucide="arrow-up-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 2: Alight Motion -->
+            <div class="project-card group relative aspect-[4/5] bg-zinc-800 rounded-[40px] overflow-hidden cursor-pointer" onclick="location.href='projects.html?cat=alightmotion'">
+                <div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center">
+                    <img src="image/project.png" alt="alig" class="w-40 h-40 object-contain opacity-30">
+                </div>
+                <div class="absolute inset-0 p-12 flex flex-col justify-end bg-gradient-to-t from-black via-transparent to-transparent">
+                    <span class="text-xs font-bold tracking-[0.3em] uppercase mb-2">Alight Motion</span>
+                    <h3 class="text-4xl font-bold mb-6">Barasuara - Terbuang</h3>
+                    <a href="projects.html?cat=alightmotion" class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-black">
+                        <i data-lucide="arrow-up-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 3: CapCut -->
+            <div class="project-card group relative aspect-[4/5] bg-zinc-900 rounded-[40px] overflow-hidden cursor-pointer" onclick="location.href='projects.html?cat=capcut'">
+                 <div class="w-full h-full bg-zinc-800 flex items-center justify-center">
+                    <img src="image/capcut.png" alt="capcut" class="w-32 h-32 opacity-90 object-contain">
+                </div>
+                <div class="absolute inset-0 p-12 flex flex-col justify-end bg-gradient-to-t from-black via-transparent to-transparent">
+                    <span class="text-xs font-bold tracking-[0.3em] uppercase mb-2">CapCut</span>
+                    <h3 class="text-4xl font-bold mb-6">Setelah Hari Guru</h3>
+                    <a href="projects.html?cat=capcut" class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-black">
+                        <i data-lucide="arrow-up-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 4: DaVinci Resolve -->
+            <div class="project-card group relative aspect-[4/5] bg-zinc-900 rounded-[40px] overflow-hidden cursor-pointer" onclick="location.href='projects.html?cat=davinci'">
+                <div class="w-full h-full bg-gradient-to-tr from-zinc-900 to-zinc-700 flex items-center justify-center">
+                    <img src="image/davinci.jpeg" alt="davinci" class="w-32 h-32 opacity-90 object-contain rounded-md">
+                </div>
+                <div class="absolute inset-0 p-12 flex flex-col justify-end bg-gradient-to-t from-black via-transparent to-transparent">
+                    <span class="text-xs font-bold tracking-[0.3em] uppercase mb-2">DaVinci Resolve</span>
+                    <h3 class="text-4xl font-bold mb-6">Desember 2024 Recap</h3>
+                    <a href="projects.html?cat=davinci" class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-black">
+                        <i data-lucide="arrow-up-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guestbook / Comments Section -->
+    <section id="guestbook" class="py-32 px-6 bg-white text-black rounded-t-[60px]">
+        <div class="max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+                <div>
+                    <h2 class="text-6xl font-bold tracking-tighter mb-8">Katakan Sesuatu.</h2>
+                    <p class="text-zinc-500 mb-12">Berikan masukan, sapaan, atau sekadar meninggalkan jejak di sini. Pesan kamu akan tersimpan di database.</p>
+                    
+                    <form id="commentForm" class="space-y-4">
+                        <input type="text" id="cName" placeholder="Nama kamu" required class="w-full px-6 py-4 rounded-2xl bg-zinc-100 border-none focus:ring-2 focus:ring-black outline-none transition-all">
+                        <textarea id="cMsg" placeholder="Tulis pesan..." required class="w-full px-6 py-4 rounded-2xl bg-zinc-100 border-none focus:ring-2 focus:ring-black outline-none h-32 transition-all"></textarea>
+                        <button type="submit" class="w-full py-5 bg-black text-white rounded-2xl font-bold hover:scale-[0.98] transition-transform">Kirim Pesan</button>
+                    </form>
+                </div>
+                
+                <div class="flex flex-col">
+                    <div class="flex items-center justify-between mb-8">
+                        <h4 class="font-bold uppercase tracking-widest text-sm">Pesan Terbaru</h4>
+                        <span id="commentCount" class="bg-zinc-100 px-3 py-1 rounded-full text-xs font-bold">0</span>
+                    </div>
+                    <div id="commentsList" class="space-y-6 max-h-[500px] overflow-y-auto pr-4">
+                        <!-- Komentar akan muncul di sini via script.js -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white text-black pb-20 px-6">
+        <div class="max-w-7xl mx-auto pt-20 border-t border-zinc-200 flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="text-sm font-medium opacity-40">© 2024 Muhammad Keyzan Alhaarith. Built with Passion.</div>
+            <div class="flex gap-8 text-sm font-bold uppercase tracking-widest">
+                <a href="#" class="hover:underline">Instagram</a>
+                <a href="#" class="hover:underline">TikTok</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Hidden Admin Trigger -->
+    <div id="stillHere" class="fixed bottom-4 left-4 opacity-10 hover:opacity-100 cursor-pointer text-[10px] z-[200]">still here?</div>
+
+    <!-- Music Player Dock (iOS Style) -->
+    <div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[150]">
+        <div id="musicDock" class="glass px-4 py-3 rounded-full flex items-center gap-4 shadow-2xl min-w-[360px]">
+            <img id="coverImg" src="image/about-you.jpeg" alt="cover" class="w-12 h-12 rounded-full object-cover" onerror="this.src='https://via.placeholder.com/48'">
+            <div class="flex flex-col flex-1 overflow-hidden pr-4">
+                <span id="trackTitle" class="text-xs font-bold truncate">About You</span>
+                <span id="trackArtist" class="text-[10px] opacity-50">The 1975</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <button id="prevBtn" class="w-9 h-9 rounded-full bg-white/10 text-white flex items-center justify-center">
+                    <i data-lucide="chevrons-left" class="w-4 h-4"></i>
+                </button>
+                <button id="playBtn" class="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center">
+                    <i data-lucide="play" class="w-5 h-5 fill-current"></i>
+                </button>
+                <button id="nextBtn" class="w-9 h-9 rounded-full bg-white/10 text-white flex items-center justify-center">
+                    <i data-lucide="chevrons-right" class="w-4 h-4"></i>
+                </button>
+                <input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="0.8" class="ml-3 w-28">
+            </div>
+        </div>
+        <audio id="audioPlayer" preload="metadata"></audio>
     </div>
-  </div>
+
+    <!-- Admin & Login Modals -->
+    <div id="loginBackdrop" class="fixed inset-0 bg-black/90 z-[300] hidden items-center justify-center p-6">
+        <div class="glass max-w-sm w-full p-10 rounded-[40px]">
+            <h3 class="text-2xl font-bold mb-6">Admin Login</h3>
+            <input type="text" id="loginUser" placeholder="Username" class="w-full input-field px-6 py-4 rounded-2xl mb-4">
+            <input type="password" id="loginPass" placeholder="Password" class="w-full input-field px-6 py-4 rounded-2xl mb-8">
+            <div id="loginMsg" class="text-red-400 text-xs mb-4"></div>
+            <div class="flex gap-3">
+                <button id="loginCancel" class="flex-1 py-4 border border-white/10 rounded-2xl">Batal</button>
+                <button id="loginSubmit" class="flex-1 py-4 bg-white text-black font-bold rounded-2xl">Masuk</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main JS -->
+    <script type="module" src="script.js"></script>
 </body>
 </html>
