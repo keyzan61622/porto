@@ -1,92 +1,78 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-  <title>Daftar Proyek — Portfolio</title>
-  <link rel="stylesheet" href="style.css"/>
-  <style>
-    body{min-height:100vh}
-    .topbar{position:sticky;top:0;z-index:50;margin:16px auto 0;width:min(1200px,92vw)}
-    .back{display:inline-flex;gap:8px;align-items:center;padding:10px 14px;border-radius:14px;border:1px solid var(--glass-border)}
-    .page{width:min(1200px,92vw);margin:16px auto;padding:16px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-    .vid-card{padding:12px;display:flex;flex-direction:column;gap:10px}
-    .vid-title{font-weight:700}
-    .ratio{position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000}
-    .ratio iframe,.ratio video{position:absolute;inset:0;width:100%;height:100%;display:block;border:0;object-fit:cover}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects — Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide-icons/0.454.0/umd/lucide.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="statusbar glass"><div id="clock">00:00</div></div>
+<body class="nixtio-grid bg-[#0b0c0f] text-white p-6 md:p-20">
+    
+    <div class="max-w-7xl mx-auto">
+        <header class="flex justify-between items-center mb-20">
+            <a href="index.html" class="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                <span>Kembali</span>
+            </a>
+            <h1 id="pageTitle" class="text-2xl font-bold tracking-tighter">Proyek</h1>
+        </header>
 
-  <div class="topbar">
-    <a class="back glass" href="index.html#projects">← Kembali</a>
-  </div>
+        <div id="videoGrid" class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- Video cards will be injected here -->
+        </div>
+    </div>
 
-  <main class="page card glass">
-    <h2 id="pageTitle">Proyek</h2>
-    <div id="videoGrid" class="grid"></div>
-  </main>
+    <script>
+        const DATA = {
+            alightmotion: {
+                title: 'Alight Motion — Typography',
+                videos: [
+                    { title: 'Feast - Tarot', file: 'video/alig1.mp4' },
+                    { title: 'Barasuara - Terbuang Dalam Waktu', file: 'video/alig2.mp4' }
+                ]
+            },
+            davinci: {
+                title: 'DaVinci Resolve — Editing (Desktop)',
+                videos: [
+                    { title: 'DaVinci — Project 1', file: 'video/davinci1.mp4' },
+                    { title: 'DaVinci — Project 2', file: 'video/davinci2.mp4' }
+                ]
+            },
+            capcut: {
+                title: 'CapCut — Editing Mobile',
+                videos: [
+                    { title: 'Setelah Hari Guru', file: 'video/capcut1.mp4' },
+                    { title: 'Desember 2024 Recap', file: 'video/capcut2.mp4' }
+                ]
+            }
+        };
 
-  <script>
-    function updateClock(){
-      const el=document.getElementById('clock');
-      if(!el) return;
-      el.textContent=new Intl.DateTimeFormat('id-ID',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Jakarta'}).format(new Date());
-    } updateClock(); setInterval(updateClock,10000);
+        const params = new URLSearchParams(location.search);
+        const cat = (params.get('cat') || '').toLowerCase();
+        const conf = DATA[cat] || { title: 'Daftar Proyek', videos: [] };
 
-    // ======= DATA PROJECTS (pakai file .mp4 lokal) =======
-    const DATA = {
-      resolve: {
-        title: 'DaVinci Resolve — Color Grading',
-        videos: [
-          { title:'Pawai Paskibra SMKN 1 Kota Jambi Di Gentala Arasy Bersama Gubernur Dan Wali Kota', file:'video/davinci1.mp4' },
-          { title:'Malam Pengukuhan Paskibra Dan HUT RI 80 Republik Indonesia', file:'video/davinci2.mp4' },
-        ]
-      },
-      alightmotion: {
-        title: 'Alight Motion — Typography',
-        videos: [
-          { title:'Feast - Tarot', file:'video/alig1.mp4' },
-          { title:'Barasuara - Terbuang Dalam Waktu', file:'video/alig2.mp4' },
-        ]
-      },
-      capcut: {
-        title: 'CapCut — Editing Mobile',
-        videos: [
-          { title:'Setelah Hari Guru', file:'video/capcut1.mp4' },
-          { title:'Desember 2024 Recap', file:'video/capcut2.mp4' },
-        ]
-      }
-    };
+        document.getElementById('pageTitle').textContent = conf.title;
+        const grid = document.getElementById('videoGrid');
 
-    // ambil parameter ?cat= dari URL
-    const params = new URLSearchParams(location.search);
-    const cat = (params.get('cat') || '').toLowerCase();
-    const conf = DATA[cat] || {title:'Proyek', videos:[]};
-    document.getElementById('pageTitle').textContent = conf.title;
-
-    const grid = document.getElementById('videoGrid');
-    if (!conf.videos.length){
-      grid.innerHTML = '<div class="muted">Belum ada video untuk kategori ini.</div>';
-    } else {
-      grid.innerHTML = conf.videos.map(v=>{
-        let embed = '';
-        if (v.file){
-          embed = `<video controls preload="metadata">
-                     <source src="${v.file}" type="video/mp4">
-                     Browser kamu tidak mendukung pemutar video.
-                   </video>`;
+        if (!conf.videos.length) {
+            grid.innerHTML = '<div class="text-zinc-500">Kategori tidak ditemukan atau belum ada video.</div>';
+        } else {
+            grid.innerHTML = conf.videos.map(v => `
+                <div class="group">
+                    <div class="aspect-video bg-zinc-900 rounded-[30px] overflow-hidden mb-6 border border-white/5">
+                        <video controls class="w-full h-full object-cover">
+                            <source src="${v.file}" type="video/mp4">
+                            Browser kamu tidak mendukung pemutar video.
+                        </video>
+                    </div>
+                    <h3 class="text-xl font-bold">${v.title}</h3>
+                </div>
+            `).join('');
         }
-        return `
-          <div class="vid-card glass">
-            <div class="ratio">${embed}</div>
-            <div class="vid-title">${v.title}</div>
-          </div>
-        `;
-      }).join('');
-    }
-  </script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
